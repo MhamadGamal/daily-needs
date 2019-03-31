@@ -1,0 +1,147 @@
+/* You can add global styles to this file, and also import other style files */
+ ul {
+    margin-bottom: 1px !important;
+}
+
+.container{
+	width: 1170px;
+	margin: auto;
+}
+
+.row {
+	margin: 0px;
+}
+.header .navbar .logo{
+	width:166px;
+	height: 23px;
+}
+.slider {
+	height: 600px;
+	overflow: hidden;
+	background: url('./assets/images/slider.png') no-repeat;
+	background-size: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: right;
+}
+
+.header .slider-details  , .header .slider-category{
+		height: 175px;
+		overflow: hidden;
+		background: url('./assets/images/program.jpg') no-repeat;
+		background-size: 100%;
+		display: flex;
+		align-items: center;
+    	justify-content: right;
+} 
+	
+.header .sliderTxt{
+		color: #f8a01d;
+		font-weight: bold;
+		font-size: 20px;
+}
+
+.header .slider .smallImgSlider{
+	width:25%;
+}
+.header .navbar {
+	background-color: #252F31;
+	/* overflow: hidden; */
+}
+.dropdown-menu{
+    margin-top: 17px !important; 
+    min-width: 20rem !important;
+    border-radius: unset;
+    border-top: none;
+    font-size: 0.9rem;
+    padding-top: 25px !important;
+}
+
+.header .navbar h2 span{
+	color: #2ecc71;
+}
+
+.header .navbar ul li a {
+	color: rgba(0,0,0,.5);
+	text-decoration: none;
+}
+
+.header .navbar ul li a:hover {
+   color:rgba(0,0,0,.7);
+}
+li.active , a.active {
+	color:rgba(122,201,67,1) !important; 
+	font-weight: bold;
+} 
+
+.nav-link , .nav-link:hover{
+		color:rgba(74,74,74,1);
+}
+
+.header .navbar .navigationUrl{
+	font-family: HelveticaNeue;
+}
+
+.header .navbar ul .active{
+	color:rgba(122,201,67,1); 
+	font-weight: bold;
+	font-size: 17px;
+}
+
+.navbar-header{
+    margin-left:185px;
+}
+.dropdown-list{
+    padding: 0px !important;
+}
+
+.facebook , .twitter{
+    background: url('./assets/images/facebook.png') no-repeat;
+    background-size: cover !important;
+    width: 76px;
+    height: 27px;
+    border-radius: unset !important;
+}
+
+.twitter{
+    background: url('./assets/images/twitter.png') no-repeat;
+}
+
+.bg-light {
+    background-color: #fff !important;
+}
+
+.loginTxt { 
+    padding: 0px 5px;
+}
+
+.signIn{
+    color : rgba(255,159,0,1) !important;
+}
+
+.signUp{
+    color:rgba(122,201,67,1) !important;
+}
+
+.modal-header {
+    background-color: rgba(255,159,0,1);
+    color:white
+}
+
+.signupBtn , .signupBtn:hover{
+    background-color: rgba(255,159,0,1);
+    border-color: rgba(255,159,0,1);
+}
+
+.modal-header .close {
+    padding: 0px;
+    margin: 0px;
+}
+
+.modal-dialog , .modal-header , .modal-body , .modal-footer , .modal-content{
+    border-radius: unset ;
+}
+
+.modal {
+    background-color: #3c3b3a6b;
+}

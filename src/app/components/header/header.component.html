@@ -1,0 +1,96 @@
+<div class="header">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="#"><img class="logo" src="assets/images/logo.png"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto navbar-header">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Category</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Programs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Health information</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a href="search.html"><i class="fas fa-search"></i></a></li>
+            <li class="nav-item dropdown" *ngIf="isLogged">
+              <a class="nav-link dropdown-toggle dropdown-list" href="#" id="navbarDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-shopping-cart"></i>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action222</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown" *ngIf="isLogged">
+              <a class="nav-link dropdown-toggle dropdown-list" href="#" id="navbarDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="far fa-user"></i>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action333</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown" *ngIf="!isLogged">
+              <a class="nav-link dropdown-toggle dropdown-list" href="#" id="navbarDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="far fa-user"></i>
+              </a>
+              <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+                <div class="row">
+                  <div class="col-md-4">
+                    {{ 'home.header.guest.login' | translate }}
+                  </div>
+                  <div class="col-md-4">
+                    <button class="btn btn-sucess facebook"></button>
+                  </div>
+                  <div class="col-md-4 user-twitter">
+                    <button class="btn btn-sucess twitter"></button>
+                  </div>
+                </div>
+                <hr>
+                <p class="loginTxt"  *ngIf="lang == 'ar' ">
+                  <span>يجب <a class="signIn">تسجيل الدخول</a> اولاً, </span>
+                  <span>إذا كنت لا تمتلك حساب يمكنك التسجيل من هنا </span>
+                  <a (click)="showConfirm()" class="signUp">إنشاء حساب</a>
+                </p>
+                <p class="loginTxt" *ngIf="lang == 'en' ">
+                  <span>You have to <a class="signIn">Sign in</a> first, </span>
+                  <span>if you don't have account you can </span>
+                  <a (click)="showConfirm()" class="signUp">Sign up</a>
+                </p>
+                <!-- <a class="dropdown-item" href="#">Action333</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a> -->
+              </div>
+            </li>
+            <li class="nav-item"><a href="user.html"><i class="fas fa-globe"></i></a></li>
+          </ul>
+        </form>
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="slider text-center">
+  <div class="container">
+    <img class="smallImgSlider" src="images/natural2.png" />
+  </div>
+</div>

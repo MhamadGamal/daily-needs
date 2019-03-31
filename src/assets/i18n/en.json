@@ -1,0 +1,13 @@
+{
+    "name" : "Name",
+    "home" : {
+        "header" : {
+            "logged" :{
+
+            },
+            "guest" :{
+                "login" : "Login with"
+            }
+        }
+    }    
+}

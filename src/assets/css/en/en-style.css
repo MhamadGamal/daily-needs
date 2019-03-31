@@ -1,0 +1,32 @@
+::ng-deep html{
+	direction: ltr !important;
+}
+
+::ng-deep body{
+	text-align: left !important;
+}
+
+::ng-deep .header .navbar h2 {
+	float: left;
+	text-transform: uppercase;
+}
+
+::ng-deep .header .navbar ul {
+	list-style: none;
+	float: left;
+	color: #000;
+}
+
+::ng-deep .header .navbar ul li{
+	float: left;
+	padding: 0px 10px;
+	font-size: 16px;
+}
+
+::ng-deep .dropdown-menu{
+    margin-left: -270px; 
+}
+
+::ng-deep .user-twitter{
+    margin-left: -10px;
+}

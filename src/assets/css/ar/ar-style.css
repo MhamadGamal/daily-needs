@@ -1,0 +1,29 @@
+
+::ng-deep html{
+	direction: rtl !important;
+}
+
+::ng-deep body{
+	text-align: right !important;
+}
+
+::ng-deep .header .navbar h2 {
+	float: right;
+	text-transform: uppercase;
+}
+
+::ng-deep .header .navbar ul {
+	list-style: none;
+	float: right;
+	color: #000;
+}
+
+::ng-deep .header .navbar ul li{
+	float: right;
+	padding: 0px 10px;
+	font-size: 16px;
+}
+
+::ng-deep .user-twitter{
+    margin-right: -10px;
+}
