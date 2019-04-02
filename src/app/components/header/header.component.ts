@@ -3,6 +3,7 @@ import { DialogService } from 'ng6-bootstrap-modal';
 import { ModalSignupComponent } from '../modal-signup/modal-signup.component';
 import { ModalSigninComponent } from '../modal-signin/modal-signin.component';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -12,7 +13,10 @@ export class HeaderComponent implements OnInit {
 
   @Input() lang;
   @Input() isLogged;
+  @Input() pageName;
   public switchLang = 'ar';
+  
+
   constructor(private dialogService: DialogService) {
 
   }

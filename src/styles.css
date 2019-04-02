@@ -1,5 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
- ul {
+/* html {
+	font-family: HelveticaNeue !important;
+	font-size: 14px ;
+} */
+@font-face {
+	font-family: Marilatte;
+	src: url('assets/fonts/Marilatte.otf') format("opentype");
+}
+
+ul {
     margin-bottom: 1px !important;
 }
 
@@ -16,34 +25,61 @@
 	height: 23px;
 }
 .slider {
-	height: 600px;
-	overflow: hidden;
-	background: url('./assets/images/slider.png') no-repeat;
-	background-size: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: right;
+	height: 600px !important;
+	overflow: hidden !important;
+	background-size: 100% !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: right !important;
+	position: relative;
+	
 }
 
-.header .slider-details  , .header .slider-category{
+.swiperImg {
+	width : 1440px ;
+	height : 650px;
+}
+
+.slider .discoverBtn , .slider .discoverBtn:hover ,
+.slider .discoverBtn:focus , .slider .discoverBtn:active{
+	position: absolute;
+	top: 80%;
+	left: 50%;
+	background-color: rgba(122,201,67,1) !important;
+	border-color:  rgba(122,201,67,1) !important;
+	border-radius: unset !important;
+	box-shadow: unset !important;
+	color : white;
+	font-size: 15px;
+    font-weight: bold;
+    padding: 10px 30px;
+
+}
+ .slider-details  , .header .slider-category{
 		height: 175px;
 		overflow: hidden;
-		background: url('./assets/images/program.jpg') no-repeat;
 		background-size: 100%;
 		display: flex;
 		align-items: center;
-    	justify-content: right;
+		justify-content: right;
+		position: relative;	
 } 
-	
-.header .sliderTxt{
-		color: #f8a01d;
-		font-weight: bold;
-		font-size: 20px;
+
+.smallImgSlider{
+	width: 100%;
+	height: 175px;
 }
 
-.header .slider .smallImgSlider{
-	width:25%;
+.sliderTxt{
+	color: #f8a01d;
+	font-weight: normal !important;
+	font-size: 70px;
+	position: absolute;
+	left:50%;
+	font-family: Marilatte;
 }
+
+
 .header .navbar {
 	background-color: #252F31;
 	/* overflow: hidden; */
@@ -69,7 +105,7 @@
 .header .navbar ul li a:hover {
    color:rgba(0,0,0,.7);
 }
-li.active , a.active {
+li.active , a.active ,.nav-item .active ,.navbar-light .navbar-nav .active>.nav-link {
 	color:rgba(122,201,67,1) !important; 
 	font-weight: bold;
 } 
@@ -79,7 +115,7 @@ li.active , a.active {
 }
 
 .header .navbar .navigationUrl{
-	font-family: HelveticaNeue;
+	/* font-family: HelveticaNeue; */
 }
 
 .header .navbar ul .active{
@@ -144,4 +180,203 @@ li.active , a.active {
 
 .modal {
     background-color: #3c3b3a6b;
+}
+
+.titleIconDiv{
+	margin-bottom: 20px;
+}
+
+.titleIconDiv .titleIcon{
+	width: 30px;
+	height: 31px;
+	margin:10px 15px;
+}
+
+.divSeparator {
+	width:55px ; 
+	border:1px solid rgba(223,232,238,1) ; 
+	display: inline-block;
+}
+
+.dailyNeeds , .offers , .kidProducts ,.dailyApp ,.healthInfo , .footer , .itemDetailsDiv ,.relatedProduct{
+	overflow: hidden;
+	margin:60px 0px;
+}
+
+.dailyNeed-title-font {
+	font-family: Marilatte; /*cursive;*/
+	color: rgba(122,201,67,1); ;
+	font-size: 60px;
+}
+.dailyNeed-title , .dailyNeed-price{
+	text-align: center;
+}
+
+.dailyNeed-title{
+	margin-bottom: 10px;
+}
+
+.dailyNeeds .blackTxt{
+	font-weight: bolder;
+
+}
+
+.dailyNeed-link {
+	text-align: center;
+	margin:10px;
+	font-weight: normal !important;
+}
+
+.dailyNeed-link + .divSeparator {
+	width: 15px; 
+	border:1px solid rgba(223,232,238,1) ; 
+	display: inline-block;
+	margin-bottom: 3px;
+}
+
+.dailyNeed-link .active{
+	color: rgba(122,201,67,1); ;
+} 
+
+.dailyNeed-div-img{
+	margin: 10px 0px;
+}
+
+.category-div-img{
+	margin: 20px 15px;
+    box-shadow: 2px 2px 6px #ccc;
+    min-width: 235px;
+	height: 210px;
+	position: relative;
+}
+.category-img {
+	width:150px;
+	height: 160px;
+	position: absolute;
+	top:3%;
+	right:2%;
+}
+
+.category-title{
+	position: absolute;
+	bottom: 4%;
+	left:2%;
+	word-wrap: break-word;
+}
+.dailyNeed-img {
+	width:220px;
+	height: 220px;
+	margin-bottom: 10px;
+	box-shadow: 2px 2px 6px #ccc;
+}
+
+.dailyNeed-price{
+	color:rgba(122,201,67,1);
+	font-weight: bold;
+}
+
+.btn-more , .btn-more:active , .btn-more:hover{
+	background-color: rgba(122,201,67,1) !important;
+	border: rgba(122,201,67,1) !important;
+	font-weight: bold;
+	padding: 10px 30px;
+	border-radius: 4%;
+}
+
+.offers{
+	height: 750px;
+	background: url('./assets/images/offer_bg.png') no-repeat;
+	background-size: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.offerBg{
+	width: 500px;
+	height: 400px;
+}
+
+.time-number {
+
+	color : rgba(122,201,67,1);
+	font-size:28px;
+	font-weight: bold;
+	
+}
+.time-text {
+	font-size: 14px;
+}
+
+.time-table  tr  td {
+	padding:10px;
+}
+
+.offerContainer{
+	margin-top: 25px;
+}
+
+.btn-orderNow , .btn-orderNow:hover , .btn-orderNow:active {
+	color: white;
+	font-weight: bold;
+	background-color: rgba(255,159,0,1) !important;
+	border:rgba(255,159,0,1) !important;
+	margin-top: 25px;
+}
+
+
+.kidImg{
+	width:100%;
+	height:100%;
+}
+
+.kidDrink-img{
+	width: 100%;
+	height:230px;
+}
+
+
+.dailyApp {
+	background-color: rgba(248,248,248,1);
+	padding-top:5%;
+	padding-bottom: 3%;
+}
+
+.dailyAppBenefit{
+	margin-top: 60Px;
+	font-family: HelveticaNeue;
+	font-weight: bold; 
+}
+
+.iosImg{
+	width:100%;
+}
+
+.andriodImg{
+	padding-top: 12px;
+	width: 90%
+}
+
+.healthInfo-img{
+	width: 100%
+}
+
+.healthReadMore{
+	color:rgba(122,201,67,1);
+	font-weight: bold;
+}
+
+footer{
+	background-color: rgba(49,49,49,1);
+	color: white;
+	font-weight: bold;
+	padding: 10px 0px 0px;
+}
+
+.copyRight{
+	background-color: rgba(29,29,29,1);
+	margin-top: 20px;
+	padding: 10px 0px 10px 0px;
+	color: rgba(74,74,74,1);
+	font-size: 14px;
+	font-family: HelveticaNeue;
 }

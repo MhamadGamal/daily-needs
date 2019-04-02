@@ -30,3 +30,20 @@
 ::ng-deep .user-twitter{
     margin-left: -10px;
 }
+
+::ng-deep .tags{
+	color:#ccc;
+	font-size: 13px;
+	text-align: left;
+	font-family: HelveticaNeue;
+	margin-top: 2px;
+}
+
+::ng-deep .health-title , .healthReadMore{
+	text-align: left !important;
+}
+
+::ng-deep .healt-desc{
+	font-size: 14px;
+	text-align: left;
+}

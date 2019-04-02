@@ -9,16 +9,16 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto navbar-header">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" routerLink="/{{lang}}" >Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Category</a>
+            <a class="nav-link" routerLink="/{{lang}}/category" style="cursor:pointer">Category</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Programs</a>
+            <a class="nav-link" routerLink="/{{lang}}/programs">Programs</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Health information</a>
+            <a class="nav-link" routerLink="/{{lang}}/health">Health information</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -96,8 +96,17 @@
     </div>
   </nav>
 </div>
-<div class="slider text-center">
-  <div class="container">
-    <img class="smallImgSlider" src="images/natural2.png" />
+
+<!-- <swiper [config]="config" *ngIf="pageName == 'home'">
+  <div *ngFor="let slide of slides" class="slider text-center">
+      <img class="swiperImg" src="{{slide}}" />
+      <button class="btn btn-success discoverBtn">{{ 'home.slider.discoverBtn' | translate }}</button>
   </div>
-</div>
+</swiper>
+
+
+<div class="slider-details text-center" *ngIf="pageName != 'home'">
+    <div class="container">
+      <p class="sliderTxt">Program details</p>
+    </div>
+  </div> -->

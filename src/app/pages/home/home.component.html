@@ -1,1 +1,20 @@
-<app-header [lang]="lang" [isLogged]="isLogged"></app-header>
+<app-header [lang]="lang" [isLogged]="isLogged" [pageName]="pageName"></app-header>
+
+<swiper [config]="config">
+        <div *ngFor="let slide of slides" class="slider text-center">
+            <img class="swiperImg" src="{{slide}}" />
+            <button class="btn btn-success discoverBtn">{{ 'home.slider.discoverBtn' | translate }}</button>
+        </div>
+</swiper>
+
+<app-daily-need-products [lang]="lang"></app-daily-need-products>
+
+<app-offers [lang]="lang"></app-offers>
+
+<app-kids-product [lang]="lang"></app-kids-product>
+
+<app-daily-app [lang]="lang"></app-daily-app>
+
+<app-health-information [lang]="lang"></app-health-information>
+
+<app-footer [lang]="lang"></app-footer>

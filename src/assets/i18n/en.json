@@ -1,5 +1,4 @@
 {
-    "name" : "Name",
     "home" : {
         "header" : {
             "logged" :{
@@ -8,6 +7,9 @@
             "guest" :{
                 "login" : "Login with"
             }
+        },
+        "slider" : {
+            "discoverBtn" : "Discover our products"
         }
     }    
 }

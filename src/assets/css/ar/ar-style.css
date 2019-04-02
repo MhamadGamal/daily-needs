@@ -27,3 +27,21 @@
 ::ng-deep .user-twitter{
     margin-right: -10px;
 }
+
+
+::ng-deep .tags{
+	color:#ccc;
+	font-size: 13px;
+	text-align: right;
+	font-family: HelveticaNeue;
+	margin-top: 2px;
+}
+
+::ng-deep .health-title , .healthReadMore{
+	text-align: right !important;
+}
+
+::ng-deep .healt-desc{
+	font-size: 14px;
+	text-align: right;
+}
