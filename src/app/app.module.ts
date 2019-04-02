@@ -13,6 +13,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MinHeaderComponent } from './components/min-header/min-header.component';
 import { ModalSignupComponent } from './components/modal-signup/modal-signup.component';
+import { ModalSigninComponent } from './components/modal-signin/modal-signin.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -48,7 +49,8 @@ const appRoutes = [
     FooterComponent,
     HomeComponent,
     MinHeaderComponent,
-    ModalSignupComponent
+    ModalSignupComponent,
+    ModalSigninComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,8 @@ const appRoutes = [
     RouterModule
   ],
   entryComponents:[
-    ModalSignupComponent  
+    ModalSignupComponent ,
+    ModalSigninComponent 
   ]
 })
 export class AppModule { }

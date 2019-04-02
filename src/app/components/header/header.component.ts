@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DialogService } from 'ng6-bootstrap-modal';
 import { ModalSignupComponent } from '../modal-signup/modal-signup.component';
+import { ModalSigninComponent } from '../modal-signin/modal-signin.component';
 
 @Component({
   selector: 'app-header',
@@ -11,26 +12,44 @@ export class HeaderComponent implements OnInit {
 
   @Input() lang;
   @Input() isLogged;
-  public signIn = 'ssss';
-  constructor(private dialogService: DialogService) { 
-   
+  public switchLang = 'ar';
+  constructor(private dialogService: DialogService) {
+
   }
 
   ngOnInit() {
+    this.lang == 'ar' ? this.switchLang = 'en' : this.switchLang = 'ar';
+    console.log(this.switchLang);
   }
 
-  showConfirm() {
-    let disposable = this.dialogService.addDialog(ModalSignupComponent, {
-        lang: this.lang})
-        .subscribe((isConfirmed)=>{
-            //We get dialog result
-            if(isConfirmed) {
+  showModal(modalType) {
+    if (modalType == 'signup')
+    {
+        let disposable = this.dialogService.addDialog(ModalSignupComponent, 
+          { lang: this.lang  }).subscribe((isConfirmed) => {
+                //We get dialog result
+                if (isConfirmed) {
+                  alert('accepted');
+                }
+                else {
+                  alert('declined');
+                }
+          });
+    }
+    else if (modalType == 'signin') 
+    {
+      let disposable = this.dialogService.addDialog(ModalSigninComponent, 
+        { lang: this.lang  }).subscribe((isConfirmed) => {
+              //We get dialog result
+              if (isConfirmed) {
                 alert('accepted');
-            }
-            else {
+              }
+              else {
                 alert('declined');
-            }
+              }
         });
-}
+    }
+
+  }
 
 }
