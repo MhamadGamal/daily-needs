@@ -45,3 +45,8 @@
 	font-size: 14px;
 	text-align: right;
 }
+
+::ng-deep .cardBtn {
+	text-align: left !important;
+    padding-left: 0px !important;
+}

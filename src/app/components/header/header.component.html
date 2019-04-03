@@ -8,16 +8,16 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto navbar-header">
-          <li class="nav-item active">
-            <a class="nav-link" routerLink="/{{lang}}" >Home <span class="sr-only">(current)</span></a>
+          <li class="nav-item" [ngClass]="{'active':pageName === 'home'}">
+            <a class="nav-link" routerLink="/{{lang}}" >Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/{{lang}}/category" style="cursor:pointer">Category</a>
+          <li class="nav-item" [ngClass]="{'active':pageName === 'category'}">
+            <a class="nav-link" routerLink="/{{lang}}/category">Category</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" [ngClass]="{'active':pageName === 'programs'}">
             <a class="nav-link" routerLink="/{{lang}}/programs">Programs</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" [ngClass]="{'active':pageName === 'health'}">
             <a class="nav-link" routerLink="/{{lang}}/health">Health information</a>
           </li>
         </ul>

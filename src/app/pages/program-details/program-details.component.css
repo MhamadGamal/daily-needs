@@ -1,0 +1,96 @@
+.itemDetails{
+	width: 100%;
+}
+
+.item-details-title{
+	font-size: 22px;
+	font-weight: bold;
+}
+
+.rating-active{
+	color:rgba(255,200,0,1);
+}
+
+.rating-disable{
+	color:#e2dede;
+}
+.reviews{
+	font-size: 14px;
+	font-family: HelveticaNeue;
+	padding-left: 10px;
+	margin-bottom: 3px;
+}
+
+.item-price{
+	margin-top: 3px;
+}
+
+.cart{
+    border-top: 1px solid #ccc;
+    padding-top: 11px;
+    padding-bottom: 10px;
+    margin-top: 25px;
+}
+
+.cart-items , .wishlist{
+	margin-bottom: 5px;
+}
+
+.btn-number-minus{
+	border-radius: 0px;
+	border:1px solid #ccc;
+}
+
+.btn-number-plus{
+	border-radius: 0px;
+	border:1px solid #ccc;
+}
+
+.input-number{
+	border-left: 0px;
+	border-right: 0px;
+}
+
+.btn:focus ,.btn.focus, 
+.btn-success , .btn-success:focus , .btn-success:visited , .btn-success:hover
+.btn-danger , .btn-danger:focus , .btn-danger:visited , .btn-danger:hover
+.btn-warning , .btn-warning:focus , .btn-warning:visited , .btn-warning:hover,
+.btn i
+ {
+	box-shadow: 0 0 0 0rem #fff;
+	
+}
+
+.btn i {
+	color:#e0dddd;
+}
+
+.addCart , .addCart:hover , .addCart:focus{
+	background-color:rgba(122,201,67,1) !important;
+	border:rgba(122,201,67,1);
+	/*padding: 7px 30px;*/
+}
+
+button:focus{
+	outline: 0px;
+}
+
+.wishlist {
+	padding: 5px;
+	color:rgba(74,74,74,1);
+}
+
+.items-div{
+	margin-top: 20px;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 20px;
+}
+
+.itemDetailsDiv{
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 20px;
+}
+
+.tabDiv{
+	margin-top: 40px;
+}

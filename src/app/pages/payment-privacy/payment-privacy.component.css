@@ -1,0 +1,14 @@
+.privacy {
+    font-family: HelveticaNeue !important;
+    margin : 3% 7%;
+}
+
+.privacy h4 {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+pre {
+    font-size: 17px;
+    font-family: HelveticaNeue !important;
+}

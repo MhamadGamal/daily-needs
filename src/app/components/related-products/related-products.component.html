@@ -1,0 +1,12 @@
+<div class="relatedProduct">
+  <div class="container">
+    <h2 class="relatedProduct-title">Related products</h2>
+    <swiper [config]="config">
+      <div *ngFor="let slide of slides" class="col-lg-3 col-xs-2 dailyNeed-div-img">
+        <img class="dailyNeed-img" src="{{slide}}" />
+        <h4 class="dailyNeed-title">Carrot</h4>
+        <p class="dailyNeed-price">20.00 EGP</p>
+      </div>
+    </swiper>
+  </div>
+</div>

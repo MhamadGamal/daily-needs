@@ -1,0 +1,39 @@
+.about {
+    background-color: rgba(248,248,248,1) !important;
+    margin-bottom: 0px;
+    padding-bottom: 50px;
+}
+
+.healty  {
+    width:60px;
+    height: 67px;
+    margin-bottom: 22px;
+}
+
+.delivery  {
+    width: 84px;
+    height: 58px;
+    margin-bottom: 31px;
+}
+
+.organic{
+    width:62px;
+    height: 62px;
+    margin-bottom: 27px;
+}
+
+.flexibility{
+    width:56px;
+    height: 72px;
+    margin-bottom: 15px;
+}
+
+.conatctDiv {
+    padding: 5px 13px;
+    color : #7d7c7c;
+    margin-bottom: 10px;
+}
+
+.contactTxt {
+    word-wrap:break-word;
+}

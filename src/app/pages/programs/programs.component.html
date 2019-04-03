@@ -1,3 +1,86 @@
-<p>
-  programs works!
-</p>
+<app-header [lang]="lang" [isLogged]="isLogged" [pageName]="pageName"></app-header>
+
+<div class="slider-details text-center">
+  <img class="smallImgSlider" src="assets/dynamicImg/category.png" />
+  <p class="sliderTxt">Programs</p>
+</div>
+
+<div class="programsDesc">
+  <div class="container">
+    <h4>Why programs?</h4>
+    <div>
+      Daily J is a system that serves multiple healthy nutrition products Provide and deliver ready-made healthy
+      nutrition juice, that can work as Detoxes for the body and give it the amount of Vegetables and Fruits needed very
+      easy to use , order and deliver your orders in your suitable time
+    </div>
+  </div>
+</div>
+
+<div class="programsSummary">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-sm-12 programCard" routerLink="/{{lang}}/programs/1">
+        <img class="programImg" src="assets/dynamicImg/program1.png" />
+        <h4 class="programTitle">3 Days Detox program packaging.</h4>
+        <div class="row">
+          <div class="col-lg-3 newPrice">
+            100 EGP
+          </div>
+          <div class="col-lg-4 oldPrice">
+            150 EGP
+          </div>
+          <div class="col-lg-5 cardBtn">
+            <button class="btn btn-success btn-addCart">Add to cart</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-12 programCard" routerLink="/{{lang}}/programs/1">
+        <img class="programImg" src="assets/dynamicImg/program3.png" />
+        <h4 class="programTitle">5 Days Detox program packaging.</h4>
+        <div class="row">
+          <div class="col-lg-3 newPrice">
+            100 EGP
+          </div>
+          <div class="col-lg-4 oldPrice">
+            150 EGP
+          </div>
+          <div class="col-lg-5 cardBtn">
+            <button class="btn btn-success btn-addCart">Add to cart</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-12 programCard" routerLink="/{{lang}}/programs/1">
+        <img class="programImg" src="assets/dynamicImg/program2.png" />
+        <h4 class="programTitle">7 Days Detox program packaging.</h4>
+        <div class="row">
+          <div class="col-lg-3 newPrice">
+            100 EGP
+          </div>
+          <div class="col-lg-4 oldPrice">
+            150 EGP
+          </div>
+          <div class="col-lg-5 cardBtn">
+            <button class="btn btn-success btn-addCart">Add to cart</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-sm-12 programCard" routerLink="/{{lang}}/programs/1">
+        <img class="programImg" src="assets/dynamicImg/program1.png" />
+        <h4 class="programTitle">Soon</h4>
+        <div class="row">
+          <div class="col-lg-3 newPrice">
+            100 EGP
+          </div>
+          <div class="col-lg-4 oldPrice">
+            150 EGP
+          </div>
+          <div class="col-lg-5 cardBtn">
+            <button class="btn btn-success btn-addCart">Add to cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-related-products [lang]="lang"></app-related-products>

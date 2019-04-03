@@ -13,7 +13,6 @@ import { BootstrapModalModule } from 'ng6-bootstrap-modal';
 /**********Installed package  ****************/
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
-import { MinHeaderComponent } from './components/min-header/min-header.component';
 import { ModalSignupComponent } from './components/modal-signup/modal-signup.component';
 import { ModalSigninComponent } from './components/modal-signin/modal-signin.component';
 import { DailyNeedProductsComponent } from './components/daily-need-products/daily-need-products.component';
@@ -22,8 +21,9 @@ import { KidsProductComponent } from './components/kids-product/kids-product.com
 import { DailyAppComponent } from './components/daily-app/daily-app.component';
 import { HealthInformationComponent } from './components/health-information/health-information.component';
 import { SharedModule } from './modules/shared/shared.module';
-// import { CategoryModule } from './modules/category/category.module';
-// import { ProgramsModule } from './modules/programs/programs.module';
+import { AboutusComponent } from './pages/aboutus/aboutus.component';
+import { ContactusComponent } from './pages/contactus/contactus.component';
+import { PaymentPrivacyComponent } from './pages/payment-privacy/payment-privacy.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -40,6 +40,9 @@ const appRoutes = [
     path: 'en',
     children: [
       { path: '', component: HomeComponent } ,
+      { path: 'about', component: AboutusComponent } ,
+      { path: 'contact-us', component: ContactusComponent } ,
+      { path: 'privacy', component: PaymentPrivacyComponent } ,
       { path: "category",  loadChildren: "./modules/category/category.module#CategoryModule" },
       { path: "programs",  loadChildren: "./modules/programs/programs.module#ProgramsModule" },
       { path: "health",  loadChildren: "./modules/health/health.module#HealthModule" },
@@ -49,6 +52,9 @@ const appRoutes = [
     path: 'ar',
     children: [
       { path: '', component: HomeComponent },
+      { path: 'about', component: AboutusComponent } ,
+      { path: 'contact-us', component: ContactusComponent } ,
+      { path: 'privacy', component: PaymentPrivacyComponent } ,
       { path: "category",  loadChildren: "./modules/category/category.module#CategoryModule" },
       { path: "programs",  loadChildren: "./modules/programs/programs.module#ProgramsModule" },
       { path: "health",  loadChildren: "./modules/health/health.module#HealthModule" },
@@ -66,7 +72,6 @@ const appRoutes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    MinHeaderComponent,
     ModalSignupComponent,
     ModalSigninComponent,
     DailyNeedProductsComponent,
@@ -74,6 +79,9 @@ const appRoutes = [
     KidsProductComponent,
     DailyAppComponent,
     HealthInformationComponent,
+    AboutusComponent,
+    ContactusComponent,
+    PaymentPrivacyComponent
   ],
   imports: [
     BrowserModule,

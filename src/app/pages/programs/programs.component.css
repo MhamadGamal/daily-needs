@@ -1,0 +1,30 @@
+.programsDesc , .programsSummary{
+    border-bottom : 1px solid #ccc;
+}
+
+.programTitle {
+    margin: 15px 0px;
+}
+
+.programCard{
+    margin-bottom: 40px;
+    cursor: pointer;
+}
+
+.programImg{
+    width: 100%
+}
+
+.oldPrice {
+    text-decoration-line: line-through;
+    display: flex;
+    align-items: center;
+    color:rgba(74,74,74,1)
+}
+
+.newPrice{
+    display: flex;
+    align-items: center;
+    color: rgba(122,201,67,1);
+    font-weight: bold;
+}

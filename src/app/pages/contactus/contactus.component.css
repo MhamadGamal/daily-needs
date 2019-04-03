@@ -1,0 +1,36 @@
+.contactImg , .location , .email{
+    width:51px;
+    height: 51px;
+    margin-bottom: 15px;
+}
+
+.location  {
+    width:36px;
+}
+
+.email{
+    width:45px;
+}
+
+
+.conatctDiv {
+    padding: 5px 13px;
+    color : #7d7c7c;
+    margin-bottom: 10px;
+}
+
+.contactTxt {
+    word-wrap:break-word;
+}
+
+.contactForm {
+    background-color: rgba(248,248,248,1);
+    margin-bottom: 0px  !important;
+    padding-bottom: 60px;
+}
+
+form button , form button:active , form button:focus , form button:hover {
+    background-color: rgba(255,159,0,1) !important;
+    border-color: rgba(255,159,0,1) !important;
+
+}
