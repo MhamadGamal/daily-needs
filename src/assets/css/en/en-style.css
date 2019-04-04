@@ -52,3 +52,7 @@
 	text-align: right !important;
     padding-right: 0px !important;
 }
+
+::ng-deep .share-like{
+	text-align: right;
+}

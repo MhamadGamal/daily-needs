@@ -50,3 +50,8 @@
 	text-align: left !important;
     padding-left: 0px !important;
 }
+
+
+::ng-deep .share-like{
+	text-align: left;
+}

@@ -3,13 +3,14 @@ import { environment } from 'src/environments/environment';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-health',
-  templateUrl: './health.component.html',
-  styleUrls: ['./health.component.css']
+  selector: 'app-health-details',
+  templateUrl: './health-details.component.html',
+  styleUrls: ['./health-details.component.css']
 })
-export class HealthComponent implements OnInit {
+export class HealthDetailsComponent implements OnInit {
 
-  public pageName:string = "health";
+  public pageName:string = "health details";
+  public pageNameSub:string = "health";
   public lang:string = environment.lang;
   public isLogged:boolean = false;
 

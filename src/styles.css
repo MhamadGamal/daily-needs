@@ -200,7 +200,7 @@ li.active , a.active ,.nav-item .active ,.navbar-light .navbar-nav .active>.nav-
 
 .dailyNeeds , .offers , .kidProducts ,.dailyApp ,.healthInfo , .footer ,
 .itemDetailsDiv ,.relatedProduct , .story , .contactus , .contactForm , .programsDesc,
-.programsSummary , .about
+.programsSummary , .about ,.healthPage
 {
 	overflow: hidden;
 	margin:60px 0px;
@@ -403,4 +403,10 @@ footer a , footer a:hover , footer a:visited{
 	color: rgba(74,74,74,1);
 	font-size: 14px;
 	font-family: HelveticaNeue;
+}
+
+.search {
+    margin-left: 3px;
+    margin-right: 3px;
+    color : #92989e !important;
 }

@@ -1,0 +1,64 @@
+<app-header [lang]="lang" [isLogged]="isLogged" [pageName]="pageNameSub"></app-header>
+
+<div class="slider-details text-center">
+  <img class="smallImgSlider" src="assets/dynamicImg/healthInfoCover.png" />
+  <p class="sliderTxt">Health Information</p>
+</div>
+
+
+<div class="healthPage">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mt-4">
+          <div class="row pr-0 pl-0">
+            <img class="itemImg" src="assets/dynamicImg/healthDetailsImg.png"/>
+          </div>
+          <div class="row infoLabel mt-2">
+            <div class="col-lg-6">
+                
+                <span> <i class="far fa-calendar-alt "></i>4 December 2019</span>
+                
+                <span> <i class="far fa-comments"></i> 13</span>
+            </div>
+            <div class="col-lg-6 share-like">
+                <i class="fa fa-share-alt"></i>
+                  <i class="far fa-heart"></i>
+            </div>
+          </div>
+          <div class="row">
+              <h4 class="mt-4 mb-3">Great bulk recipes t</h4>
+              <div>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa ultricies mi quis hendrerit dolor magna eget est lorem. Massa id neque aliquam vestibulum morbi blandit cursus. In mollis nunc sed id semper risus in hendrerit. Quis risus sed vulputate odio ut enim blandit volutpat. Elementum sagittis vitae et leo duis. Volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque eleifend. Quis risus sed vulputate odio ut enim blandit volutpat. Fames ac turpis egestas sed tempus urna et. In hendrerit gravida rutrum quisque non tellus orci.
+
+                  Justo donec enim diam vulputate ut pharetra sit. Sollicitudin tempor id eu nisl nunc. Neque viverra justo nec ultrices. Volutpat odio facilisis mauris sit amet massa vitae tortor condimentum. Mauris commodo quis imperdiet massa tincidunt nunc. Velit scelerisque in dictum non consectetur a erat. Lobortis mattis aliquam faucibus purus in. Adipiscing vitae proin sagittis nisl rhoncus. Sollicitudin nibh sit amet commodo nulla. Leo in vitae turpis massa sed. Auctor eu augue ut lectus. Aliquam eleifend mi in nulla posuere. Dui vivamus arcu felis bibendum ut. Tincidunt id aliquet risus feugiat in ante metus. Quis commodo odio aenean sed adipiscing diam donec adipiscing. Bibendum at varius vel pharetra. Posuere morbi leo urna molestie at elementum. Tortor condimentum lacinia quis vel eros donec. Quam adipiscing vitae proin sagittis nisl. Varius quam quisque id diam vel quam elementum.
+                  
+                  Adipiscing diam donec adipiscing tristique risus nec feugiat. Id faucibus nisl tincidunt eget nullam non nisi. Cursus euismod quis viverra nibh cras pulvinar mattis nunc. Tempor id eu nisl nunc mi ipsum faucibus. Dui nunc mattis enim ut tellus elementum sagittis. Varius vel pharetra vel turpis nunc eget lorem dolor. Consequat mauris nunc congue nisi vitae suscipit tellus. Sed blandit libero volutpat sed cras ornare arcu dui vivamus. Facilisi morbi tempus iaculis urna id. Elit pellentesque habitant morbi tristique senectus et. Massa sed elementum tempus egestas.
+              </div>
+          </div>
+      </div>
+      <div class="col-lg-4 healthPopular">
+        <div class="row mt-4">
+          <input type="text" class="form-control" placeholder="Search for products"/>
+        </div>
+        <div class="row">
+            <app-popular-post [lang]="lang"></app-popular-post>
+        </div>
+        <div class="row mt-5">
+          <h5>Search by tags</h5>
+          <div>
+              <button class="btn btn-light mt-3 search">bread</button>
+              <button class="btn btn-light mt-3 search">fruits</button>
+              <button class="btn btn-light mt-3 search">food</button>
+              <button class="btn btn-light mt-3 search">green</button>
+              <button class="btn btn-light mt-3 search">healthy</button>
+              <button class="btn btn-light mt-3 search">natural</button>
+              <button class="btn btn-light mt-3 search">organic store</button>
+              <button class="btn btn-light mt-3 search">vegetables</button>
+          </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

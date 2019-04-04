@@ -1,0 +1,20 @@
+.itemImg{
+    width: 100%;
+}
+
+
+.infoLabel{
+    font-size: 15px;
+    color: rgba(155,155,155,1);
+    font-family: HelveticaNeue;
+    margin-bottom: 12px;
+}
+
+.infoLabel i , .infoLabel span{
+    padding-right:5px;
+    padding-left:5px;
+}
+
+.infoLabel i {
+    margin-top: 3px;
+}
