@@ -1,0 +1,71 @@
+.checkout {
+    font-family: HelveticaNeue;
+}
+
+.checkout h5 {
+    font-weight: bold
+}
+
+.addNewAddress p {
+    font-weight: bold;
+    color : rgba(74,74,74,1);
+}
+.addNewAddress i , .addNewAddress i:hover {
+    font-size: 12px;
+    cursor: pointer;
+
+}
+
+input[type="radio"]+label {
+    color:rgba(155,155,155,1);
+    font-weight: bold;
+    font-size: 16px
+}
+
+input[type="radio"]:checked+label 
+{ 
+    font-weight: bold; 
+    color:black;
+}
+input[type="radio"]:checked+label>span , input[type="radio"]+label>span
+{ 
+    font-weight: normal; 
+    color:rgba(155,155,155,1);
+}
+
+input[type="radio"]:not([name="payment"])+label {
+    margin-bottom: 20px;
+}
+
+.firstStep , .secStep , .thirdStep , .fourthStep {
+    padding: 15px 25px;
+}
+
+.placeOrder , .placeOrder:hover , .placeOrder:visited , .placeOrder:focus{
+    width: 25%;
+    background-color: rgba(122,201,67,1) !important;
+    border-color:  rgba(122,201,67,1) !important;
+}
+
+.newAddress{
+    border:1px solid #ccc;
+}
+
+form {
+    color : rgba(74,74,74,1);
+    padding:10px ;
+}
+
+.resetForm , .resetForm:hover{
+    color:rgba(155,155,155,1) !important;
+    text-decoration-line: underline !important;
+    cursor: pointer;
+    margin-left:10px;
+    margin-right : 10px;
+}
+
+
+.addAddressBtn{
+    margin-right: 15px;
+    margin-left: 15px;
+}

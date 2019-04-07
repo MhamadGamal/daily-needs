@@ -200,7 +200,7 @@ li.active , a.active ,.nav-item .active ,.navbar-light .navbar-nav .active>.nav-
 
 .dailyNeeds , .offers , .kidProducts ,.dailyApp ,.healthInfo , .footer ,
 .itemDetailsDiv ,.relatedProduct , .story , .contactus , .contactForm , .programsDesc,
-.programsSummary , .about ,.healthPage , .cartPage
+.programsSummary , .about ,.healthPage , .cartPage , .checkout
 {
 	overflow: hidden;
 	margin:60px 0px;
@@ -439,4 +439,73 @@ footer a , footer a:hover , footer a:visited{
 
 .btn i {
 	color:#e0dddd;
+}
+
+
+/*************************cart page **************/
+
+.cartTotal{
+    background-color: rgba(34,34,34,1) !important;
+    font-family: HelveticaNeue;
+    color:rgba(180,180,180,1)
+}
+
+table {
+    font-family: HelveticaNeue
+}
+
+.cardTotal  {
+    padding: 0px;
+}
+
+.cartItems td {
+    width: 25%;
+    vertical-align: middle;
+    border: unset;
+}
+.cartItems th {
+    border: unset;
+    color: rgba(74,74,74,1);
+}
+
+.cartItems td h5{
+    font-weight: bold;
+}
+
+.cartItems td p {
+    color:rgba(122,201,67,1);
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 0px;
+}
+
+.fa-trash {
+    color : red;
+}
+
+.rowItem {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.btns{
+    margin-left: 8%;
+    margin-right: 8%;
+	width: 80%;
+}
+
+.cartTotal hr {
+    background-color: #ccc;
+    height: 1px;
+}
+
+.proceed , .proceed:focus , .proceed:hover , .proceed:visited {
+    background-color: rgba(122,201,67,1) !important;
+    border-color:  rgba(122,201,67,1) !important;
+}
+
+.cartSubmit , .cartSubmit:hover , .cartSubmit:focus , .cartSubmit:visited ,
+ .addAddressBtn , .addAddressBtn:hover , .addAddressBtn:focus , .addAddressBtn:visited {
+	color : white !important;
+	background-color : rgba(255,159,0,1) !important;
 }

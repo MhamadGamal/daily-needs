@@ -63,3 +63,24 @@
 ::ng-deep .itemCost{
 	text-align: left;
 }
+
+::ng-deep .checkout  input[type="radio"]+label {
+	padding-right: 25px;
+}
+
+
+
+::ng-deep .input-group>.input-group-append>.btn {
+	border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+::ng-deep .input-group>.form-control:not(:last-child) {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+
+
+
+
