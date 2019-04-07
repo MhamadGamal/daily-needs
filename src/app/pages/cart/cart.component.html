@@ -1,0 +1,156 @@
+<app-header [lang]="lang" [isLogged]="isLogged" [pageName]="pageName"></app-header>
+
+<div class="slider-details text-center">
+  <img class="smallImgSlider" src="assets/dynamicImg/cart.png" />
+  <p class="sliderTxt">Cart</p>
+</div>
+
+<div class="cartPage">
+  <div class="container">
+    <h5>Your cart items</h5>
+    <div class="row">
+      <div class="col-lg-8 cartItems">
+        <table class="table table-bordered text-center">
+          <thead class="thead-light">
+            <tr>
+              <th scope="">Product</th>
+              <th scope="">Unit Info</th>
+              <th scope="">Qty</th>
+              <th scope="">Subtotal</th>
+              <th scope=""></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td scope="">
+                <img src="assets/dynamicImg/cartItem.png" />
+              </td>
+              <td>
+                <h5>Carrot</h5>
+                <p>20 EGP</p>
+              </td>
+              <td>
+                <div class="input-group">
+                  <button type="button" class="btn btn-default btn-number btn-number-minus" data-type="minus"
+                    data-field="quant[1]">
+                    <i class="fa fa-minus"></i>
+                  </button>
+                  <input type="text" name="quant[1]" class="form-control input-number text-center" value="1" min="1"
+                    max="100">
+                  <button type="button" class="btn btn-default btn-number btn-number-plus" data-type="plus"
+                    data-field="quant[1]">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+              </td>
+              <td>
+                <p>20 EGP</p>
+              </td>
+              <td class="trashIcon">
+                <i class="fa fa-trash"></i></td>
+            </tr>
+            <tr>
+              <td scope="">
+                <img src="assets/dynamicImg/cartItem.png" />
+              </td>
+              <td>
+                <h5>Carrot</h5>
+                <p>20 EGP</p>
+              </td>
+              <td>
+                <div class="input-group">
+                  <button type="button" class="btn btn-default btn-number btn-number-minus" data-type="minus"
+                    data-field="quant[1]">
+                    <i class="fa fa-minus"></i>
+                  </button>
+                  <input type="text" name="quant[1]" class="form-control input-number text-center" value="1" min="1"
+                    max="100">
+                  <button type="button" class="btn btn-default btn-number btn-number-plus" data-type="plus"
+                    data-field="quant[1]">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+              </td>
+              <td>
+                <p>20 EGP</p>
+              </td>
+              <td class="trashIcon">
+                <i class="fa fa-trash"></i>
+              </td>
+            </tr>
+            <tr>
+              <td scope="">
+                <img src="assets/dynamicImg/cartItem.png" />
+              </td>
+              <td>
+                <h5>Carrot</h5>
+                <p>20 EGP</p>
+              </td>
+              <td>
+                <div class="input-group">
+                  <button type="button" class="btn btn-default btn-number btn-number-minus" data-type="minus"
+                    data-field="quant[1]">
+                    <i class="fa fa-minus"></i>
+                  </button>
+                  <input type="text" name="quant[1]" class="form-control input-number text-center" value="1" min="1"
+                    max="100">
+                  <button type="button" class="btn btn-default btn-number btn-number-plus" data-type="plus"
+                    data-field="quant[1]">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+              </td>
+              <td>
+                <p>20 EGP</p>
+              </td>
+              <td class="trashIcon">
+                <i class="fa fa-trash"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-lg-4 cartTotal text-center">
+        <div class="row rowItem">
+          <div class="col-lg-4 itemTitle">Pricing</div>
+          <div class="col-lg-8 itemCost">218.00 EGP</div>
+        </div>
+        <hr>
+        <div class="row rowItem">
+          <div class="col-lg-4 itemTitle">Vat</div>
+          <div class="col-lg-8 itemCost">18.00 EGP</div>
+        </div>
+        <hr>
+        <div class="row rowItem">
+          <div class="col-lg-4 itemTitle">shipping</div>
+          <div class="col-lg-8 itemCost">20.00 EGP</div>
+        </div>
+        <hr>
+        <div class="row rowItem">
+          <input type="text" class="form-control" />
+        </div>
+        <div class="row rowItem">
+          <div class="col-lg-4 itemTitle">Total price</div>
+          <div class="col-lg-8 itemCost">250.00 EGP</div>
+        </div>
+        <div class="row">
+          <button class="btn btn-success btns">Proceed to checkout</button>
+        </div>
+        <!-- <div class="divSeparatorFooter mb-3 mt-3"></div> -->
+        <div class=" mb-3 mt-3">or</div>
+        <!-- <div class="divSeparatorFooter  mb-3 mt-3"></div> -->
+        <div class="row">
+            <button class="btn btn-light btns">Schedule order</button>
+        </div>
+
+        <p class="mt-5">
+          <q>
+              To guarantee fresh products, This order will be delivered after 24hrs.
+          </q>
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+<app-footer [lang]="lang"></app-footer>

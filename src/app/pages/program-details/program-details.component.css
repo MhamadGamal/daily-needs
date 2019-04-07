@@ -36,34 +36,6 @@
 	margin-bottom: 5px;
 }
 
-.btn-number-minus{
-	border-radius: 0px;
-	border:1px solid #ccc;
-}
-
-.btn-number-plus{
-	border-radius: 0px;
-	border:1px solid #ccc;
-}
-
-.input-number{
-	border-left: 0px;
-	border-right: 0px;
-}
-
-.btn:focus ,.btn.focus, 
-.btn-success , .btn-success:focus , .btn-success:visited , .btn-success:hover
-.btn-danger , .btn-danger:focus , .btn-danger:visited , .btn-danger:hover
-.btn-warning , .btn-warning:focus , .btn-warning:visited , .btn-warning:hover,
-.btn i
- {
-	box-shadow: 0 0 0 0rem #fff;
-	
-}
-
-.btn i {
-	color:#e0dddd;
-}
 
 .addCart , .addCart:hover , .addCart:focus{
 	background-color:rgba(122,201,67,1) !important;

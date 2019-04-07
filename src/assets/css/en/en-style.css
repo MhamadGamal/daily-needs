@@ -56,3 +56,11 @@
 ::ng-deep .share-like{
 	text-align: right;
 }
+
+::ng-deep .trashIcon{
+	padding-right: 20px;
+}
+
+::ng-deep .itemCost{
+	text-align: right;
+}

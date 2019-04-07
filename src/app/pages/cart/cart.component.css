@@ -1,0 +1,55 @@
+
+.cartTotal{
+    background-color: rgba(34,34,34,1) !important;
+    font-family: HelveticaNeue;
+    color:rgba(180,180,180,1)
+}
+
+table {
+    font-family: HelveticaNeue
+}
+
+.cardTotal  {
+    padding: 0px;
+}
+
+.cartItems td {
+    width: 25%;
+    vertical-align: middle;
+    border: unset;
+}
+.cartItems th {
+    border: unset;
+    color: rgba(74,74,74,1);
+}
+
+.cartItems td h5{
+    font-weight: bold;
+}
+
+.cartItems td p {
+    color:rgba(122,201,67,1);
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 0px;
+}
+
+.fa-trash {
+    color : red;
+}
+
+.rowItem {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+hr {
+    background-color: #ccc;
+    height: 1px;
+}
+
+.btns{
+    margin-left: 8%;
+    margin-right: 8%;
+    width: 80%;
+}

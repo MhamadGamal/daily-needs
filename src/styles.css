@@ -200,7 +200,7 @@ li.active , a.active ,.nav-item .active ,.navbar-light .navbar-nav .active>.nav-
 
 .dailyNeeds , .offers , .kidProducts ,.dailyApp ,.healthInfo , .footer ,
 .itemDetailsDiv ,.relatedProduct , .story , .contactus , .contactForm , .programsDesc,
-.programsSummary , .about ,.healthPage
+.programsSummary , .about ,.healthPage , .cartPage
 {
 	overflow: hidden;
 	margin:60px 0px;
@@ -409,4 +409,34 @@ footer a , footer a:hover , footer a:visited{
     margin-left: 3px;
     margin-right: 3px;
     color : #92989e !important;
+}
+
+
+.btn-number-minus{
+	border-radius: 0px;
+	border:1px solid #ccc;
+}
+
+.btn-number-plus{
+	border-radius: 0px;
+	border:1px solid #ccc;
+}
+
+.input-number{
+	border-left: 0px;
+	border-right: 0px;
+}
+
+.btn:focus ,.btn.focus, 
+.btn-success , .btn-success:focus , .btn-success:visited , .btn-success:hover
+.btn-danger , .btn-danger:focus , .btn-danger:visited , .btn-danger:hover
+.btn-warning , .btn-warning:focus , .btn-warning:visited , .btn-warning:hover,
+.btn i
+ {
+	box-shadow: 0 0 0 0rem #fff;
+	
+}
+
+.btn i {
+	color:#e0dddd;
 }
