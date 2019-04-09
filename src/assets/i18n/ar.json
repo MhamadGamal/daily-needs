@@ -11,5 +11,13 @@
         "slider" : {
             "discoverBtn" : "إكتشف منتجاتنا"
         }
-    } 
+    },
+    "generalMsg" : {
+        "success" : {
+
+        },
+        "error" : {
+            "requiredField" : "يجب إدخال هذا الحقل"
+        }
+    }  
 }

@@ -1,0 +1,23 @@
+<app-header [lang]="lang" [isLogged]="isLogged" [pageName]="pageNameSub"></app-header>
+
+<div class="slider-details text-center">
+	<img class="smallImgSlider" src="assets/dynamicImg/category.png" />
+	<p class="sliderTxt">My account</p>
+</div>
+<div class="myaccount">
+  <div class="container">
+     <div class="row">
+       <div class="col-lg-2 mt-4 link-div text-center">
+        <a class="link mb-3" routerLinkActive="link-active" routerLink="/{{lang}}/myaccount" [routerLinkActiveOptions]="{ exact: true }">My account</a><br />
+        <a class="link mb-3" routerLinkActive="link-active"  routerLink="/{{lang}}/myaccount/my-orders">My orders</a><br />
+        <a class="link mb-3" routerLinkActive="link-active" routerLink="/{{lang}}/myaccount/favourits">favourits</a>
+       </div>
+       <div class="col-lg-10">
+         <router-outlet name="primary"></router-outlet>
+        </div>
+     </div>
+  </div>
+
+</div>
+
+<app-footer [lang]="lang"></app-footer>

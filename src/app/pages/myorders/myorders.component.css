@@ -1,0 +1,18 @@
+.submitHead , .cancelHead , .deliveredHead , .onwayHead {
+    font-size:18px;
+    font-family: HelveticaNeue;
+    font-weight: bold;
+}
+
+.submitHead{
+    color :rgba(74,74,74,1);
+}
+.onwayHead{
+    color:rgba(255,138,0,1);
+}
+.cancelHead{
+    color: rgba(208,2,27,1) ;
+}
+.deliveredHead{
+    color: rgba(126,211,33,1) ;
+}

@@ -11,5 +11,13 @@
         "slider" : {
             "discoverBtn" : "Discover our products"
         }
+    } ,
+    "generalMsg" : {
+        "success" : {
+
+        },
+        "error" : {
+            "requiredField" : "This field is required"
+        }
     }    
 }

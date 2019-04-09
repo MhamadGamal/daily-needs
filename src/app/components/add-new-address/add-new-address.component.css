@@ -1,0 +1,41 @@
+.addNewAddress p {
+    font-weight: bold;
+    color : rgba(255,159,0,1) !important;
+}
+.addNewAddress i , .addNewAddress i:hover {
+    font-size: 12px;
+    cursor: pointer;
+
+}
+
+.addAddressBtn{
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.newAddress{
+    border:1px solid #ccc;
+}
+
+form {
+    color : rgba(74,74,74,1);
+    padding:10px ;
+}
+
+.resetForm , .resetForm:hover{
+    color:rgba(155,155,155,1) !important;
+    text-decoration-line: underline !important;
+    cursor: pointer;
+    margin-left:10px;
+    margin-right : 10px;
+}
+
+.addNewAddress p {
+    font-weight: bold;
+    color : rgba(74,74,74,1);
+}
+.addNewAddress i , .addNewAddress i:hover {
+    font-size: 12px;
+    cursor: pointer;
+
+}

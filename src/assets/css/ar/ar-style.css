@@ -81,6 +81,12 @@
 }
 
 
+::ng-deep .controlBtn{
+	float: left
+}
 
+::ng-deep .link-div {
+    border-left : 1px solid rgba(223,232,238,1);
+}
 
 

@@ -1,0 +1,13 @@
+.link , .link:hover , .link:focus , .link:visited {
+    color:black;
+    display: block;
+    text-decoration: none;
+}
+
+.link-active {
+    color:rgba(126,211,33,1) !important;
+    text-decoration-line: underline !important;
+    text-decoration-color: rgba(126,211,33,1) !important;
+    font-weight: bold
+}
+

@@ -11,7 +11,6 @@ import { BootstrapModalModule } from 'ng6-bootstrap-modal';
 // import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 // import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 /**********Installed package  ****************/
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { ModalSignupComponent } from './components/modal-signup/modal-signup.component';
 import { ModalSigninComponent } from './components/modal-signin/modal-signin.component';
@@ -30,10 +29,6 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
-// const config: SwiperConfigInterface = {
-//   direction: 'horizontal',
-//   slidesPerView: 'auto'
-// };
 
 const appRoutes = [
  {
@@ -46,6 +41,7 @@ const appRoutes = [
       { path: "category",  loadChildren: "./modules/category/category.module#CategoryModule" },
       { path: "programs",  loadChildren: "./modules/programs/programs.module#ProgramsModule" },
       { path: "health",  loadChildren: "./modules/health/health.module#HealthModule" },
+      { path: "myaccount",  loadChildren: "./modules/myaccount/myaccount.module#MyaccountModule" },
     ]
   },
   {
@@ -58,6 +54,7 @@ const appRoutes = [
       { path: "category",  loadChildren: "./modules/category/category.module#CategoryModule" },
       { path: "programs",  loadChildren: "./modules/programs/programs.module#ProgramsModule" },
       { path: "health",  loadChildren: "./modules/health/health.module#HealthModule" },
+      { path: "myaccount",  loadChildren: "./modules/myaccount/myaccount.module#MyaccountModule" },
     ]
   },
   {
@@ -95,8 +92,7 @@ const appRoutes = [
         }
     }),
     BootstrapModalModule,
-    ReactiveFormsModule,
-    FormsModule,
+
     // SwiperModule,
     SharedModule
   ],

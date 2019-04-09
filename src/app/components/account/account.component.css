@@ -1,0 +1,16 @@
+.addressList , .addressList:focus , .addressList:disabled{
+    border:unset !important;
+    box-shadow:unset;
+    background-color: transparent;
+}
+
+.addressList:disabled {
+    color : rgba(155,155,155,1);
+}
+
+.controlBtnEdit , .controlBtnSave{
+    background-color: transparent;
+    border: unset;
+    box-shadow: unset;
+    text-decoration-line: underline;
+}

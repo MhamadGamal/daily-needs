@@ -1,0 +1,33 @@
+.table td, .table textarea {
+    /* border: 1px solid #dee2e6 !important; */
+    padding:0px;
+}
+
+td , tr {
+    width:100%;
+}
+
+td {
+    
+}
+
+table td:nth-child(odd){
+    border-top: unset !important;
+}
+
+.orderTimes p {
+    font-size:14px;
+    font-weight: bold;
+    font-family: HelveticaNeue;
+    color:rgba(74,74,74,1);
+}
+
+.orderTimes p span{
+    font-weight: normal;
+}
+
+.orderAddress p {
+    font-size: 16px;
+    font-family: HelveticaNeue;
+    color:rgba(74,74,74,1);
+}

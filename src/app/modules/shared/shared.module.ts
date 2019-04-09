@@ -9,6 +9,8 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddNewAddressComponent } from '../../components/add-new-address/add-new-address.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -35,13 +37,17 @@ const config: SwiperConfigInterface = {
   ],
   declarations: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    AddNewAddressComponent
   ],
   exports:[
     HeaderComponent,
     FooterComponent,
+    AddNewAddressComponent,
     TranslateModule,
-    SwiperModule
+    SwiperModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [
     {

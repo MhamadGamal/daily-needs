@@ -20,72 +20,7 @@
           Work - 16 Taher Ismaiel.ST El-Bustan - New Cairo
         </label>
       </div>
-      <div class="addNewAddress">
-        <p><i class="fa fa-plus" (click)="expandDivNewAddress()"></i> Add New Address</p>
-        <div class="newAddress collapse" id="newAddress">
-          <form>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group has-success">
-                  <label class="control-label">Address name *</label>
-                  <input type="text" class="form-control" name="addressName">
-                </div>
-              </div>
-              <!--/span-->
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label class="control-label">City *</label>
-                  <input type="text" class="form-control" name="city">
-                </div>
-              </div>
-              <!--/span-->
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group has-success">
-                  <label class="control-label">Area *</label>
-                  <input type="text" class="form-control" name="area">
-                </div>
-              </div>
-              <!--/span-->
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label class="control-label">Mobile Number</label>
-                  <input type="text" class="form-control" name=mobile>
-                </div>
-              </div>
-              <!--/span-->
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group has-success">
-                  <label class="control-label">Street Name/No.*</label>
-                  <input type="text" class="form-control" name="street">
-                </div>
-              </div>
-              <!--/span-->
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label class="control-label">Appartment No.</label>
-                  <input type="text" class="form-control" name="appartment">
-                </div>
-              </div>
-              <!--/span-->
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group has-success">
-                  <label class="control-label">More details</label>
-                  <textarea rows="3" class="form-control"></textarea>
-                </div>
-              </div>
-              <!--/span-->
-            </div>
-            <button class="btn btn-warning addAddressBtn">Add address</button>
-            <a class="resetForm">Cancel</a>
-          </form>
-        </div>
-      </div>
+      <app-add-new-address [lang]="lang"></app-add-new-address>
     </div>
 
     <hr>
