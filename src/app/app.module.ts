@@ -23,6 +23,7 @@ import { SharedModule } from './modules/shared/shared.module';
 import { AboutusComponent } from './pages/aboutus/aboutus.component';
 import { ContactusComponent } from './pages/contactus/contactus.component';
 import { PaymentPrivacyComponent } from './pages/payment-privacy/payment-privacy.component';
+import { SearchComponent } from './pages/search/search.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -38,6 +39,7 @@ const appRoutes = [
       { path: 'about', component: AboutusComponent } ,
       { path: 'contact-us', component: ContactusComponent } ,
       { path: 'privacy', component: PaymentPrivacyComponent } ,
+      { path: 'search', component: SearchComponent } ,
       { path: "category",  loadChildren: "./modules/category/category.module#CategoryModule" },
       { path: "programs",  loadChildren: "./modules/programs/programs.module#ProgramsModule" },
       { path: "health",  loadChildren: "./modules/health/health.module#HealthModule" },
@@ -51,6 +53,7 @@ const appRoutes = [
       { path: 'about', component: AboutusComponent } ,
       { path: 'contact-us', component: ContactusComponent } ,
       { path: 'privacy', component: PaymentPrivacyComponent } ,
+      { path: 'search', component: SearchComponent } ,
       { path: "category",  loadChildren: "./modules/category/category.module#CategoryModule" },
       { path: "programs",  loadChildren: "./modules/programs/programs.module#ProgramsModule" },
       { path: "health",  loadChildren: "./modules/health/health.module#HealthModule" },
@@ -78,7 +81,8 @@ const appRoutes = [
     HealthInformationComponent,
     AboutusComponent,
     ContactusComponent,
-    PaymentPrivacyComponent
+    PaymentPrivacyComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

@@ -200,7 +200,7 @@ li.active , a.active ,.nav-item .active ,.navbar-light .navbar-nav .active>.nav-
 
 .dailyNeeds , .offers , .kidProducts ,.dailyApp ,.healthInfo , .footer ,
 .itemDetailsDiv ,.relatedProduct , .story , .contactus , .contactForm , .programsDesc,
-.programsSummary , .about ,.healthPage , .cartPage , .checkout , .myaccount
+.programsSummary , .about ,.healthPage , .cartPage , .checkout , .myaccount , .searchPage
 {
 	overflow: hidden;
 	margin:60px 0px;

@@ -61,8 +61,12 @@
 	padding-right: 20px;
 }
 
-::ng-deep .itemCost{
+::ng-deep .itemCost , ::ng-deep .itemTitle {
 	text-align: right;
+}
+
+::ng-deep .itemTitle , ::ng-deep .yourCart {
+	text-align: left;
 }
 
 ::ng-deep .controlBtn{
@@ -72,3 +76,9 @@
 ::ng-deep .link-div {
     border-right : 1px solid rgba(223,232,238,1);
 }
+
+::ng-deep #btnGroupAddon{
+	border-right: 1px solid white !important;
+	border-radius: unset;
+}
+

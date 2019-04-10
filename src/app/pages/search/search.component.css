@@ -1,0 +1,86 @@
+.slider-details{
+    background-color: rgba(122,201,67,1);
+    height: 80px;
+}
+
+.searchPage{
+    margin:20px 0px;
+}
+
+.healthTxtDiv{
+    padding: 12px 10px;
+}
+
+.healthItem{
+    margin-top: 25px;
+}
+.healthContainer {
+    border-top:1px solid rgba(214,214,214,1);
+}
+.title{
+    cursor: pointer;
+}
+
+.healthImg{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+ .wrapTxt {
+    word-break: break-all;
+}
+
+ .infoLabel{
+    font-size: 13px;
+    color: rgba(155,155,155,1);
+    font-family: HelveticaNeue;
+    margin-bottom: 12px;
+}
+
+.infoLabel i , .infoLabel span{
+    padding-right:5px;
+    padding-left:5px;
+}
+
+.infoLabel i {
+    margin-top: 3px;
+}
+
+.divSeparatorFooter + a  , .divSeparatorFooter + a:hover , .divSeparatorFooter + a:active , .divSeparatorFooter + a:visited   {
+    color : rgba(122,201,67,1) !important;
+    text-decoration: none !important;
+    font-weight: bold;
+}
+
+.searchTitle{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border-bottom:1px solid rgba(214,214,214,1);
+    margin-bottom: 30px;
+}
+
+.searchTitle  p{
+    margin: auto;
+    margin-bottom: 22px;
+    font-weight: bold;
+    color:rgba(155,155,155,1)
+}
+
+.searchTitle  p strong{
+    color:rgba(0,0,0,1);
+}
+
+.searchBox , #btnGroupAddon{
+    border: unset;
+    background-color: transparent;
+    color:white;
+    box-shadow: unset;
+}
+
+::placeholder { 
+    color: white;
+    opacity: 1; 
+  }
+  

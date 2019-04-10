@@ -9,7 +9,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto navbar-header">
           <li class="nav-item" [ngClass]="{'active':pageName === 'home'}">
-            <a class="nav-link" routerLink="/{{lang}}" >Home</a>
+            <a class="nav-link" routerLink="/{{lang}}">Home</a>
           </li>
           <li class="nav-item" [ngClass]="{'active':pageName === 'category'}">
             <a class="nav-link" routerLink="/{{lang}}/category">Category</a>
@@ -23,35 +23,86 @@
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a href="search.html"><i class="fas fa-search"></i></a></li>
+            <li class="nav-item"><a routerLink="/{{lang}}/search"><i class="fas fa-search"></i></a></li>
             <li class="nav-item dropdown" *ngIf="isLogged">
               <a class="nav-link dropdown-toggle dropdown-list" href="#" id="navbarDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-shopping-cart"></i>
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <div class="dropdown-menu userCart" aria-labelledby="navbarDropdown">
+                <h6 class="ml-3 mr-3 yourCart">Your cart</h6>
+                <div class="row cartMenuItem">
+                  <div class="col-lg-4">
+                    <img class="cartIcon" src="assets/dynamicImg/item3.png" />
+                  </div>
+                  <div class="col-lg-5">
+                      <h6 class="unitTitle">Carrot</h6>
+                      <span class="unitPrice">1*20 EGP</span>
+                  </div>
+                  <div class="col-lg-2"><i class="fa fa-trash"></i></div>
+                </div>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">My account</a>
+                <div class="row cartMenuItem">
+                  <div class="col-lg-4">
+                    <img class="cartIcon" src="assets/dynamicImg/item3.png" />
+                  </div>
+                  <div class="col-lg-5">
+                      <h6 class="unitTitle">Carrot</h6>
+                      <span class="unitPrice">1*20 EGP</span>
+                  </div>
+                  <div class="col-lg-2"><i class="fa fa-trash"></i></div>
+                </div>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">My orders</a>
+                <div class="row cartMenuItem">
+                  <div class="col-lg-4">
+                    <img class="cartIcon" src="assets/dynamicImg/item3.png" />
+                  </div>
+                  <div class="col-lg-5">
+                    <h6 class="unitTitle">Carrot</h6>
+                    <span class="unitPrice">1*20 EGP</span>
+                  </div>
+                  <div class="col-lg-2"><i class="fa fa-trash"></i></div>
+                </div>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Favourits</a>
+
+                <div class="row">
+                  <div class="row rowItem pb-2">
+                    <div class="col-lg-4 itemTitle">Pricing</div>
+                    <div class="col-lg-8 itemCost">218.00 EGP</div>
+                  </div>
+                  <div class="row rowItem pb-2">
+                    <div class="col-lg-4 itemTitle">Vat</div>
+                    <div class="col-lg-8 itemCost">18.00 EGP</div>
+                  </div>
+                  <div class="row rowItem pb-2">
+                    <div class="col-lg-4 itemTitle">shipping</div>
+                    <div class="col-lg-8 itemCost">20.00 EGP</div>
+                  </div>
+                </div>
+                <div class="dropdown-divider"></div>
+                <div class="text-center">
+                  <a routerLink="/{{lang}}/category/cart" class="btn btn-success proceed ml-2 mr-2">view cart</a>
+                  <a routerLink="/{{lang}}/category/cart/checkout" class="btn btn-warning addAddressBtn ml-2 mr-2">Check out</a>
+                </div>
               </div>
             </li>
-            <li class="nav-item dropdown" *ngIf="!isLogged">
+            <li class="nav-item dropdown" *ngIf="isLogged">
               <a class="nav-link dropdown-toggle dropdown-list" href="#" id="navbarDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="far fa-user"></i>
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">My account</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">My orders</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Favourits</a>
+              <div class="dropdown-menu userAccount" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item myaccountLink" routerLink="/{{lang}}/myaccount"><i
+                    class="fas fa-user userIcon p-2"></i>My account</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item myorderLink" routerLink="/{{lang}}/myaccount/my-orders"><i
+                    class="fas fa-shopping-bag bagIcon p-2"></i>My orders</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item favouritLink" routerLink="/{{lang}}/myaccount/favourits"><i
+                    class="fas fa-heart text-danger p-2"></i>Favourits</a>
               </div>
             </li>
-            <li class="nav-item dropdown" *ngIf="isLogged">
+            <li class="nav-item dropdown" *ngIf="!isLogged">
               <a class="nav-link dropdown-toggle dropdown-list" href="#" id="navbarDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="far fa-user"></i>
@@ -69,7 +120,7 @@
                   </div>
                 </div>
                 <hr>
-                <p class="loginTxt"  *ngIf="lang == 'ar' ">
+                <p class="loginTxt" *ngIf="lang == 'ar' ">
                   <span>يجب <a (click)="showModal('signin')" class="signIn">تسجيل الدخول</a> اولاً, </span>
                   <span>إذا كنت لا تمتلك حساب يمكنك التسجيل من هنا </span>
                   <a (click)="showModal('signup')" class="signUp">إنشاء حساب</a>

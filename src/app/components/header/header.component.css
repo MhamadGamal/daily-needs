@@ -1,0 +1,62 @@
+.userIcon{
+    color : rgba(255,159,0,1) !important
+}
+
+.bagIcon{
+    color : rgba(122,201,67,1) !important;
+}
+
+.userAccount , .userCart{
+    font-size: 16px;
+    font-family: HelveticaNeue;
+}
+
+.userAccount a{
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+.userAccount a:active ,.userAccount a:visited ,  .userAccount a:focus {
+    background-color: #f8f9fa;
+}
+.cartIcon{
+    width: 100%
+}
+
+.rowItem{
+    width: 100%;
+    margin:5px 10px !important;
+    border-bottom: 1px solid  #e9ecef;
+}
+.rowItem:last-child{
+    border-bottom: unset !important;
+}
+
+.cartMenuItem{
+    display: flex;
+    align-items: center;
+}
+
+.unitPrice{
+    color:rgba(122,201,67,1);
+    font-size: 13px;
+}
+.unitTitle{
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+.itemTitle{
+    color :rgba(155,155,155,1);
+    font-size: 14px
+}
+
+.itemCost{
+    font-weight: bold;
+    font-size: 14px;
+    color:rgba(74,74,74,1);
+}
+
+.proceed{
+    color:white !important; 
+}

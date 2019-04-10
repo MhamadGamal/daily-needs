@@ -6,9 +6,11 @@ import { SharedModule } from '../shared/shared.module';
 import { CategoryDetailsComponent } from '../../pages/category-details/category-details.component';
 import { CartComponent } from '../../pages/cart/cart.component';
 import { CheckoutComponent } from '../../pages/checkout/checkout.component';
+import { CategoryItemListComponent } from '../../pages/category-item-list/category-item-list.component';
 
 const appRoutes: Routes = [
   { path: '', component: CategoryComponent },
+  { path: 'items/:categoryId', component: CategoryItemListComponent },
   { path: 'cart', component: CartComponent },
   { path: 'cart/checkout', component: CheckoutComponent },
 ];
@@ -20,7 +22,7 @@ const appRoutes: Routes = [
     SharedModule
 
   ],
-  declarations: [CategoryComponent, CategoryDetailsComponent, CartComponent, CheckoutComponent],
+  declarations: [CategoryComponent, CategoryDetailsComponent, CartComponent, CheckoutComponent, CategoryItemListComponent],
   exports: [RouterModule],
 })
 export class CategoryModule { }
