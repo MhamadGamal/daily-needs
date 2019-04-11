@@ -513,3 +513,12 @@ table {
 .clear{
 	clear: both;
 }
+
+/* custom radio button style */
+.custom-radio .custom-control-input:checked~.custom-control-label::before,
+.custom-radio .custom-control-input:checked~.custom-control-label::after
+ {
+	background-color: darkorange !important;
+	border-radius: 50%;
+	box-shadow:unset !important;
+}

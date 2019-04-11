@@ -18,7 +18,9 @@ const appRoutes: Routes = [
     SharedModule
   ],
   declarations: [ProgramsComponent, RelatedProductsComponent, ProgramDetailsComponent],
-  exports: [RouterModule],
+  exports: [
+    RouterModule,
+  ],
 })
 
 export class ProgramsModule { }

@@ -1,0 +1,17 @@
+.offer-link{
+    color : rgba(255,159,0,1);
+}
+
+/* .active-link{
+    color :rgba(122,201,67,1);
+} */
+
+.old-price{
+    color :rgba(155,155,155,1);
+    text-decoration-line: line-through;
+    font-weight: normal;
+    /* float:left */
+}
+.new-price{
+    /* float:right */
+}

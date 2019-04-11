@@ -11,6 +11,7 @@ import { CategoryItemListComponent } from '../../pages/category-item-list/catego
 const appRoutes: Routes = [
   { path: '', component: CategoryComponent },
   { path: 'items/:categoryId', component: CategoryItemListComponent },
+  { path: 'item-details/:itemId', component: CategoryDetailsComponent },
   { path: 'cart', component: CartComponent },
   { path: 'cart/checkout', component: CheckoutComponent },
 ];
