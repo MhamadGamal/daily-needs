@@ -20,7 +20,6 @@ export class CategoryItemListComponent implements OnInit {
     if(token){
         this.isLogged = true ;
     }
-
   }
 
   ngOnInit() {

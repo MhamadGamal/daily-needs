@@ -6,10 +6,24 @@ import { HealthComponent } from '../../pages/health/health.component';
 import { PopularPostComponent } from '../../components/popular-post/popular-post.component';
 import { HealthDetailsComponent } from '../../pages/health-details/health-details.component';
 
+import { arPageTitle } from '../../../assets/i18n/arPageTitle';
+import { enPageTitle } from '../../../assets/i18n/enPageTitle';
+
+const arr = window.location.pathname.split('/');
+export function getLang(key){
+  let keyTranslate = '';
+  if(arr[1] === 'ar'){
+   keyTranslate = arPageTitle[key];
+}
+  else if(arr[1] === 'en'){
+    keyTranslate = enPageTitle[key];
+  }
+  return keyTranslate;
+}
 
 const appRoutes: Routes = [
-  { path: '', component: HealthComponent },
-  { path: ':id', component: HealthDetailsComponent },
+  { path: '', component: HealthComponent ,data: { title: 'Health information'}},
+  { path: ':id', component: HealthDetailsComponent ,data: { title: 'Health details' , breadcrumbs:  getLang('health-details')}},
 ];
 
 @NgModule({

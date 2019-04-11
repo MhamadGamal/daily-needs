@@ -10,14 +10,28 @@ import { FavouritItemsComponent } from '../../components/favourit-items/favourit
 import { FavouritHealthinfoComponent } from '../../components/favourit-healthinfo/favourit-healthinfo.component';
 import { MyordersContentComponent } from '../../components/myorders-content/myorders-content.component';
 
+import { arPageTitle } from '../../../assets/i18n/arPageTitle';
+import { enPageTitle } from '../../../assets/i18n/enPageTitle';
+
+const arr = window.location.pathname.split('/');
+export function getLang(key){
+  let keyTranslate = '';
+  if(arr[1] === 'ar'){
+   keyTranslate = arPageTitle[key];
+}
+  else if(arr[1] === 'en'){
+    keyTranslate = enPageTitle[key];
+  }
+  return keyTranslate;
+}
 
 
 const appRoutes: Routes = [
   {
     path: '', component: MyaccountComponent, data: { title: 'My account' }, children: [
-      { path: '', component: AccountComponent, data: { title: 'My Orders' }, outlet: 'primary' },
-      { path: 'my-orders', component: MyordersComponent, data: { title: 'My Orders' }, outlet: 'primary' },
-      { path: 'favourits', component: FavouritsComponent, data: { title: 'Favourits' }, outlet: 'primary' },
+      { path: '', component: AccountComponent, data: { title: 'My account' }, outlet: 'primary' },
+      { path: 'my-orders', component: MyordersComponent, data: { title: 'My Orders' , breadcrumbs:  getLang('my-orders')}, outlet: 'primary' },
+      { path: 'favourits', component: FavouritsComponent, data: { title: 'Favourits' , breadcrumbs:  getLang('favouirts')}, outlet: 'primary' },
     ]
   },
 

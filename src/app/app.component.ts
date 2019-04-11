@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
 
+
 const arr = window.location.pathname.split('/');
 export function getStyle(){
   return arr[1] === 'ar' ? ['../assets/css/ar/ar-style.css'] : ['../assets/css/en/en-style.css'];

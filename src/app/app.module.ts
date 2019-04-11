@@ -24,7 +24,21 @@ import { AboutusComponent } from './pages/aboutus/aboutus.component';
 import { ContactusComponent } from './pages/contactus/contactus.component';
 import { PaymentPrivacyComponent } from './pages/payment-privacy/payment-privacy.component';
 import { SearchComponent } from './pages/search/search.component';
+// import { arPageTitle } from '../assets/i18n/arPageTitle';
+// import { enPageTitle } from '../assets/i18n/enPageTitle';
 
+// const arr = window.location.pathname.split('/');
+// export function getLang(key){
+//   let keyTranslate = '';
+//   if(arr[1] === 'ar'){
+//    keyTranslate = arPageTitle[key];
+//    console.log('test');
+// }
+//   else if(arr[1] === 'en'){
+//     keyTranslate = enPageTitle[key];
+//   }
+//   return keyTranslate;
+// }
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -35,29 +49,29 @@ const appRoutes = [
  {
     path: 'en',
     children: [
-      { path: '', component: HomeComponent } ,
-      { path: 'about', component: AboutusComponent } ,
-      { path: 'contact-us', component: ContactusComponent } ,
-      { path: 'privacy', component: PaymentPrivacyComponent } ,
+      { path: '', component: HomeComponent ,data: { title: 'Home' , breadcrumbs:  'Home'}} ,
+      { path: 'about', component: AboutusComponent ,data: { title: 'about' , breadcrumbs:  'About'}} ,
+      { path: 'contact-us', component: ContactusComponent ,data: { title: 'Contact us' , breadcrumbs:  'Contact us'}} ,
+      { path: 'privacy', component: PaymentPrivacyComponent ,data: { title: 'Payment privacy' , breadcrumbs: 'Payment privacy'}} ,
       { path: 'search', component: SearchComponent } ,
-      { path: "category",  loadChildren: "./modules/category/category.module#CategoryModule" },
-      { path: "programs",  loadChildren: "./modules/programs/programs.module#ProgramsModule" },
-      { path: "health",  loadChildren: "./modules/health/health.module#HealthModule" },
-      { path: "myaccount",  loadChildren: "./modules/myaccount/myaccount.module#MyaccountModule" },
+      { path: "category",  loadChildren: "./modules/category/category.module#CategoryModule" ,data: { breadcrumbs: 'Category' }},
+      { path: "programs",  loadChildren: "./modules/programs/programs.module#ProgramsModule" ,data: { breadcrumbs: 'Programs' }},
+      { path: "health",  loadChildren: "./modules/health/health.module#HealthModule" ,data: { breadcrumbs: 'Health' }},
+      { path: "myaccount",  loadChildren: "./modules/myaccount/myaccount.module#MyaccountModule" ,data: { breadcrumbs: 'My account' }},
     ]
   },
   {
     path: 'ar',
     children: [
-      { path: '', component: HomeComponent },
-      { path: 'about', component: AboutusComponent } ,
-      { path: 'contact-us', component: ContactusComponent } ,
-      { path: 'privacy', component: PaymentPrivacyComponent } ,
+      { path: '', component: HomeComponent ,data: { title: 'Home' , breadcrumbs:  'الصفحة الرئيسية'}} ,
+      { path: 'about', component: AboutusComponent ,data: { title: 'about' , breadcrumbs:  'عن دايلي نيدز'}} ,
+      { path: 'contact-us', component: ContactusComponent ,data: { title: 'Contact us' , breadcrumbs: 'اتصل بنا'}} ,
+      { path: 'privacy', component: PaymentPrivacyComponent ,data: { title: 'Payment privacy' , breadcrumbs: 'سياسة الدفع'}} ,
       { path: 'search', component: SearchComponent } ,
-      { path: "category",  loadChildren: "./modules/category/category.module#CategoryModule" },
-      { path: "programs",  loadChildren: "./modules/programs/programs.module#ProgramsModule" },
-      { path: "health",  loadChildren: "./modules/health/health.module#HealthModule" },
-      { path: "myaccount",  loadChildren: "./modules/myaccount/myaccount.module#MyaccountModule" },
+      { path: "category",  loadChildren: "./modules/category/category.module#CategoryModule" ,data: { breadcrumbs: 'التصنيفات' }},
+      { path: "programs",  loadChildren: "./modules/programs/programs.module#ProgramsModule" ,data: { breadcrumbs: 'البرامج' }},
+      { path: "health",  loadChildren: "./modules/health/health.module#HealthModule" ,data: { breadcrumbs: 'عن الصحة' }},
+      { path: "myaccount",  loadChildren: "./modules/myaccount/myaccount.module#MyaccountModule" ,data: { breadcrumbs: 'حسابي' }},
     ]
   },
   {
@@ -96,6 +110,7 @@ const appRoutes = [
         }
     }),
     BootstrapModalModule,
+    
 
     // SwiperModule,
     SharedModule
@@ -109,8 +124,7 @@ const appRoutes = [
   bootstrap: [AppComponent],
   exports:[
     RouterModule,
-    SharedModule
-    
+    SharedModule,
   ],
   entryComponents:[
     ModalSignupComponent ,

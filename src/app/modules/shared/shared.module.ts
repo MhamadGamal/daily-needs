@@ -11,6 +11,7 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddNewAddressComponent } from '../../components/add-new-address/add-new-address.component';
+import { McBreadcrumbsModule } from 'ngx-breadcrumbs';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -31,9 +32,10 @@ const config: SwiperConfigInterface = {
           deps: [HttpClient]
       }
     }),
+    McBreadcrumbsModule.forRoot(),
     HttpClientModule,
     SwiperModule,
-    RouterModule
+    RouterModule,
   ],
   declarations: [
     HeaderComponent,
@@ -48,6 +50,8 @@ const config: SwiperConfigInterface = {
     SwiperModule,
     ReactiveFormsModule,
     FormsModule,
+    McBreadcrumbsModule    
+
   ],
   providers: [
     {
