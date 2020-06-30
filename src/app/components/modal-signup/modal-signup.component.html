@@ -1,75 +1,132 @@
-<div class="modal-dialog modal-lg modal-dialog-centered" role="dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-      <button type="button" class="close" (click)="close()" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
+<div class="modal-header">
+  <h4 class="modal-title">{{"home.header.signup.signup" | translate}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form *ngIf="!showVer" [formGroup]="signupForm" autocomplete="off" (ngSubmit)="signup(signupForm.value)">
+    <div class="row p-t-20">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">{{"home.header.signup.fname" | translate}}</label>
+          <input type="text" id="firstName" class="form-control" formControlName="fname">
+          <div class="form-text text-danger" *ngIf='signupForm.get("fname").invalid && signupForm.get("fname").touched'>
+            <small *ngIf='signupForm.get("fname").errors.required'>
+              {{"home.header.validation.required" | translate}}
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="control-label">{{"home.header.signup.lname" | translate}}</label>
+          <input type="text" id="lname" class="form-control" formControlName="lname">
+          <div class="form-text text-danger" *ngIf='signupForm.get("lname").invalid && signupForm.get("lname").touched'>
+            <small *ngIf='signupForm.get("lname").errors.required'>
+              {{"home.header.validation.required" | translate}}
+            </small>
+          </div>
+        </div>
+      </div>
+
     </div>
-    <div class="modal-body">
-      <div class="form-body">
-        <!-- row -->
-        <div class="row p-t-20">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label class="control-label">First Name</label>
-              <input type="text" id="firstName" class="form-control" placeholder="John doe">
-            </div>
-          </div>
-          <!--/span-->
-          <div class="col-md-6">
-            <div class="form-group has-danger">
-              <label class="control-label">Last Name</label>
-              <input type="text" id="lastName" class="form-control form-control-danger" placeholder="12n">            
-            </div>
-          </div>
-          <!--/span-->
-        </div>
-        <!--/row-->
 
-        <!-- row -->
-        <div class="row p-t-20">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label class="control-label">Email</label>
-              <input type="text" id="firstName" class="form-control" placeholder="John doe">
-            </div>
+    <div class="row p-t-20">
+      <div class="col-md-6">
+        <label for="email"> {{"home.header.login.email" | translate}} </label>
+        <div class="form-group">
+          <input type="email" class="form-control" id="email" formControlName="email">
+          <div class="form-text text-danger" *ngIf='signupForm.get("email").invalid && signupForm.get("email").touched'>
+            <small *ngIf='signupForm.get("email").errors.required'>
+              {{"home.header.validation.required" | translate}}
+            </small>
+            <small *ngIf='signupForm.get("email").errors.email'>
+              {{"home.header.validation.email" | translate}}
+            </small>
           </div>
-          <!--/span-->
-          <div class="col-md-6">
-            <div class="form-group has-danger">
-              <label class="control-label">Phone number</label>
-              <input type="text" id="lastName" class="form-control form-control-danger" placeholder="12n">
-            </div>
-          </div>
-          <!--/span-->
         </div>
-        <!--/row-->
-
-        <!-- row -->
-        <div class="row p-t-20">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label class="control-label">password</label>
-              <input type="text" id="firstName" class="form-control" placeholder="John doe">
-             </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group has-danger">
+          <label class="control-label">{{"home.header.signup.phone" | translate}}</label>
+          <input type="text" id="phone" class="form-control" formControlName="phone">
+          <div class="form-text text-danger" *ngIf='signupForm.get("phone").invalid && signupForm.get("phone").touched'>
+            <small *ngIf='signupForm.get("phone").errors.required'>
+              {{"home.header.validation.required" | translate}}
+            </small>
+            <small *ngIf='signupForm.get("phone").errors.pattern'>
+              {{"home.header.validation.pattern" | translate}}
+            </small>
           </div>
-          <!--/span-->
-          <div class="col-md-6">
-            <div class="form-group has-danger">
-              <label class="control-label">confirm password</label>
-              <input type="text" id="lastName" class="form-control form-control-danger" placeholder="12n">
-            </div>
-          </div>
-          <!--/span-->
         </div>
-        <!--/row-->
-
       </div>
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" (click)="close()" data-dismiss="modal">Close</button>
-      <button type="button" class="btn btn-primary signupBtn" (click)="confirm()">Save changes</button>
+
+    <div class="row p-t-20">
+      <div class="col-md-6">
+        <label for="password"> {{"home.header.login.password" | translate}} </label>
+        <div class="form-group">
+          <input type="password" class="form-control" id="password" formControlName="password">
+          <div class="form-text text-danger"
+            *ngIf='signupForm.get("password").invalid && signupForm.get("password").touched'>
+            <small *ngIf='signupForm.get("password").errors.required'>
+              {{"home.header.validation.required" | translate}}
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label for="password"> {{"home.header.signup.cPassword" | translate}} </label>
+        <div class="form-group">
+          <input type="password" class="form-control" id="cPassword" formControlName="cPassword">
+          <div class="form-text text-danger"
+            *ngIf='signupForm.get("cPassword").invalid && signupForm.get("cPassword").touched'>
+            <small *ngIf='signupForm.get("cPassword").errors.required'>
+              {{"home.header.validation.required" | translate}}
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-text text-danger"
+          *ngIf='signupForm.get("cPassword").touched && signupForm.get("password").touched'>
+          <small *ngIf='signupForm.errors && signupForm.errors?.passwordNotMAtched'>
+            {{"home.header.validation.passwordNotMAtched" | translate}}
+          </small>
+        </div>
+      </div>
     </div>
-  </div>
+
+    <div class="row">
+      <div class="col-12 text-center">
+        <button [disabled]="signupForm.invalid" type="submit" class="btn btn-primary signupBtn">
+          {{"home.header.signup.signup" | translate}} </button>
+      </div>
+    </div>
+  </form>
+  <ng-container *ngIf="showVer">
+    <form [formGroup]="verficationForm" autocomplete="off" (ngSubmit)="verfication(verficationForm.value.code)">
+      <div class="row">
+        <div class="col-md-12">
+          <label for="password"> {{"home.header.signup.code" | translate}} </label>
+          <div class="form-group">
+            <input type="text" class="form-control" id="code" formControlName="code">
+            <div class="form-text text-danger"
+              *ngIf='verficationForm.get("code").invalid && verficationForm.get("code").touched'>
+              <small *ngIf='verficationForm.get("code").errors.required'>
+                {{"home.header.validation.required" | translate}}
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 text-center">
+          <button [disabled]="verficationForm.invalid" type="submit" class="btn btn-primary signupBtn">
+            {{"home.header.signup.send" | translate}} </button>
+        </div>
+      </div>
+    </form>
+  </ng-container>
 </div>

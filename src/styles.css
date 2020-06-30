@@ -3,19 +3,121 @@
 	font-family: HelveticaNeue !important;
 	font-size: 14px ;
 } */
+
+::-webkit-scrollbar {
+	width: 6px;
+	border-radius: 3px;
+	background-color: #f5f5f5;
+  }
+  
+  ::-webkit-scrollbar-track {
+	border-radius: 10px;
+	background-color: #F5F5F5;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+	width: 6px;
+	height: 20px;
+	border-radius: 3px;
+	background-color: #a19ea3;
+  }
+  
 @font-face {
 	font-family: Marilatte;
 	src: url('assets/fonts/Marilatte.otf') format("opentype");
 }
+  html{
+	direction: ltr !important;
+	scroll-behavior: smooth;
+}
 
+  body{
+	text-align: left !important;
+}
+
+  .header .navbar h2 {
+	float: left;
+	text-transform: uppercase;
+}
+
+  .header .navbar ul {
+	list-style: none;
+	float: left;
+	color: #000;
+}
+
+  .header .navbar ul li{
+	float: left;
+	padding: 0px 10px;
+	font-size: 16px;
+}
+
+  .dropdown-menu{
+    margin-left: -270px; 
+}
+
+  .user-twitter{
+    margin-left: -10px;
+}
+
+  .tags{
+	color:#ccc;
+	font-size: 13px;
+	text-align: left;
+	font-family: HelveticaNeue;
+	margin-top: 2px;
+}
+
+  .health-title , .healthReadMore{
+	text-align: left !important;
+}
+
+  .healt-desc{
+	font-size: 14px;
+	text-align: left;
+}
+
+  .cardBtn {
+	text-align: right !important;
+    padding-right: 0px !important;
+}
+
+  .share-like{
+	text-align: right;
+}
+
+  .trashIcon{
+	padding-right: 20px;
+}
+
+  .itemCost ,   .itemTitle {
+	text-align: right;
+}
+
+  .itemTitle ,   .yourCart {
+	text-align: left;
+}
+
+  .controlBtn{
+	float: right
+}
+
+  .link-div {
+    border-right : 1px solid rgba(223,232,238,1);
+}
+
+  #btnGroupAddon{
+	border-right: 1px solid white !important;
+	border-radius: unset;
+}
 ul {
     margin-bottom: 1px !important;
 }
 
-.container{
+/* .container{
 	width: 1170px;
 	margin: auto;
-}
+} */
 
 .row {
 	margin: 0px;
@@ -165,8 +267,8 @@ li.active , a.active ,.nav-item .active ,.navbar-light .navbar-nav .active>.nav-
 }
 
 .signupBtn , .signupBtn:hover{
-    background-color: rgba(255,159,0,1);
-    border-color: rgba(255,159,0,1);
+    background-color: rgba(255,159,0,1) !important;
+    border-color: rgba(255,159,0,1) !important;
 }
 
 .modal-header .close {
@@ -391,10 +493,9 @@ footer a , footer a:hover , footer a:visited{
 
 .divSeparatorFooter{
 		width:60px ; 
-		border:1px solid #ddd; 
+		border-bottom: 1px solid #8c8a8a;
 		display: inline-block;
-		margin-bottom: 3px;
-}
+	}
 
 .copyRight{
 	background-color: rgba(29,29,29,1);
@@ -521,4 +622,184 @@ table {
 	background-color: darkorange !important;
 	border-radius: 50%;
 	box-shadow:unset !important;
+}
+
+/*--------------- Rtl styling ------------------*/
+
+
+   body[lang="ar"] {
+	   direction: rtl !important;
+	   text-align: right !important;
+	   font-family: 'El Messiri', sans-serif !important;
+	}
+	body[lang="ar"] .dailyNeed-title-font{
+		font-family: 'Lemonada', cursive !important;
+		font-size: 2.5rem;
+	}
+	body[lang="ar"] .dailyNeeds .blackTxt{
+		font-family: 'Lemonada', cursive !important;
+		font-size: 1.8rem;
+	}
+	body[lang="ar"] table,
+	body[lang="ar"] .dailyAppBenefit
+	{
+		font-family: 'El Messiri', sans-serif !important;
+	}
+
+body[lang="ar"] .header .navbar h2 {
+	float: right;
+	text-transform: uppercase;
+}
+
+body[lang="ar"] .header .navbar ul {
+	list-style: none;
+	float: right;
+	color: #000;
+}
+
+body[lang="ar"] .header .navbar ul li {
+	float: right;
+	padding: 0px 10px;
+	font-size: 16px;
+}
+
+body[lang="ar"] .user-twitter {
+	margin-right: -10px;
+}
+body[lang="ar"] .dropdown-menu {
+	margin-left: 0 !important;
+}
+
+body[lang="ar"] .tags {
+	color: #ccc;
+	font-size: 13px;
+	text-align: right;
+	font-family: HelveticaNeue;
+	margin-top: 2px;
+}
+
+body[lang="ar"] .health-title, .healthReadMore {
+	text-align: right !important;
+}
+
+body[lang="ar"] .healt-desc {
+	font-size: 14px;
+	text-align: right;
+}
+
+body[lang="ar"] .cardBtn {
+	text-align: left !important;
+	padding-left: 0px !important;
+}
+
+body[lang="ar"] .share-like {
+	text-align: left;
+}
+
+body[lang="ar"] .trashIcon {
+	padding-left: 20px;
+}
+
+body[lang="ar"] .itemCost,    body[lang="ar"] .itemTitle {
+	text-align: left;
+}
+
+body[lang="ar"] .itemTitle,    body[lang="ar"] .yourCart {
+	text-align: right;
+}
+
+   body[lang="ar"] .checkout input[type="radio"]+label {
+	padding-right: 25px;
+}
+
+body[lang="ar"] .input-group>.input-group-append>.btn {
+	border-top-right-radius: 0 !important;
+	border-bottom-right-radius: 0 !important;
+}
+
+body[lang="ar"] .input-group>.form-control:not(:last-child) {
+	border-top-left-radius: 0 !important;
+	border-bottom-left-radius: 0 !important;
+}
+
+body[lang="ar"] .controlBtn {
+	float: left
+}
+
+body[lang="ar"]  .link-div {
+	border-left: 1px solid rgba(223, 232, 238, 1);
+}
+
+body[lang="ar"]  #btnGroupAddon {
+	border-left: 1px solid white;
+	border-radius: unset;
+}
+
+body[lang="ar"]  .custom-control-inline {
+	display: inline-flex;
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+}
+
+body[lang="ar"]  .custom-control {
+	position: relative;
+	min-height: 1.5rem;
+	padding-right: 0px !important;
+}
+
+body[lang="ar"] .custom-control-label {
+	padding-right: 25px !important;
+}
+
+body[lang="ar"] .custom-control-label::before {
+	position: absolute;
+	top: 0.25rem;
+	right: 0 !important;
+	display: block;
+	width: 1rem;
+	height: 1rem;
+	pointer-events: none;
+	content: "";
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-color: white;
+}
+
+body[lang="ar"]  .custom-control-label::after {
+	position: absolute;
+	top: 0.25rem;
+	right: 0 !important;
+	display: block;
+	width: 1rem;
+	height: 1rem;
+	content: "";
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 50% 50%;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+button:focus{
+	outline: none !important;
+}
+.carousel{
+	direction: ltr !important;
+	height: 500px !important;
+}
+.carousel .carousel-list, 
+.carousel .carousel-list .carousel-slide 
+{
+	height: 500px !important;
+}
+@media (max-width: 768px){
+	.carousel,
+	.carousel .carousel-list, 
+	.carousel .carousel-list .carousel-slide 
+	{
+		height: 350px !important;
+	}
+
 }

@@ -1,7 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { LangService } from './../../shared/services/lang.service';
+import { TranslateService } from '@ngx-translate/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { DialogService } from 'ng6-bootstrap-modal';
 import { ModalSignupComponent } from '../modal-signup/modal-signup.component';
 import { ModalSigninComponent } from '../modal-signin/modal-signin.component';
+import { Subscription } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -9,51 +14,47 @@ import { ModalSigninComponent } from '../modal-signin/modal-signin.component';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
-
-  @Input() lang;
-  @Input() isLogged;
-  @Input() pageName;
-  public switchLang = 'ar';
-  
-
-  constructor(private dialogService: DialogService) {
-
+export class HeaderComponent implements OnInit, OnDestroy {
+  lang: string;
+  isLogged: boolean;
+  subscription: Subscription = new Subscription();
+  showSignIn = false;
+  constructor(
+    private translate: TranslateService,
+    private langS: LangService,
+    private modalService: NgbModal,
+    public authService: AuthService
+  ) {
+    this.subscription.add(
+      this.langS.lang.subscribe(lang => {
+        this.lang = lang;
+        this.translate.use(lang);
+      }));
   }
 
   ngOnInit() {
-    this.lang == 'ar' ? this.switchLang = 'en' : this.switchLang = 'ar';
-    console.log(this.switchLang);
+
   }
 
+  changeLang() {
+    if (this.lang === 'ar') {
+      this.langS.changeLang('en');
+      this.translate.use('en');
+    } else {
+      this.langS.changeLang('ar');
+      this.translate.use('ar');
+    }
+  }
   showModal(modalType) {
-    if (modalType == 'signup')
-    {
-        let disposable = this.dialogService.addDialog(ModalSignupComponent, 
-          { lang: this.lang  }).subscribe((isConfirmed) => {
-                //We get dialog result
-                if (isConfirmed) {
-                  alert('accepted');
-                }
-                else {
-                  alert('declined');
-                }
-          });
-    }
-    else if (modalType == 'signin') 
-    {
-      let disposable = this.dialogService.addDialog(ModalSigninComponent, 
-        { lang: this.lang  }).subscribe((isConfirmed) => {
-              //We get dialog result
-              if (isConfirmed) {
-                alert('accepted');
-              }
-              else {
-                alert('declined');
-              }
-        });
+    if (modalType === 'signup') {
+      this.modalService.open(ModalSignupComponent);
+    } else if (modalType === 'signIn') {
+      this.modalService.open(ModalSigninComponent);
     }
 
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }

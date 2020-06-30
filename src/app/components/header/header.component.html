@@ -8,36 +8,38 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto navbar-header">
-          <li class="nav-item" [ngClass]="{'active':pageName === 'home'}">
-            <a class="nav-link" routerLink="/{{lang}}">Home</a>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/home" routerLinkActive="active"> {{'home.header.home' | translate}} </a>
           </li>
-          <li class="nav-item" [ngClass]="{'active':pageName === 'category'}">
-            <a class="nav-link" routerLink="/{{lang}}/category">Category</a>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/category"
+              routerLinkActive="active">{{'home.header.category' | translate}}</a>
           </li>
-          <li class="nav-item" [ngClass]="{'active':pageName === 'programs'}">
-            <a class="nav-link" routerLink="/{{lang}}/programs">Programs</a>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/programs"
+              routerLinkActive="active">{{'home.header.programs' | translate}}</a>
           </li>
-          <li class="nav-item" [ngClass]="{'active':pageName === 'health'}">
-            <a class="nav-link" routerLink="/{{lang}}/health">Health information</a>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/health" routerLinkActive="active">{{'home.header.health' | translate}}</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a routerLink="/{{lang}}/search"><i class="fas fa-search"></i></a></li>
-            <li class="nav-item dropdown" *ngIf="isLogged">
+            <li class="nav-item"><a routerLink="/search"><i class="fas fa-search"></i></a></li>
+            <li class="nav-item dropdown" *ngIf="authService.isLoggedIn">
               <a class="nav-link dropdown-toggle dropdown-list" href="#" id="navbarDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-shopping-cart"></i>
               </a>
               <div class="dropdown-menu userCart" aria-labelledby="navbarDropdown">
-                <h6 class="ml-3 mr-3 yourCart">Your cart</h6>
+                <h6 class="ml-3 mr-3 yourCart">{{'home.header.cart' | translate}}</h6>
                 <div class="row cartMenuItem">
                   <div class="col-lg-4">
                     <img class="cartIcon" src="assets/dynamicImg/item3.png" />
                   </div>
                   <div class="col-lg-5">
-                      <h6 class="unitTitle">Carrot</h6>
-                      <span class="unitPrice">1*20 EGP</span>
+                    <h6 class="unitTitle">Carrot</h6>
+                    <span class="unitPrice">1*20 EGP</span>
                   </div>
                   <div class="col-lg-2"><i class="fa fa-trash"></i></div>
                 </div>
@@ -47,8 +49,8 @@
                     <img class="cartIcon" src="assets/dynamicImg/item3.png" />
                   </div>
                   <div class="col-lg-5">
-                      <h6 class="unitTitle">Carrot</h6>
-                      <span class="unitPrice">1*20 EGP</span>
+                    <h6 class="unitTitle">Carrot</h6>
+                    <span class="unitPrice">1*20 EGP</span>
                   </div>
                   <div class="col-lg-2"><i class="fa fa-trash"></i></div>
                 </div>
@@ -81,38 +83,42 @@
                 </div>
                 <div class="dropdown-divider"></div>
                 <div class="text-center">
-                  <a routerLink="/{{lang}}/category/cart" class="btn btn-success proceed ml-2 mr-2">view cart</a>
-                  <a routerLink="/{{lang}}/category/cart/checkout" class="btn btn-warning addAddressBtn ml-2 mr-2">Check out</a>
+                  <a routerLink="/category/cart"
+                    class="btn btn-success proceed ml-2 mr-2">{{'home.header.cart' | translate}}</a>
+                  <a routerLink="/category/cart/checkout"
+                    class="btn btn-warning addAddressBtn ml-2 mr-2">{{'home.header.checkout' | translate}}</a>
                 </div>
               </div>
             </li>
-            <li class="nav-item dropdown" *ngIf="isLogged">
+            <li class="nav-item dropdown" *ngIf="authService.isLoggedIn">
               <a class="nav-link dropdown-toggle dropdown-list" href="#" id="navbarDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="far fa-user"></i>
               </a>
               <div class="dropdown-menu userAccount" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item myaccountLink" routerLink="/{{lang}}/myaccount"><i
-                    class="fas fa-user userIcon p-2"></i>My account</a>
+                <a class="dropdown-item myaccountLink" routerLink="/myaccount"><i
+                    class="fas fa-user userIcon p-2"></i>{{'home.header.logged.account' | translate}}</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item myorderLink" routerLink="/{{lang}}/myaccount/my-orders"><i
-                    class="fas fa-shopping-bag bagIcon p-2"></i>My orders</a>
+                <a class="dropdown-item myorderLink" routerLink="/myaccount/my-orders"><i
+                    class="fas fa-shopping-bag bagIcon p-2"></i>{{'home.header.logged.oreders' | translate}}</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item favouritLink" routerLink="/{{lang}}/myaccount/favourits"><i
-                    class="fas fa-heart text-danger p-2"></i>Favourits</a>
+                <a class="dropdown-item favouritLink" routerLink="/myaccount/favourits"><i
+                    class="fas fa-heart text-danger p-2"></i>{{'home.header.logged.favourite' | translate}}</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item favouritLink" (click)="authService.signout()"><i
+                    class="fas fa-sign-out-alt text-dark p-2"></i>{{'home.header.logged.logout' | translate}}</a>
               </div>
             </li>
-            <li class="nav-item dropdown" *ngIf="!isLogged">
-              <a class="nav-link dropdown-toggle dropdown-list" href="#" id="navbarDropdown" role="button"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item dropdown" *ngIf="!authService.isLoggedIn" ngbDropdown>
+              <a class="nav-link dropdown-toggle dropdown-list" ngbDropdownToggle id="navbarDropdown">
                 <i class="far fa-user"></i>
               </a>
-              <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+              <div class="dropdown-menu text-center" ngbDropdownMenu aria-labelledby="navbarDropdown">
                 <div class="row">
-                  <div class="col-md-4">
+                  <div class="col-md-4 col-6">
                     {{ 'home.header.guest.login' | translate }}
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-4 col-6">
                     <button class="btn btn-sucess facebook"></button>
                   </div>
                   <div class="col-md-4 user-twitter">
@@ -121,23 +127,27 @@
                 </div>
                 <hr>
                 <p class="loginTxt" *ngIf="lang == 'ar' ">
-                  <span>يجب <a (click)="showModal('signin')" class="signIn">تسجيل الدخول</a> اولاً, </span>
+                  <span>يجب <a (click)="showModal('signIn')" class="signIn">تسجيل الدخول</a> اولاً, </span>
                   <span>إذا كنت لا تمتلك حساب يمكنك التسجيل من هنا </span>
                   <a (click)="showModal('signup')" class="signUp">إنشاء حساب</a>
                 </p>
                 <p class="loginTxt" *ngIf="lang == 'en' ">
-                  <span>You have to <a (click)="showModal('signin')" class="signIn">Sign in</a> first, </span>
+                  <span>You have to <a (click)="showModal('signIn')" class="signIn">Sign in</a> first, </span>
                   <span>if you don't have account you can </span>
                   <a (click)="showModal('signup')" class="signUp">Sign up</a>
                 </p>
+                <ng-container *ngIf="showSignIn">
+                  <app-modal-signin></app-modal-signin>
+                </ng-container>
                 <!-- <a class="dropdown-item" href="#">Action333</a>
                 <a class="dropdown-item" href="#">Another action</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Something else here</a> -->
               </div>
             </li>
+
             <li class="nav-item">
-              <a href="/{{ switchLang }}">
+              <a (click)="changeLang()">
                 <i class="fas fa-globe"></i>
               </a>
             </li>
@@ -147,17 +157,3 @@
     </div>
   </nav>
 </div>
-
-<!-- <swiper [config]="config" *ngIf="pageName == 'home'">
-  <div *ngFor="let slide of slides" class="slider text-center">
-      <img class="swiperImg" src="{{slide}}" />
-      <button class="btn btn-success discoverBtn">{{ 'home.slider.discoverBtn' | translate }}</button>
-  </div>
-</swiper>
-
-
-<div class="slider-details text-center" *ngIf="pageName != 'home'">
-    <div class="container">
-      <p class="sliderTxt">Program details</p>
-    </div>
-  </div> -->

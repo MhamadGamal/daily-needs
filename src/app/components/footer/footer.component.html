@@ -1,67 +1,79 @@
-<footer>
+<footer class="pt-5">
+	<div class="container">
 		<div class="row">
-			<div class="col-lg-1"></div>
-			<div class="col-lg-3">
-				<div class="row">
-					<img class="logoFooter" src="assets/images/logo.png">
+			<div class="col-md-4 col-sm-6">
+				<div>
+					<img class="logoFooter img-responsive" src="assets/images/logo.png">
 				</div>
 				<div class="divSeparatorFooter"></div>
 				<div>
-					<h5 class="logoTXT">Address:</h5>
-					<p>Fifth Settlement,newcairo,egypt </p>
+					<h5 class="logoTXT">{{"home.footer.address" | translate}}:</h5>
+					<p>{{"home.footer.addresss" | translate}} </p>
 				</div>
 				<div>
-					<h5 class="logoTXT">Tel:</h5>
+					<h5 class="logoTXT">{{"home.footer.tel" | translate}}:</h5>
 					<p class="logoTXT"></p>
 				</div>
 			</div>
-			<div class="col-lg-6">
-				<div class="row">
-					<div class="col-lg-3">
-						<h4>Useful links</h4>
-						<div class="divSeparatorFooter"></div>
-						<p><a routerLink="/{{lang}}/about">About us</a></p>
-						<p><a routerLink="/{{lang}}/contact-us">Contact us</a></p>
-						<p><a routerLink="/{{lang}}/privacy">Payment policy</a></p>
+
+			<div class="col-md-2 col-sm-6">
+				<h4>{{"home.footer.links" | translate}}</h4>
+				<div class="divSeparatorFooter"></div>
+				<p><a routerLink="/about">{{"home.footer.about" | translate}}</a></p>
+				<p><a routerLink="/contact-us">{{"home.footer.contact" | translate}}</a></p>
+				<p><a routerLink="/privacy">{{"home.footer.policy" | translate}}</a></p>
+			</div>
+			<div class="col-md-2 col-sm-6">
+				<h4>{{"home.footer.social" | translate}}</h4>
+				<div class="divSeparatorFooter"></div>
+				<br />
+				<div class="row justify-content-start">
+					<div class="m-2">
+						<a href="">
+							<img src="assets/images/facebookFooter.png" />
+						</a>
 					</div>
-					<div class="col-lg-3">
-							<h4>Social media</h4>
-							<div class="divSeparatorFooter"></div>
-							<br/>
-							<div class="row">
-								<div class="col-lg-4 p-0">
-										<img  src="assets/images/facebookFooter.png"/>
-								</div>
-								<div class="col-lg-4 p-0">
-									<img  src="assets/images/twitterFooter.png"/>
-								</div>
-								<div class="col-lg-4 p-0">
-									<img  src="assets/images/linkedinFooter.png"/>
-								</div>
-							</div>
-							
+					<div class="m-2">
+						<a href="">
+							<img src="assets/images/twitterFooter.png" />
+						</a>
 					</div>
-					<div class="col-lg-6">
-							<h4>Subscribe</h4>
-							<div class="divSeparatorFooter"></div>
-							<p>Enter your email address for our mailing listto keep yourself updated</p>
-							<div class="row rowItem">
-									<div class="input-group mb-3">
-											<input type="text" class="form-control" placeholder="Enter Your Email" aria-label="Enter Your Email" aria-describedby="basic-addon2">
-											<div class="input-group-append">
-												<button class="btn btn-success proceed" type="button">Submit</button>
-											</div>
-										</div>
-							</div>
+					<div class="m-2">
+						<a href="">
+							<img src="assets/images/linkedinFooter.png" />
+						</a>
+					</div>
+				</div>
+
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<h4>{{"home.footer.subscribe" | translate}}</h4>
+				<div class="divSeparatorFooter"></div>
+				<p>{{"home.footer.subscribeDesc" | translate}}</p>
+				<div class="row rowItem">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" [placeholder]='"home.footer.enterEmail" | translate'>
+						<div class="input-group-append">
+							<button class="btn btn-success proceed"
+								type="button">{{"home.footer.submit" | translate}}</button>
+						</div>
 					</div>
 				</div>
 			</div>
-			
+
+
 		</div>
-		<div class="row copyRight" > 
-			<div class="col-lg-3 offset-lg-1 footerTxt">
-				All Rights Reseved  Daily needs.com
+
+	</div>
+	<div class="copyRight">
+		<div class="gototop" (click)="goTop()">
+			<i class="fas fa-angle-double-up    "></i>
+		</div>
+		<div class="container">
+			<div class=" footerTxt">
+				{{"home.footer.copyright" | translate}}
+
 			</div>
-			
-	    </div>
-	</footer>
+		</div>
+	</div>
+</footer>

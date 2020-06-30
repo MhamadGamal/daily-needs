@@ -60,3 +60,6 @@
 .proceed{
     color:white !important; 
 }
+.signUp, .signIn{
+    cursor: pointer;
+}

@@ -1,7 +1,41 @@
+footer{
+    overflow: hidden;
+}
 .logoFooter{
     width:70%;
     height: 50%;
 }
 .logoTXT{
     font-size: 16px;
+    margin: 0;
+}
+h4{
+    margin: 0;
+}
+.copyRight{
+    position: relative;
+    z-index: 2;
+}
+.copyRight .gototop{
+    cursor: pointer;
+    position: absolute;
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    background-color: rgba(29,29,29,1);
+    left: calc( 50% - 40px );
+    top: -40px;
+    line-height: 80px;
+    z-index: 1;
+    font-size: 2rem;
+    transform: rotate(45deg);
+    border-top-left-radius: 65%;
+    color: rgba(122,201,67,1) !important;
+}
+.copyRight .gototop i{
+    transform: rotate(-43deg);
+}
+.footerTxt{
+    position: relative;
+    z-index: 5;
 }

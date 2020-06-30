@@ -1,23 +1,118 @@
 {
-    "home" : {
-        "header" : {
-            "logged" :{
-
+    "home": {
+        "header": {
+            "home": "Home",
+            "programs": "Programs",
+            "program-details": "program details",
+            "category": "Category",
+            "category-deatils": "Category details",
+            "myaccount": "My account",
+            "my-orders": "My orders",
+            "favouirts": "Favourits",
+            "about": "About us",
+            "contactus": "Contact us",
+            "privacy": "Payment privacy",
+            "health": "Health Information",
+            "health-details": "Health details",
+            "checkout": "Checkout",
+            "cart": "Cart",
+            "category-list": "Category list",
+            "logged": {
+                "account": "My account",
+                "oreders": "My Orders",
+                "favourite": "Favourite",
+                "logout": "Sign Out"
             },
-            "guest" :{
-                "login" : "Login with"
+            "guest": {
+                "login": "Login with"
+            },
+            "login": {
+                "email": "Email",
+                "password": "Password",
+                "login": "LOG IN"
+            },
+            "signup": {
+                "signup": "SIGN UP",
+                "fname": "First Name",
+                "lname": "Last Name",
+                "cPassword": "Confirm Password",
+                "phone": "Phone Number",
+                "send": "Send",
+                "code": "Verfication Code"
+            },
+            "validation": {
+                "required": "this field is requied",
+                "email": "please enter a valid email",
+                "pattern": "enter only numbers",
+                "passwordNotMAtched": "password not matched"
             }
         },
-        "slider" : {
-            "discoverBtn" : "Discover our products"
-        }
-    } ,
-    "generalMsg" : {
-        "success" : {
-
+        "slider": {
+            "discoverBtn": "Discover our products"
         },
-        "error" : {
-            "requiredField" : "This field is required"
+        "dailyNeeds": {
+            "title": "Our Daily",
+            "sub-title": "needs",
+            "filter": {
+                "all": "All",
+                "cold": "Cold",
+                "detox": "Detox",
+                "fruit": "Fruit",
+                "milk": "Milk",
+                "soka": "Soka"
+            },
+            "seeMore": "See More"
+        },
+        "offers": {
+            "todayOffers": "Today Offers",
+            "program": "Detox Progam",
+            "desc": "Experiment with detox drinks today and notice how light, fresh and clear-headed you feel afterwards.",
+            "Counter": {
+                "days": "Days",
+                "h": "Hours",
+                "m": "Min",
+                "s": "Sec"
+            },
+            "Oreder": "Oreder Now"
+        },
+        "kids": {
+            "welcome": "Welcome To",
+            "kProduct": "Our Kid's product",
+            "desc": "Berry Goodness is a robust smoothie that bursts with juicy berry flavors and satisfies with theall-mighty chia seed.",
+            "btn": "Kid's Product"
+        },
+        "dailyApp": {
+            "title": "Why daily J App",
+            "benfits": "Benfits",
+            "desc": "Daily J App is a system that serves multiple healthy nutrition products.",
+            "be1": "Provide and deliver ready-made healthy nutrition juice, that can work as Detoxes for the body and give it the amount of Vegetables and Fruits needed.",
+            "be2": "very easy to use , order and deliver your orders in your suitable time - customer support 24/7",
+            "new": "what's new in DailyJ App.",
+            "newDesc": "UI Enhancements and Bug Fixes"
+        },
+        "health": {
+            "title": "Health Information"
+        },
+        "footer": {
+            "address": "Address",
+            "addresss": "Fifth Settlement,newcairo,egypt",
+            "tel": "Tel",
+            "links": "Useful links",
+            "about": "About us",
+            "contact": "Contact us",
+            "policy": "Payment policy",
+            "social": "Social Media",
+            "subscribe": "Subscribe",
+            "subscribeDesc": "Enter your email address for our mailing listto keep yourself updated",
+            "enterEmail": "Enter Your Email",
+            "submit": "submit",
+            "copyright": "All Rights Reseved Daily needs.com"
         }
-    }    
+    },
+    "generalMsg": {
+        "success": {},
+        "error": {
+            "requiredField": "This field is required"
+        }
+    }
 }

@@ -1,20 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from '../../components/header/header.component';
-import { FooterComponent } from '../../components/footer/footer.component';
-import { TranslateModule, TranslateLoader} from '@ngx-translate/core';
-import { TranslateHttpLoader} from '@ngx-translate/http-loader';
-import { HttpClient, HttpClientModule} from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddNewAddressComponent } from '../../components/add-new-address/add-new-address.component';
 import { McBreadcrumbsModule } from 'ngx-breadcrumbs';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 const config: SwiperConfigInterface = {
@@ -25,32 +23,29 @@ const config: SwiperConfigInterface = {
 @NgModule({
   imports: [
     CommonModule,
-    TranslateModule.forChild({
+    TranslateModule.forRoot({
+      defaultLanguage: 'ar',
       loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
       }
     }),
     McBreadcrumbsModule.forRoot(),
     HttpClientModule,
     SwiperModule,
     RouterModule,
+    MatCarouselModule.forRoot(),
   ],
   declarations: [
-    HeaderComponent,
-    FooterComponent,
-    AddNewAddressComponent
+    AddNewAddressComponent,
   ],
-  exports:[
-    HeaderComponent,
-    FooterComponent,
+  exports: [
     AddNewAddressComponent,
     TranslateModule,
     SwiperModule,
-    ReactiveFormsModule,
-    FormsModule,
-    McBreadcrumbsModule    
+    McBreadcrumbsModule,
+    MatCarouselModule
 
   ],
   providers: [

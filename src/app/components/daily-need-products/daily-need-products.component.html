@@ -1,8 +1,8 @@
 <div class="dailyNeeds">
   <div class="container text-center">
     <div class="text-center">
-      <h2 class="dailyNeed-title dailyNeed-title-font">Our Daily</h2>
-      <h2 class="dailyNeed-title blackTxt">Needs</h2>
+      <h2 class="dailyNeed-title dailyNeed-title-font"> {{"home.dailyNeeds.title" | translate}} </h2>
+      <h2 class="dailyNeed-title blackTxt">{{"home.dailyNeeds.sub-title" | translate}}</h2>
     </div>
     <div class="titleIconDiv text-center">
       <div class="divSeparator"></div>
@@ -11,61 +11,28 @@
     </div>
 
     <div class="dailyNeed-title">
-      <a class="dailyNeed-link active">All</a>
+      <a class="dailyNeed-link active">{{"home.dailyNeeds.filter.all" | translate}}</a>
       <div class="divSeparator"></div>
-      <a class="dailyNeed-link">Cold</a>
+      <a class="dailyNeed-link">{{"home.dailyNeeds.filter.cold" | translate}}</a>
       <div class="divSeparator"></div>
-      <a class="dailyNeed-link">Detox</a>
+      <a class="dailyNeed-link">{{"home.dailyNeeds.filter.detox" | translate}}</a>
       <div class="divSeparator"></div>
-      <a class="dailyNeed-link">Fruit</a>
+      <a class="dailyNeed-link">{{"home.dailyNeeds.filter.fruit" | translate}}</a>
       <div class="divSeparator"></div>
-      <a class="dailyNeed-link">Milk</a>
+      <a class="dailyNeed-link">{{"home.dailyNeeds.filter.milk" | translate}}</a>
       <div class="divSeparator"></div>
-      <a class="dailyNeed-link">Soka</a>
+      <a class="dailyNeed-link">{{"home.dailyNeeds.filter.soka" | translate}}</a>
     </div>
-      <div class="row ">
-        <div class="col-lg-3 col-xs-2 dailyNeed-div-img">
-          <img class="dailyNeed-img" src="assets/dynamicImg/need1.png" />
-          <h4 class="dailyNeed-title">Carrot</h4>
-          <p class="dailyNeed-price">20.00 EGP</p>
-        </div>
-        <div class="col-lg-3 col-xs-2 dailyNeed-div-img">
-          <img class="dailyNeed-img" src="assets/dynamicImg/need2.png" />
-          <h4 class="dailyNeed-title">Milk plant</h4>
-          <p class="dailyNeed-price">20.00 EGP</p>
-        </div>
-        <div class="col-lg-3 col-xs-2 dailyNeed-div-img">
-          <img class="dailyNeed-img" src="assets/dynamicImg/need3.png" />
-          <h4 class="dailyNeed-title">Detox drink</h4>
-          <p class="dailyNeed-price">20.00 EGP</p>
-        </div>
-        <div class="col-lg-3 col-xs-2 dailyNeed-div-img">
-          <img class="dailyNeed-img" src="assets/dynamicImg/need4.png" />
-          <h4 class="dailyNeed-title">Fresh cuts</h4>
-          <p class="dailyNeed-price">20.00 EGP</p>
-        </div>
-        <div class="col-lg-3 col-xs-2 dailyNeed-div-img">
-          <img class="dailyNeed-img" src="assets/dynamicImg/need2.png" />
-          <h4 class="dailyNeed-title">Milk plant</h4>
-          <p class="dailyNeed-price">20.00 EGP</p>
-        </div>
-        <div class="col-lg-3 col-xs-2 dailyNeed-div-img">
-          <img class="dailyNeed-img" src="assets/dynamicImg/need1.png" />
-          <h4 class="dailyNeed-title">Carrot</h4>
-          <p class="dailyNeed-price">20.00 EGP</p>
-        </div>
-        <div class="col-lg-3 col-xs-2 dailyNeed-div-img">
-          <img class="dailyNeed-img" src="assets/dynamicImg/need5.png" />
-          <h4 class="dailyNeed-title">Soak herb</h4>
-          <p class="dailyNeed-price">20.00 EGP</p>
-        </div>
-        <div class="col-lg-3 col-xs-2 dailyNeed-div-img">
-          <img class="dailyNeed-img" src="assets/dynamicImg/need4.png" />
-          <h4 class="dailyNeed-title">Fresh cuts</h4>
-          <p class="dailyNeed-price">20.00 EGP</p>
-        </div>
+    <div class="row">
+      <div *ngFor="let item of menu?.restaurantsItemsListResponse?.categoryType?.categoriesInfo"
+        class="col-lg-3   col-md-4 col-sm-6 dailyNeed-div-img">
+        <img class="dailyNeed-img" src="http://foodpage.dnsalias.com//Program/Large/{{item.categoryID}}.png" />
+        <h4 *ngIf="lang ==='en'" class="dailyNeed-title"> {{item.attributes[0].attributeValue}} </h4>
+        <h4 *ngIf="lang ==='ar'" class="dailyNeed-title"> {{item.attributes[1].attributeValue}} </h4>
+        <p class="dailyNeed-price">20.00 EGP</p>
       </div>
-      <button class="btn btn-success btn-more">See more</button>
+    </div>
+    <button class="btn btn-success btn-more">{{"home.dailyNeeds.seeMore" | translate}}</button>
 
   </div>
 </div>

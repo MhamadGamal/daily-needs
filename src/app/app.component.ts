@@ -1,21 +1,28 @@
-import { Component } from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
+import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
+import { LangService } from './shared/services/lang.service';
+import { RefreshTokenService } from './shared/services/refreshtoken.service';
 
 
-const arr = window.location.pathname.split('/');
-export function getStyle(){
-  return arr[1] === 'ar' ? ['../assets/css/ar/ar-style.css'] : ['../assets/css/en/en-style.css'];
-}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: getStyle(),
 })
-export class AppComponent {
-  title = 'dailyneeds';
-  constructor(private translate: TranslateService) {
-    environment.lang = arr[1];
-    translate.setDefaultLang(arr[1]);
-}
+export class AppComponent implements OnInit {
+  constructor(public translate: TranslateService, private langS: LangService, private tokenService: RefreshTokenService) {
+    this.tokenService.getToken().subscribe((res: any) => {
+      this.tokenService.authToken = res.token;
+    });
+  }
+  ngOnInit() {
+    this.langS.lang.subscribe(lang => {
+      if (lang === 'ar') {
+        document.body.setAttribute('lang', 'ar');
+      } else {
+        document.body.setAttribute('lang', 'en');
+
+      }
+    });
+  }
 }
