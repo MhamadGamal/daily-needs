@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IloginedUserData } from '../models/logined-user-data';
+import { IloginedUserData, UpdateClientInfoResponse } from '../models/logined-user-data';
 
 @Injectable({
     providedIn: 'root'

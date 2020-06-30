@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { TranslateService } from '@ngx-translate/core';
-import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { LangService } from 'src/app/shared/services/lang.service';
+import { ApiInterceptorService } from 'src/app/shared/interceptor/api-interceptor.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
-declare var $:any;
+declare var $: any;
 
 @Component({
   selector: 'app-account',
@@ -12,54 +15,63 @@ declare var $:any;
 })
 export class AccountComponent implements OnInit {
 
-  public pageName:string = "account";
-  public lang:string = environment.lang;
-  public isLogged:boolean = false;
 
-  public form = new FormGroup({
-    firstName: new FormControl({value: 'Shreen', disabled: true}, [Validators.required]),
-    lastName: new FormControl({value: 'Abdou', disabled: true}, [Validators.required]),
-    email: new FormControl({value: 'shreen@gmail.com', disabled: true}, [Validators.required]),
-    phone: new FormControl({value: '10000222556', disabled: true}, [Validators.required]),
-    address: new FormControl({value: ['Address one' , 'Address two'], disabled: true}, [Validators.required]),
- });;
 
-  constructor(private translate: TranslateService) {
-    translate.setDefaultLang(this.lang); 
-    let token = localStorage.getItem('token');
-    if(token){
-        this.isLogged = true ;
-    }
+  public form: FormGroup;
+
+  language: string;
+  subscription: Subscription = new Subscription();
+  constructor(
+    private langS: LangService,
+    private translate: TranslateService,
+    private api: ApiInterceptorService,
+    public authService: AuthService
+  ) {
+    this.subscription.add(
+      this.langS.lang.subscribe(lang => {
+        this.translate.use(lang);
+        this.language = lang;
+      }));
   }
 
-  editForm(){
+
+  editForm() {
     this.form.get('firstName').enable();
     this.form.get('lastName').enable();
     this.form.get('email').enable();
     this.form.get('phone').enable();
     this.form.get('address').enable();
-    $('.icon-control > i').each(function (){
-      $(this).removeClass('d-none');
-    });
-    $('.controlBtnSave').removeClass('d-none');
-    $('.controlBtnEdit').addClass('d-none');
   }
 
-  saveForm(){
+  saveForm() {
     console.log('save');
     this.form.get('firstName').disable();
     this.form.get('lastName').disable();
     this.form.get('email').disable();
     this.form.get('phone').disable();
     this.form.get('address').disable();
-    $('.icon-control > i').each(function (){
-      $(this).addClass('d-none');
-    });
-    $('.controlBtnEdit').removeClass('d-none');
-    $('.controlBtnSave').addClass('d-none');
   }
 
   ngOnInit() {
+    this.form = new FormGroup({
+      firstName: new FormControl({
+        value: this.authService.loginedUserData.loginAuthenticationResponse.clientInfo.firstName
+        , disabled: true
+      }, [Validators.required]),
+      lastName: new FormControl({
+        value: this.authService.loginedUserData.loginAuthenticationResponse.clientInfo.lastName
+        , disabled: true
+      }, [Validators.required]),
+      email: new FormControl({
+        value: this.authService.loginedUserData.loginAuthenticationResponse.clientInfo.email
+        , disabled: true
+      }, [Validators.required]),
+      phone: new FormControl({
+        value: this.authService.loginedUserData.loginAuthenticationResponse.clientInfo.mobileNumber
+        , disabled: true
+      }, [Validators.required]),
+      address: new FormControl({ value: ['Address one', 'Address two'], disabled: true }, [Validators.required]),
+    });
   }
 
 }

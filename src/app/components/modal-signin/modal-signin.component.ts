@@ -62,21 +62,20 @@ export class ModalSigninComponent implements OnDestroy {
         'sourceID': '702000110001'
       },
       'serviceName': 'WSIOrderClientinfo'
-    }
+    };
     this.api.call('POST', reqBody).then((obs: Observable<IloginedUserData>) => {
-      obs.subscribe((res: any) => {
+      obs.subscribe((res: IloginedUserData) => {
         console.log(res);
         if (res.loginAuthenticationResponse.MessageText === 'Approved') {
           this.authService.loginedUserData = res;
-          // this.refreshToken.authToken = res.token;
           this.activeModal.dismiss('Cross click');
         } else {
-          alert(res.clientRegisterResponse.MessageText);
+          alert(res.loginAuthenticationResponse.MessageText);
         }
       });
     });
   }
   ngOnDestroy() {
-    this.subscription.unsubscribe()
+    this.subscription.unsubscribe();
   }
 }

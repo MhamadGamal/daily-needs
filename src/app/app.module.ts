@@ -10,13 +10,11 @@ import { SearchComponent } from './pages/search/search.component';
 import { SharedModule } from './modules/shared/shared.module';
 import { ModalSignupComponent } from './components/modal-signup/modal-signup.component';
 import { ModalSigninComponent } from './components/modal-signin/modal-signin.component';
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NumberOnlyDirective } from './shared/directives/number-only.directive';
-import { ApiInterceptorService } from './shared/interceptor/api-interceptor.service';
 
 const appRoutes = [
   {
@@ -83,8 +81,6 @@ const appRoutes = [
     HttpClientModule,
     NgbModule,
     SharedModule,
-    ReactiveFormsModule,
-    FormsModule,
     BrowserAnimationsModule
 
   ],

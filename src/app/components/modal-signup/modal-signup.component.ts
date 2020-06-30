@@ -6,8 +6,9 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { LangService } from 'src/app/shared/services/lang.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription, Observable } from 'rxjs';
-import { IloginedUserData } from 'src/app/shared/models/logined-user-data';
+import { IClientRegisterResponse, UpdateClientInfoResponse } from 'src/app/shared/models/logined-user-data';
 import { RefreshTokenService } from 'src/app/shared/services/refreshtoken.service';
+import { ModalSigninComponent } from '../modal-signin/modal-signin.component';
 
 
 @Component({
@@ -16,7 +17,6 @@ import { RefreshTokenService } from 'src/app/shared/services/refreshtoken.servic
   styleUrls: ['./modal-signup.component.css']
 })
 export class ModalSignupComponent implements OnDestroy {
-  subscription: Subscription = new Subscription();
   verId: number;
   mobile;
   signupForm: FormGroup;
@@ -24,6 +24,7 @@ export class ModalSignupComponent implements OnDestroy {
   showVer: boolean;
   userData: any;
   language: string;
+  subscription: Subscription = new Subscription();
   constructor(
     public activeModal: NgbActiveModal,
     private langS: LangService,
@@ -144,8 +145,8 @@ export class ModalSignupComponent implements OnDestroy {
           'email': this.userData.email,
           'gender': '001',
           'lang': this.language,
-          'mobileNumber': this.userData.phone,
           'password': this.userData.password,
+          'mobileNumber': this.userData.phone,
           firstName: this.userData.fname,
           lastName: this.userData.lname,
           'shortName': this.userData.fname + ' ' + this.userData.lname
@@ -160,11 +161,55 @@ export class ModalSignupComponent implements OnDestroy {
       'serviceName': 'WSIOrderClientinfo'
     };
     console.log(reqBody.clientRegister.clientInfo);
-    this.api.call('POST', reqBody).then((obs: Observable<IloginedUserData>) => {
-      obs.subscribe((res: IloginedUserData) => {
-        this.authService.loginedUserData = res;
+    this.api.call('POST', reqBody).then((obs: Observable<IClientRegisterResponse>) => {
+      obs.subscribe((res: IClientRegisterResponse) => {
         this.refreshToken.authToken = res.token;
-        this.activeModal.dismiss('Cross click');
+        this.updateName(res.clientRegisterResponse.clientInfo.clientNumber);
+      });
+    });
+  }
+  updateName(num) {
+    const reqBody = {
+      'serviceName': 'WSIOrderClientinfo',
+      'updateClientInfo': {
+        'AcctCurrency': '818',
+        'ClientoptIn': [
+          {
+            'Type': '001',
+            'status': '001'
+          },
+          {
+            'Type': '002',
+            'status': '001'
+          }
+        ],
+        'channelInfo': {
+          'AcquirerCountry': '818',
+          'merchantName': 'android|9|d804da38-5f2c-4cde-9737-f0f6c53c4f52|1.0.0'
+        },
+        'clientInfo': {
+          'DoB': '20200629',
+          'clientNumber': num,
+          'email': this.userData.email,
+          'gender': '001',
+          'mobileNumber': this.userData.phone,
+          firstName: this.userData.fname,
+          lastName: this.userData.lname
+        },
+        'createOnClient': '002',
+        'institutionNumber': '00000002',
+        'processCode': '115000',
+        'sourceID': '702000110001'
+      }
+    };
+    this.api.call('POST', reqBody).then((obs: Observable<UpdateClientInfoResponse>) => {
+      obs.subscribe((res: UpdateClientInfoResponse) => {
+        const login = new ModalSigninComponent(
+          this.activeModal, this.langS, this.translate, this.formBuilder, this.api, this.authService, this.refreshToken);
+        login.login({
+          email: this.userData.email,
+          password: this.userData.password,
+        });
       });
     });
   }

@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { AddNewAddressComponent } from '../../components/add-new-address/add-new-address.component';
 import { McBreadcrumbsModule } from 'ngx-breadcrumbs';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -35,6 +36,8 @@ const config: SwiperConfigInterface = {
     HttpClientModule,
     SwiperModule,
     RouterModule,
+    ReactiveFormsModule,
+    FormsModule,
     MatCarouselModule.forRoot(),
   ],
   declarations: [
@@ -45,6 +48,8 @@ const config: SwiperConfigInterface = {
     TranslateModule,
     SwiperModule,
     McBreadcrumbsModule,
+    ReactiveFormsModule,
+    FormsModule,
     MatCarouselModule
 
   ],
