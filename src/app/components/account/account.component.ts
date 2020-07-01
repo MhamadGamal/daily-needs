@@ -16,7 +16,7 @@ declare var $: any;
 export class AccountComponent implements OnInit {
 
 
-
+  isEdit: boolean;
   public form: FormGroup;
 
   language: string;
@@ -41,6 +41,7 @@ export class AccountComponent implements OnInit {
     this.form.get('email').enable();
     this.form.get('phone').enable();
     this.form.get('address').enable();
+    this.isEdit = true;
   }
 
   saveForm() {
@@ -50,6 +51,7 @@ export class AccountComponent implements OnInit {
     this.form.get('email').disable();
     this.form.get('phone').disable();
     this.form.get('address').disable();
+    this.isEdit = false;
   }
 
   ngOnInit() {

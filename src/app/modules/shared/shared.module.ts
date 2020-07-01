@@ -11,6 +11,7 @@ import { AddNewAddressComponent } from '../../components/add-new-address/add-new
 import { McBreadcrumbsModule } from 'ngx-breadcrumbs';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FilterPipe } from 'src/app/shared/pipes/filter.pipe';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -42,6 +43,7 @@ const config: SwiperConfigInterface = {
   ],
   declarations: [
     AddNewAddressComponent,
+    FilterPipe
   ],
   exports: [
     AddNewAddressComponent,
@@ -50,7 +52,8 @@ const config: SwiperConfigInterface = {
     McBreadcrumbsModule,
     ReactiveFormsModule,
     FormsModule,
-    MatCarouselModule
+    MatCarouselModule,
+    FilterPipe
 
   ],
   providers: [

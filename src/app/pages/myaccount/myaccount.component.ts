@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
+import { LangService } from 'src/app/shared/services/lang.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
-declare var $:any;
 @Component({
   selector: 'app-myaccount',
   templateUrl: './myaccount.component.html',
@@ -10,29 +11,21 @@ declare var $:any;
 })
 export class MyaccountComponent implements OnInit {
 
-  public pageName:string = "myaccount";
-  // public pageNameSub:string = "health";
-  public lang:string = environment.lang;
-  public isLogged:boolean = false;
-
-  constructor(private translate: TranslateService) {
-    translate.setDefaultLang(this.lang); 
-    let token = localStorage.getItem('token');
-    if(token){
-        this.isLogged = true ;
-    }
-
+  language: string;
+  subscription: Subscription = new Subscription();
+  constructor(
+    private langS: LangService,
+    private translate: TranslateService,
+    public authService: AuthService
+  ) {
+    this.subscription.add(
+      this.langS.lang.subscribe(lang => {
+        this.translate.use(lang);
+        this.language = lang;
+      }));
   }
 
   ngOnInit() {
   }
 
-
-  setActive(elementID){
-    console.log(elementID);
-    $('.link').forEach(element => {
-      $(this).removeClass('link-active');
-    });
-    $('#'+elementID).addClass('link-active');
-  }
 }

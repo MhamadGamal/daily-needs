@@ -1,17 +1,18 @@
 <div class="slider-details text-center">
   <img class="smallImgSlider" src="assets/dynamicImg/category.png" />
-  <p class="sliderTxt">My account</p>
+  <p class="sliderTxt">{{'home.header.logged.account' | translate}}</p>
 </div>
 <mc-breadcrumbs></mc-breadcrumbs>
 <div class="myaccount">
   <div class="container">
     <div class="row">
       <div class="col-lg-2 mt-4 link-div text-center">
-        <a class="link mb-3" routerLinkActive="link-active" routerLink="/{{lang}}/myaccount"
-          [routerLinkActiveOptions]="{ exact: true }">My account</a><br />
-        <a class="link mb-3" routerLinkActive="link-active" routerLink="/{{lang}}/myaccount/my-orders">My
-          orders</a><br />
-        <a class="link mb-3" routerLinkActive="link-active" routerLink="/{{lang}}/myaccount/favourits">favourits</a>
+        <a class="link mb-3" routerLinkActive="link-active" routerLink="/myaccount"
+          [routerLinkActiveOptions]="{ exact: true }">{{'home.header.logged.account' | translate}}</a><br />
+        <a class="link mb-3" routerLinkActive="link-active"
+          routerLink="/myaccount/my-orders">{{'home.header.logged.oreders' | translate}}</a><br />
+        <a class="link mb-3" routerLinkActive="link-active"
+          routerLink="/myaccount/favourits">{{'home.header.logged.favourite' | translate}}</a>
       </div>
       <div class="col-lg-10">
         <router-outlet name="primary"></router-outlet>

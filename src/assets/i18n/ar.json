@@ -114,5 +114,11 @@
         "error": {
             "requiredField": "يجب إدخال هذا الحقل"
         }
+    },
+    "account": {
+        "edit": "تعديل",
+        "save": "حفظ",
+        "addresses": "العنوان",
+        "newaddresses": "اضافة عنوان جديد"
     }
 }

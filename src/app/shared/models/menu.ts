@@ -17,7 +17,7 @@ export interface IAdditionalData {
 export interface ICategoryType {
     categoryTypeID?: string;
     catergoryTypeName?: string;
-    categoriesInfo?: ICategoriesInfo;
+    categoriesInfo?: ICategoriesInfo[];
 }
 export interface ICategoriesInfo {
     categoryID?: string;

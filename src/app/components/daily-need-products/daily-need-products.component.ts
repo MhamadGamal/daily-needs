@@ -1,4 +1,5 @@
-import { ApiInterceptorService } from './../../shared/interceptor/api-interceptor.service';
+import { ICategoriesInfo, Iattributes, IresturentItemsInfo } from './../../shared/models/menu';
+import { MenuItemsService } from './../../shared/services/menu-items.service';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
@@ -14,8 +15,10 @@ export class DailyNeedProductsComponent implements OnInit, OnDestroy {
   menu: IMenu;
   lang: string;
   subscription: Subscription = new Subscription();
+  filterdCat = 'all';
+  filterdCatArr: IresturentItemsInfo[];
   constructor(private translate: TranslateService, private langS: LangService,
-    private api: ApiInterceptorService
+    private menuItemsService: MenuItemsService
   ) {
     this.subscription.add(
       this.langS.lang.subscribe(lang => {
@@ -28,36 +31,30 @@ export class DailyNeedProductsComponent implements OnInit, OnDestroy {
     this.getMenu();
   }
   getMenu() {
-    const reqBody = {
-      'serviceName': 'WSIOrderActivities',
-      'restaurantsItemsList': {
-        'areaID': '115',
-        'branchId': '4967',
-        'institutionNumber': '00000002',
-        'processCode': '144200',
-        'resturantID': '4967',
-        'sourceID': '702000110001',
-        'additionalData': [
-          {
-            'lang': 'EN'
-          }
-        ],
-        'channelInfo': {
-          'acquirerCountry': '818',
-          'merchantName': 'android|9|6953f5e7-80f1-49ea-a2f0-24e765284660|1.0.17'
-        }
-      }
-    };
-    this.api.call('POST', reqBody).then((res: Observable<IMenu>) => {
+    this.menuItemsService.getMenu().then((res: Observable<IMenu>) => {
       this.subscription.add(
-        res.subscribe((menu: IMenu) => {
-          console.log(menu);
-          this.menu = menu;
-        })
-      )
+        res
+          .subscribe((menu: IMenu) => {
+            console.log(menu);
+            this.menu = menu;
+            this.menuItemsService.menu = menu;
+            this.filterdCatArr = menu.restaurantsItemsListResponse.resturentItemsInfo;
+          })
+      );
     });
   }
-
+  filterr(item: ICategoriesInfo) {
+    debugger;
+    if (item.categoryID) {
+      // tslint:disable-next-line: max-line-length
+      this.filterdCat = this.lang === 'en' ? item.attributes.filter((att: Iattributes) => att.attributeID === '4')[0].attributeValue : item.attributes.filter((att: Iattributes) => att.attributeID === '9')[0].attributeValue;
+      // tslint:disable-next-line: max-line-length
+      this.filterdCatArr = this.menu.restaurantsItemsListResponse.resturentItemsInfo.filter((_item: IresturentItemsInfo) => _item.categoryIDs === item.categoryID);
+    }
+    if (this.filterdCat === 'all') {
+      this.filterdCatArr = this.menu.restaurantsItemsListResponse.resturentItemsInfo;
+    }
+  }
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

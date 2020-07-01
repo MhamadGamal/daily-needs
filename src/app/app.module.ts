@@ -15,6 +15,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NumberOnlyDirective } from './shared/directives/number-only.directive';
+import { FilterPipe } from './shared/pipes/filter.pipe';
 
 const appRoutes = [
   {

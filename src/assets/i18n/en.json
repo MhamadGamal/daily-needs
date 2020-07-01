@@ -114,5 +114,11 @@
         "error": {
             "requiredField": "This field is required"
         }
+    },
+    "account": {
+        "edit": "Edit",
+        "save": "Save",
+        "addresses": "Addresses",
+        "newaddresses": "Add New Address"
     }
 }
