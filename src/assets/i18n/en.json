@@ -136,5 +136,9 @@
     "search": {
         "placeholder": "What are you looking for?",
         "result": "search results found for"
+    },
+    "health": {
+        "title": "Health Information",
+        "more": "Read More..."
     }
 }
