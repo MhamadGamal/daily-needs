@@ -13,10 +13,12 @@ import { HealthInfoService } from 'src/app/shared/services/firebase/healthInfo.s
 export class HealthInformationComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();
   healthInfo: IHealthInfo[];
+  language: string;
   constructor(private translate: TranslateService, private langS: LangService, private healthInfoService: HealthInfoService) {
     this.subscription.add(
       this.langS.lang.subscribe(lang => {
         this.translate.use(lang);
+        this.language = lang;
       }));
   }
 

@@ -17,11 +17,13 @@ export class HealthDetailsComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();
   healthInfo: IHealthInfo[];
   targetHealthInfo: IHealthInfo;
+  language: string;
   constructor(private translate: TranslateService,
     private langS: LangService, private healthInfoService: HealthInfoService, private params: ActivatedRoute) {
     this.subscription.add(
       this.langS.lang.subscribe(lang => {
         this.translate.use(lang);
+        this.language = lang;
       }));
     this.id = this.params.snapshot.paramMap.get('id');
   }

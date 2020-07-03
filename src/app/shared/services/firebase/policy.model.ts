@@ -7,5 +7,8 @@ export interface IHealthInfo {
     isFav: boolean;
     key: string;
     title: string;
-
+    comments: string;
+    date: string;
+    descAr: string;
+    titleAr: string;
 }

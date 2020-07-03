@@ -12,13 +12,14 @@ import { HealthInfoService } from 'src/app/shared/services/firebase/healthInfo.s
   styleUrls: ['./health.component.css']
 })
 export class HealthComponent implements OnInit, OnDestroy {
-
+  language: string;
   subscription: Subscription = new Subscription();
   healthInfo: IHealthInfo[];
   constructor(private translate: TranslateService, private langS: LangService, private healthInfoService: HealthInfoService) {
     this.subscription.add(
       this.langS.lang.subscribe(lang => {
         this.translate.use(lang);
+        this.language = lang;
       }));
   }
 

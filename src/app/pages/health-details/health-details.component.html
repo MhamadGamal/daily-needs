@@ -19,14 +19,18 @@
                 <span> <i class="far fa-comments"></i> 13</span> -->
           </div>
           <div class="col-lg-6 share-like">
-            <i class="fa fa-share-alt"></i>
-            <i class="far fa-heart"></i>
+            <span><i class="far fa-calendar-alt"></i> {{targetHealthInfo.date}} </span>
+            <span><i class="far fa-comments"></i> {{targetHealthInfo.comments}} </span>
           </div>
         </div>
         <div class="row">
-          <h4 class="mt-4 mb-3"> {{targetHealthInfo.title}} </h4>
-          <div>
-            {{targetHealthInfo.description}}
+          <h4 class="wrapTxt title" routerLink="/health/{{targetHealthInfo.id}}">
+            <ng-container *ngIf="language === 'en'"> {{targetHealthInfo.title}} </ng-container>
+            <ng-container *ngIf="language === 'ar'"> {{targetHealthInfo.titleAr}} </ng-container>
+          </h4>
+          <div class="wrapTxt">
+            <ng-container *ngIf="language === 'en'"> {{targetHealthInfo.description}} </ng-container>
+            <ng-container *ngIf="language === 'ar'"> {{targetHealthInfo.descAr}} </ng-container>
           </div>
         </div>
       </div>

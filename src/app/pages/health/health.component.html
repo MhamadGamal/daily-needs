@@ -13,14 +13,16 @@
           </div>
           <div class="col-lg-6 healthTxtDiv">
             <div class="row infoLabel">
-              <!-- <i class="far fa-calendar-alt "></i>
-                <span>4 December 2019</span>
-                <i class="far fa-comments"></i>
-                <span>13</span> -->
+              <span><i class="far fa-calendar-alt"></i> {{item.date}} </span>
+              <span><i class="far fa-comments"></i> {{item.comments}} </span>
             </div>
-            <h5 class="wrapTxt title" routerLink="/health/{{item.id}}"> {{item.title}} </h5>
+            <h5 class="wrapTxt title" routerLink="/health/{{item.id}}">
+              <ng-container *ngIf="language === 'en'"> {{item.title}} </ng-container>
+              <ng-container *ngIf="language === 'ar'"> {{item.titleAr}} </ng-container>
+            </h5>
             <div class="wrapTxt">
-              {{item.description}}
+              <ng-container *ngIf="language === 'en'"> {{item.description}} </ng-container>
+              <ng-container *ngIf="language === 'ar'"> {{item.descAr}} </ng-container>
             </div>
             <div class="mt-3 mb-3">
               <div class="divSeparatorFooter"></div>

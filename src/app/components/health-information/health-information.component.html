@@ -4,12 +4,16 @@
 		<div class="row ">
 			<div *ngFor="let item of healthInfo | slice: 0: 3" class="col-lg-4 col-sm-6 dailyNeed-div-img">
 				<img class="healthInfo-img" [src]="item?.img_url" />
-				<p class="tags">
-					<!-- <span><i class="far fa-calendar-alt"></i> </span>
-					<span><i class="far fa-comments"></i> </span> -->
-				</p>
-				<h5 class="health-title"> {{item?.title}} </h5>
-				<p class="healt-desc"> {{item?.description | slice: 0: 100}} </p>
+				<h5 class="wrapTxt title" routerLink="/health/{{item.id}}">
+					<ng-container *ngIf="language === 'en'"> {{item.title}} </ng-container>
+					<ng-container *ngIf="language === 'ar'"> {{item.titleAr}} </ng-container>
+				</h5>
+				<div class="wrapTxt">
+					<p>
+						<ng-container *ngIf="language === 'en'"> {{item.description | slice: 0: 100}} </ng-container>
+						<ng-container *ngIf="language === 'ar'"> {{item.descAr | slice: 0: 100}} </ng-container>
+					</p>
+				</div>
 				<p class="healthReadMore" routerLink="/health/{{item?.id}}">{{"health.more" | translate}}</p>
 			</div>
 
