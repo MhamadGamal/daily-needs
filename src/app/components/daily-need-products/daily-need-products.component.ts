@@ -19,6 +19,8 @@ export class DailyNeedProductsComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();
   filterdCat = 'all';
   filterdCatArr: IresturentItemsInfo[];
+  max = 8;
+  showLoadMore: boolean = true;
   constructor(private translate: TranslateService, private langS: LangService,
     private menuItemsService: MenuItemsService
   ) {
@@ -47,6 +49,7 @@ export class DailyNeedProductsComponent implements OnInit, OnDestroy {
   }
 
   filterr(item: ICategoriesInfo) {
+    this.max = 8;
     if (item.categoryID) {
       // tslint:disable-next-line: max-line-length
       this.filterdCat = this.lang === 'en' ? item.attributes.filter((att: Iattributes) => att.attributeID === '4')[0].attributeValue : item.attributes.filter((att: Iattributes) => att.attributeID === '9')[0].attributeValue;
@@ -56,8 +59,18 @@ export class DailyNeedProductsComponent implements OnInit, OnDestroy {
     if (this.filterdCat === 'all') {
       this.filterdCatArr = this.menu.restaurantsItemsListResponse.resturentItemsInfo;
     }
-  }
+    this.showLoadMore = this.max === this.filterdCatArr.length ? false : true;
 
+  }
+  loadMore() {
+    if (this.filterdCatArr.length > (this.max + 4)) {
+      this.max += 4;
+    } else {
+      this.max += this.filterdCatArr.length - this.max;
+    }
+    this.showLoadMore = this.max === this.filterdCatArr.length ? false : true;
+
+  }
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
