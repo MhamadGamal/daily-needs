@@ -41,7 +41,7 @@ export class AddNewAddressComponent implements OnInit {
       mobile: [null],
       street: [null, [Validators.required]],
       appartment: [null],
-      details: [null]
+      details: ['']
     });
   }
 
@@ -60,16 +60,16 @@ export class AddNewAddressComponent implements OnInit {
         'addressDetails': {
           'FGeoLocationLat': '0.0',
           'FGeoLocationLong': '0.0',
-          'addrClientCity': value.addressName,
-          'addrLine1': value.city,
-          'addrLine2': value.area,
-          'addrLine3': value.street,
-          'addrLine4': value.appartment,
+          'addrClientCity': value.city,
+          'addrLine1': value.area,
+          'addrLine2': value.street,
+          'addrLine3': '12',
+          'addrLine4': '143',
           'addrLine5': value.details,
-          'addrLine6': value.mobile,
-          'addrLine7': 'appartment 14',
+          'addrLine6': '',
+          'addrLine7': value.appartment,
           'areaId': '115',
-          'isDefault': '000'
+          'isDefault': '001'
         },
         'channelInfo': {
           'AcquirerCountry': '818',

@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class HealthInfoService {
+  healthInfo: IHealthInfo[];
   constructor(private db: AngularFireDatabase) { }
   getHealthInfo() {
     return this.db.list('/healthyInfo').snapshotChanges().pipe(

@@ -33,7 +33,7 @@
         <p class="dailyNeed-price"> {{item.prices.priceNumber | currency: "EGP"}} </p>
       </div>
     </div>
-    <button *ngIf="filterdCatArr.length > 7  && showLoadMore  " class="btn btn-success btn-more"
+    <button *ngIf="filterdCatArr?.length > 7  && showLoadMore  " class="btn btn-success btn-more"
       (click)="loadMore()">{{"home.dailyNeeds.seeMore" | translate}}</button>
 
   </div>

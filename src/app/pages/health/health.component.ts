@@ -23,11 +23,15 @@ export class HealthComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.getHealthInfo();
+    this.healthInfo = this.healthInfoService.healthInfo;
+    if (!this.healthInfo) {
+      this.getHealthInfo();
+    }
   }
   getHealthInfo() {
     this.healthInfoService.getHealthInfo().subscribe((data: IHealthInfo[]) => {
       this.healthInfo = data;
+      this.healthInfoService.healthInfo = data;
     });
   }
   ngOnDestroy() {

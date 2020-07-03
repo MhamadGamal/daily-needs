@@ -38,8 +38,14 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getMenu();
-    this.getHealthInfo();
+    this.menu = this.menuItemsService.menu;
+    this.healthInfo = this.healthInfoService.healthInfo;
+    if (!this.menu) {
+      this.getMenu();
+    }
+    if (!this.healthInfo) {
+      this.getHealthInfo();
+    }
   }
 
   getMenu() {
@@ -71,6 +77,7 @@ export class SearchComponent implements OnInit {
   getHealthInfo() {
     this.healthInfoService.getHealthInfo().subscribe((data: IHealthInfo[]) => {
       this.healthInfo = data;
+      this.healthInfoService.healthInfo = data;
     });
   }
 }

@@ -137,13 +137,13 @@ export class AccountComponent implements OnInit {
     };
     this.api.call('POST', reqBody).then((obs: Observable<any>) => {
       obs.subscribe((res: any) => {
-        console.log('adddddddddddddddddd', res);
-        if (res.clientAddressList) {
+        if (res.retrieveClientAddressResponse.clientAddressList) {
           this.hasAddress = true;
           this.addressForm.get('address').setValue(
-            res.clientAddressList.addrLine1 + ' , ' +
-            res.clientAddressList.addrLine2 + ' , ' +
-            res.clientAddressList.addrLine3
+            res.retrieveClientAddressResponse.clientAddressList.addrClientCity + ' , ' +
+            res.retrieveClientAddressResponse.clientAddressList.addrLine1 + ' , ' +
+            res.retrieveClientAddressResponse.clientAddressList.addrLine2 + ' , ' +
+            res.retrieveClientAddressResponse.clientAddressList.addrLine7
           );
         }
       });

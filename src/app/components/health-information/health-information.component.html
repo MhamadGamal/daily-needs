@@ -2,15 +2,15 @@
 	<div class="container">
 		<h2 class="dailyNeed-title dailyNeed-title-font">{{"home.health.title" | translate}}</h2>
 		<div class="row ">
-			<div *ngFor="let item of healthInfo" class="col-lg-4 col-sm-6 dailyNeed-div-img">
-				<img class="healthInfo-img" [src]="item.img_url" />
+			<div *ngFor="let item of healthInfo | slice: 0: 3" class="col-lg-4 col-sm-6 dailyNeed-div-img">
+				<img class="healthInfo-img" [src]="item?.img_url" />
 				<p class="tags">
 					<!-- <span><i class="far fa-calendar-alt"></i> </span>
 					<span><i class="far fa-comments"></i> </span> -->
 				</p>
-				<h5 class="health-title"> {{item.title}} </h5>
-				<p class="healt-desc"> {{item.description}} </p>
-				<p class="healthReadMore" routerLink="/health/{{item.id}}">{{"health.more" | translate}}</p>
+				<h5 class="health-title"> {{item?.title}} </h5>
+				<p class="healt-desc"> {{item?.description | slice: 0: 100}} </p>
+				<p class="healthReadMore" routerLink="/health/{{item?.id}}">{{"health.more" | translate}}</p>
 			</div>
 
 		</div>

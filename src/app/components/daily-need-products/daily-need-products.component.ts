@@ -32,7 +32,13 @@ export class DailyNeedProductsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.getMenu();
+    if (this.menuItemsService.menu) {
+      this.menu = this.menuItemsService.menu;
+      this.filterdCatArr = this.menuItemsService.menu.restaurantsItemsListResponse.resturentItemsInfo;
+    }
+    if (!this.menu) {
+      this.getMenu();
+    }
   }
   getMenu() {
     this.menuItemsService.getMenu().then((res: Observable<IMenu>) => {
