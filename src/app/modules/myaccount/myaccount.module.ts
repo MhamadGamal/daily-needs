@@ -10,8 +10,7 @@ import { FavouritItemsComponent } from '../../components/favourit-items/favourit
 import { FavouritHealthinfoComponent } from '../../components/favourit-healthinfo/favourit-healthinfo.component';
 import { MyordersContentComponent } from '../../components/myorders-content/myorders-content.component';
 
-import { arPageTitle } from '../../../assets/i18n/arPageTitle';
-import { enPageTitle } from '../../../assets/i18n/enPageTitle';
+
 
 
 

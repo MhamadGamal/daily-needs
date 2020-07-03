@@ -120,5 +120,21 @@
         "save": "Save",
         "addresses": "Addresses",
         "newaddresses": "Add New Address"
+    },
+    "address": {
+        "addNew": "Add New Address",
+        "addressName": "Address name",
+        "city": "City",
+        "area": "Area",
+        "mobile": "Mobile Number",
+        "street": "Street Name/No",
+        "appartment": "Appartment No",
+        "details": "More Details",
+        "add": "Add Address",
+        "cancel": "Cancel"
+    },
+    "search": {
+        "placeholder": "What are you looking for?",
+        "result": "search results found for"
     }
 }

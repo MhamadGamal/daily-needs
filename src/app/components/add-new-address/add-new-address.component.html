@@ -1,19 +1,19 @@
 <div class="addNewAddress pl-4 pr-4">
-  <p><i class="fa fa-plus" (click)="expandDivNewAddress()"></i> Add New Address</p>
-  <div class="newAddress collapse" id="newAddress">
-    <form>
+  <p class="addnew" (click)="addnewAddress()"><i class="fa fa-plus"></i> {{"address.addNew" | translate}} </p>
+  <div class="newAddress" id="newAddress" *ngIf="addAddress">
+    <form [formGroup]="newAddressForm" (ngSubmit)="saveAddress(newAddressForm.value)">
       <div class="row">
         <div class="col-md-6">
           <div class="form-group has-success">
-            <label class="control-label">Address name *</label>
-            <input type="text" class="form-control" name="addressName">
+            <label class="control-label">{{"address.addressName" | translate}} *</label>
+            <input type="text" class="form-control" formControlName="addressName">
           </div>
         </div>
         <!--/span-->
         <div class="col-md-6">
           <div class="form-group">
-            <label class="control-label">City *</label>
-            <input type="text" class="form-control" name="city">
+            <label class="control-label">{{"address.city" | translate}} *</label>
+            <input type="text" class="form-control" formControlName="city">
           </div>
         </div>
         <!--/span-->
@@ -21,15 +21,15 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-group has-success">
-            <label class="control-label">Area *</label>
-            <input type="text" class="form-control" name="area">
+            <label class="control-label">{{"address.area" | translate}} *</label>
+            <input type="text" class="form-control" formControlName="area">
           </div>
         </div>
         <!--/span-->
         <div class="col-md-6">
           <div class="form-group">
-            <label class="control-label">Mobile Number</label>
-            <input type="text" class="form-control" name=mobile>
+            <label class="control-label">{{"address.mobile" | translate}}</label>
+            <input type="text" class="form-control" formControlName=mobile>
           </div>
         </div>
         <!--/span-->
@@ -37,15 +37,15 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-group has-success">
-            <label class="control-label">Street Name/No.*</label>
-            <input type="text" class="form-control" name="street">
+            <label class="control-label">{{"address.street" | translate}}*</label>
+            <input type="text" class="form-control" formControlName="street">
           </div>
         </div>
         <!--/span-->
         <div class="col-md-6">
           <div class="form-group">
-            <label class="control-label">Appartment No.</label>
-            <input type="text" class="form-control" name="appartment">
+            <label class="control-label">{{"address.appartment" | translate}}</label>
+            <input type="text" class="form-control" formControlName="appartment">
           </div>
         </div>
         <!--/span-->
@@ -53,14 +53,14 @@
       <div class="row">
         <div class="col-md-12">
           <div class="form-group has-success">
-            <label class="control-label">More details</label>
-            <textarea rows="3" class="form-control"></textarea>
+            <label class="control-label">{{"address.details" | translate}}</label>
+            <textarea rows="3" formControlName="details" class="form-control"></textarea>
           </div>
         </div>
         <!--/span-->
       </div>
-      <button class="btn btn-warning addAddressBtn">Add address</button>
-      <a class="resetForm">Cancel</a>
+      <button class="btn btn-warning addAddressBtn">{{"address.add" | translate}}</button>
+      <a class="resetForm" (click)="cancel()">{{"address.cancel" | translate}}</a>
     </form>
   </div>
 </div>

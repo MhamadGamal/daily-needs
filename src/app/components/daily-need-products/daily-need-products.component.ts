@@ -5,6 +5,8 @@ import { Subscription, Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { LangService } from 'src/app/shared/services/lang.service';
 import { IMenu } from 'src/app/shared/models/menu';
+import { HealthInfoService } from 'src/app/shared/services/firebase/healthInfo.service';
+import { IHealthInfo } from 'src/app/shared/services/firebase/policy.model';
 
 @Component({
   selector: 'app-daily-need-products',
@@ -43,8 +45,8 @@ export class DailyNeedProductsComponent implements OnInit, OnDestroy {
       );
     });
   }
+
   filterr(item: ICategoriesInfo) {
-    debugger;
     if (item.categoryID) {
       // tslint:disable-next-line: max-line-length
       this.filterdCat = this.lang === 'en' ? item.attributes.filter((att: Iattributes) => att.attributeID === '4')[0].attributeValue : item.attributes.filter((att: Iattributes) => att.attributeID === '9')[0].attributeValue;
@@ -55,6 +57,7 @@ export class DailyNeedProductsComponent implements OnInit, OnDestroy {
       this.filterdCatArr = this.menu.restaurantsItemsListResponse.resturentItemsInfo;
     }
   }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

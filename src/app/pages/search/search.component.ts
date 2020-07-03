@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription, Observable } from 'rxjs';
 import { LangService } from 'src/app/shared/services/lang.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { MenuItemsService } from 'src/app/shared/services/menu-items.service';
-import { IMenu, ICategoriesInfo } from 'src/app/shared/models/menu';
+import { IMenu, ICategoriesInfo, IresturentItemsInfo, Iattributes } from 'src/app/shared/models/menu';
 
 @Component({
   selector: 'app-search',
@@ -18,6 +17,7 @@ export class SearchComponent implements OnInit {
   menu: IMenu;
   filteredItems: ICategoriesInfo[];
   search: string;
+  searchResult: IresturentItemsInfo[];
   constructor(
     private langS: LangService,
     private translate: TranslateService,
@@ -32,6 +32,7 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getMenu();
   }
 
   getMenu() {
@@ -44,5 +45,18 @@ export class SearchComponent implements OnInit {
           })
       );
     });
+  }
+  getDataSearch() {
+    console.log(this.search);
+    if (this.search !== '') {
+      if (this.language === 'en') {
+        this.searchResult = this.menu.restaurantsItemsListResponse.resturentItemsInfo.filter((_item: IresturentItemsInfo) => _item.attributes.filter((at: Iattributes) => at.attributeID === "1")[0].attributeValue.toLowerCase().includes(this.search.toLowerCase()));
+      } else {
+        this.searchResult = this.menu.restaurantsItemsListResponse.resturentItemsInfo.filter((_item: IresturentItemsInfo) => _item.attributes.filter((at: Iattributes) => at.attributeID === "6")[0].attributeValue.toLowerCase().includes(this.search.toLowerCase()));
+      }
+    } else {
+      this.searchResult = [];
+    }
+
   }
 }

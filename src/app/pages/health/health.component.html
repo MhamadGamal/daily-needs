@@ -1,5 +1,3 @@
-<app-header [lang]="lang" [isLogged]="isLogged" [pageName]="pageName"></app-header>
-
 <div class="slider-details text-center">
   <img class="smallImgSlider" src="assets/dynamicImg/healthInfoCover.png" />
   <p class="sliderTxt">Health Information</p>
@@ -10,116 +8,51 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8">
-        <div class="row healthItem">
-          <div class="col-lg-5 healthImgDiv pr-0 pl-0" routerLink="/{{lang}}/health/1">
-            <img class="healthImg" src="assets/dynamicImg/healthInfo1.png" />
+        <div class="row healthItem" *ngFor="let item of healthInfo">
+          <div class="col-lg-5 healthImgDiv pr-0 pl-0" routerLink="/health/{{item.id}}">
+            <img class="healthImg" [src]="item.img_url" />
           </div>
           <div class="col-lg-6 healthTxtDiv">
             <div class="row infoLabel">
-                <i class="far fa-calendar-alt "></i>
+              <!-- <i class="far fa-calendar-alt "></i>
                 <span>4 December 2019</span>
                 <i class="far fa-comments"></i>
-                <span>13</span>
+                <span>13</span> -->
             </div>
-            <h5 class="wrapTxt title" routerLink="/{{lang}}/health/1">How to steam & purée</h5>
+            <h5 class="wrapTxt title" routerLink="/health/{{item.id}}"> {{item.title}} </h5>
             <div class="wrapTxt">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+              {{item.description}}
             </div>
             <div class="mt-3 mb-3">
-                <div class="divSeparatorFooter"></div>
-                 <a>Read more.....</a>
-             </div>
-          </div>
-        </div>
-        <div class="row healthItem" >
-          <div class="col-lg-5 healthImgDiv pr-0 pl-0" routerLink="/{{lang}}/health/1">
-            <img class="healthImg" src="assets/dynamicImg/healthInfo2.png" />
-          </div>
-          <div class="col-lg-6 healthTxtDiv">
-            <div class="row infoLabel">
-                <i class="far fa-calendar-alt "></i>
-                <span>4 December 2019</span>
-                <i class="far fa-comments"></i>
-                <span>13</span>
-            </div>
-            <h5 class="wrapTxt title" routerLink="/{{lang}}/health/1">Great bulk recipes to help</h5>
-            <div class="wrapTxt">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-            </div>
-            <div class="mt-3 mb-3">
-                <div class="divSeparatorFooter"></div>
-                 <a>Read more.....</a>
-             </div>
-          </div>
-        </div>
-        <div class="row healthItem" >
-          <div class="col-lg-5 healthImgDiv pr-0 pl-0" routerLink="/{{lang}}/health/1">
-            <img class="healthImg" src="assets/dynamicImg/healthInfo3.png" />
-          </div>
-          <div class="col-lg-6 healthTxtDiv">
-            <div class="row infoLabel">
-                <i class="far fa-calendar-alt "></i>
-                <span>4 December 2019</span>
-                <i class="far fa-comments"></i>
-                <span>13</span>
-            </div>
-            <h5 class="wrapTxt title" routerLink="/{{lang}}/health/1">How can salmon be raised</h5>
-            <div class="wrapTxt">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-            </div>
-            <div class="mt-3 mb-3">
-                <div class="divSeparatorFooter"></div>
-                 <a>Read more.....</a>
-             </div>
-          </div>
-        </div>
-        <div class="row healthItem" >
-          <div class="col-lg-5 healthImgDiv pr-0 pl-0" routerLink="/{{lang}}/health/1">
-            <img class="healthImg" src="assets/dynamicImg/healthInfo1.png" />
-          </div>
-          <div class="col-lg-6 healthTxtDiv">
-            <div class="row infoLabel">
-                <i class="far fa-calendar-alt "></i>
-                <span>4 December 2019</span>
-                <i class="far fa-comments"></i>
-                <span>13</span>
-            </div>
-            <h5 class="wrapTxt title" routerLink="/{{lang}}/health/1">Change your eating h</h5>
-            <div class="wrapTxt">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-            </div>
-            <div class="mt-3 mb-3">
-               <div class="divSeparatorFooter"></div>
-                <a>Read more.....</a>
+              <div class="divSeparatorFooter"></div>
+              <a routerLink="/health/{{item.id}}">Read more.....</a>
             </div>
           </div>
         </div>
       </div>
       <div class="col-lg-4 healthPopular">
         <div class="row mt-4">
-          <input type="text" class="form-control" placeholder="Search for products"/>
+          <input type="text" class="form-control" placeholder="Search for products" />
         </div>
         <div class="row">
-            <app-popular-post [lang]="lang"></app-popular-post>
+          <app-popular-post></app-popular-post>
         </div>
         <div class="row mt-5">
           <h5>Search by tags</h5>
           <div>
-              <button class="btn btn-light mt-3 search">bread</button>
-              <button class="btn btn-light mt-3 search">fruits</button>
-              <button class="btn btn-light mt-3 search">food</button>
-              <button class="btn btn-light mt-3 search">green</button>
-              <button class="btn btn-light mt-3 search">healthy</button>
-              <button class="btn btn-light mt-3 search">natural</button>
-              <button class="btn btn-light mt-3 search">organic store</button>
-              <button class="btn btn-light mt-3 search">vegetables</button>
+            <button class="btn btn-light mt-3 search">bread</button>
+            <button class="btn btn-light mt-3 search">fruits</button>
+            <button class="btn btn-light mt-3 search">food</button>
+            <button class="btn btn-light mt-3 search">green</button>
+            <button class="btn btn-light mt-3 search">healthy</button>
+            <button class="btn btn-light mt-3 search">natural</button>
+            <button class="btn btn-light mt-3 search">organic store</button>
+            <button class="btn btn-light mt-3 search">vegetables</button>
           </div>
-          
+
         </div>
-        
+
       </div>
     </div>
   </div>
 </div>
-
-<app-footer [lang]="lang"></app-footer>

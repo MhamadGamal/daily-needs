@@ -4,52 +4,29 @@
       <div class="input-group-prepend">
         <div class="input-group-text" id="btnGroupAddon"><i class="fa fa-search"></i></div>
       </div>
-      <input type="text" [(ngModel)]="search" class="form-control searchBox" placeholder="What are you looking for?">
+      <input type="text" [(ngModel)]="search" (keyup)="getDataSearch()" class="form-control searchBox"
+        placeholder="{{'search.placeholder' | translate}}">
     </div>
   </div>
 </div>
 
 <div class="searchPage">
-  <div class="container">
+  <div *ngIf="searchResult?.length" class="container">
     <div class="searchTitle text-center">
-      <p>4 search results found for <strong><q>Fresh</q></strong></p>
+      <p> {{searchResult?.length}} {{'search.result' | translate}} <strong><q>{{search}}</q></strong></p>
     </div>
     <div class="row ">
-      <div class="col-lg-3 col-xs-2 dailyNeed-div-img">
-        <img class="dailyNeed-img" src="assets/dynamicImg/need1.png" />
-        <h4 class="dailyNeed-title">Carrot</h4>
-        <p class="dailyNeed-price">20.00 EGP</p>
-      </div>
-      <div class="col-lg-3 col-xs-2 dailyNeed-div-img">
-        <img class="dailyNeed-img" src="assets/dynamicImg/need2.png" />
-        <h4 class="dailyNeed-title">Milk plant</h4>
-        <p class="dailyNeed-price">20.00 EGP</p>
-      </div>
-      <div class="col-lg-3 col-xs-2 dailyNeed-div-img">
-        <img class="dailyNeed-img" src="assets/dynamicImg/need3.png" />
-        <h4 class="dailyNeed-title">Detox drink</h4>
-        <p class="dailyNeed-price">20.00 EGP</p>
-      </div>
-      <div class="col-lg-3 col-xs-2 dailyNeed-div-img">
-        <img class="dailyNeed-img" src="assets/dynamicImg/need4.png" />
-        <h4 class="dailyNeed-title">Fresh cuts</h4>
-        <p class="dailyNeed-price">20.00 EGP</p>
-      </div>
-      <div class="col-lg-3 col-xs-2 dailyNeed-div-img">
-        <img class="dailyNeed-img" src="assets/dynamicImg/need2.png" />
-        <h4 class="dailyNeed-title">Milk plant</h4>
-        <p class="dailyNeed-price">20.00 EGP</p>
-      </div>
-      <div class="col-lg-3 col-xs-2 dailyNeed-div-img">
-        <img class="dailyNeed-img" src="assets/dynamicImg/need1.png" />
-        <h4 class="dailyNeed-title">Carrot</h4>
-        <p class="dailyNeed-price">20.00 EGP</p>
+      <div *ngFor="let item of searchResult" class="col-lg-3 col-sm-6 dailyNeed-div-img">
+        <img class="dailyNeed-img" src="http://foodpage.dnsalias.com//Items/Small/{{item.itemID}}.png" />
+        <h4 *ngIf="language ==='en'" class="dailyNeed-title"> {{item.attributes | filter: "1"}} </h4>
+        <h4 *ngIf="language ==='ar'" class="dailyNeed-title"> {{item.attributes | filter: "6"}} </h4>
+        <p class="dailyNeed-price"> {{item.prices.priceNumber | currency: "EGP"}} </p>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-12 healthContainer">
         <div class="row healthItem">
-          <div class="col-lg-3 healthImgDiv pr-0 pl-0" routerLink="/{{lang}}/health/1">
+          <div class="col-lg-3 col-sm-6 healthImgDiv pr-0 pl-0" routerLink="/health/1">
             <img class="healthImg" src="assets/dynamicImg/healthInfo1.png" />
           </div>
           <div class="col-lg-8 healthTxtDiv">
@@ -59,7 +36,7 @@
               <i class="far fa-comments"></i>
               <span>13</span>
             </div>
-            <h5 class="wrapTxt title" routerLink="/{{lang}}/health/1">3-day fresh start with meal options</h5>
+            <h5 class="wrapTxt title" routerLink="/health/1">3-day fresh start with meal options</h5>
             <div class="wrapTxt">
               We’ve seen the cleanse trend shift over the past several years — and we hear you! Just like all of you, we
               here at DailyJ are all about balance tooWe’ve seen the cleanse trend shift over the past several years
@@ -72,7 +49,7 @@
           </div>
         </div>
         <div class="row healthItem">
-          <div class="col-lg-3 healthImgDiv pr-0 pl-0" routerLink="/{{lang}}/health/1">
+          <div class="col-lg-3 healthImgDiv pr-0 pl-0" routerLink="/health/1">
             <img class="healthImg" src="assets/dynamicImg/healthInfo2.png" />
           </div>
           <div class="col-lg-8 healthTxtDiv">
@@ -82,7 +59,7 @@
               <i class="far fa-comments"></i>
               <span>13</span>
             </div>
-            <h5 class="wrapTxt title" routerLink="/{{lang}}/health/1">3-day fresh start with meal options</h5>
+            <h5 class="wrapTxt title" routerLink="/health/1">3-day fresh start with meal options</h5>
             <div class="wrapTxt">
               We’ve seen the cleanse trend shift over the past several years — and we hear you! Just like all of you, we
               here at DailyJ are all about balance tooWe’ve seen the cleanse trend shift over the past several years

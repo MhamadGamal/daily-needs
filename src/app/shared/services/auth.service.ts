@@ -12,8 +12,7 @@ export class AuthService {
     set loginedUserData(data: IloginedUserData) {
         this.userData = data;
         this.isLoggedIn = true;
-        localStorage.setItem('loginedUserData', JSON.stringify(data));
-        localStorage.setItem('isLoggedIn', 'true');
+        this.updateData();
 
     }
     get loginedUserData() {
@@ -27,6 +26,10 @@ export class AuthService {
         if (localStorage.getItem('loginedUserData')) {
             this.loginedUserData = JSON.parse(localStorage.getItem('loginedUserData'));
         }
+    }
+    updateData() {
+        localStorage.setItem('loginedUserData', JSON.stringify(this.userData));
+        localStorage.setItem('isLoggedIn', 'true');
     }
     signout() {
         this.userData = null;

@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="saveForm()">
+<form [formGroup]="form" (ngSubmit)="saveForm(form.value)">
   <div class="row controlBtn">
     <button class="controlBtnEdit" *ngIf="!isEdit" type="button" (click)="editForm()"> {{"account.edit" | translate}}
     </button>
@@ -60,12 +60,14 @@
     </div>
     <!--/span-->
   </div>
+</form>
+<form [formGroup]="addressForm">
   <div class="row mt-3">
     <div class="col-md-12">
       <div class="form-group">
         <h5>{{"account.addresses" | translate}}</h5>
         <hr>
-        <div class="row">
+        <div class="row" *ngIf="hasAddress">
           <div class="col-lg-8 pl-0 pr-0 row">
             <input type="text" id="address" formControlName="address" class="form-control col addressList">
             <a href="" class="col mt-1 edit-address">
@@ -76,25 +78,25 @@
 
           </div>
           <!-- <div class="col-lg-2 icon-control">
-            <i class="fa fa-trash"></i>
-          </div> -->
+              <i class="fa fa-trash"></i>
+            </div> -->
         </div>
 
 
         <!-- <div class="form-control-feedback"
-            *ngIf="(form.get('type').touched  && form.get('type').invalid)">
-            <span *ngIf="form.get('type').errors.required" class="text-danger">
-              {{ 'generalMsg.error.requiredField' | translate }}
-            </span>
-          </div> -->
+              *ngIf="(form.get('type').touched  && form.get('type').invalid)">
+              <span *ngIf="form.get('type').errors.required" class="text-danger">
+                {{ 'generalMsg.error.requiredField' | translate }}
+              </span>
+            </div> -->
       </div>
     </div>
     <!--/span-->
   </div>
-  <app-add-new-address></app-add-new-address>
+</form>
+<app-add-new-address></app-add-new-address>
 
 
-  <!-- <div class="text-xs-right">
+<!-- <div class="text-xs-right">
     <button type="submit" class="btn btn-info">Save</button>
   </div> -->
-</form>

@@ -15,7 +15,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NumberOnlyDirective } from './shared/directives/number-only.directive';
-import { FilterPipe } from './shared/pipes/filter.pipe';
 
 const appRoutes = [
   {
@@ -41,7 +40,8 @@ const appRoutes = [
       },
       {
         path: 'search',
-        component: SearchComponent
+        loadChildren: () => import('./modules/search/search.module')
+          .then(m => m.SearchModule)
       },
       {
         path: 'category',
