@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-lg-8 mt-4">
         <div class="row pr-0 pl-0">
-          <img class="itemImg" src="{{targetHealthInfo.img_url}}" />
+          <img class="itemImg" src="{{targetHealthInfo.img_url}}" (error)="updateImage($event)" />
         </div>
         <div class="row infoLabel mt-2">
           <div class="col-lg-6">

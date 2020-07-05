@@ -73,7 +73,9 @@ export class SearchComponent implements OnInit {
     }
 
   }
-
+  updateImage(ev) {
+    ev.target.src = 'assets/images/default_image.png';
+  }
   getHealthInfo() {
     this.healthInfoService.getHealthInfo().subscribe((data: IHealthInfo[]) => {
       this.healthInfo = data;

@@ -37,6 +37,9 @@ export class HealthDetailsComponent implements OnInit, OnDestroy {
       this.targetHealthInfo = data.filter((item: IHealthInfo) => item.id === this.id)[0];
     });
   }
+  updateImage(ev) {
+    ev.target.src = 'assets/images/default_image.png';
+  }
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

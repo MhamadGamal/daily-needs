@@ -77,6 +77,9 @@ export class DailyNeedProductsComponent implements OnInit, OnDestroy {
     this.showLoadMore = this.max === this.filterdCatArr.length ? false : true;
 
   }
+  updateImage(ev) {
+    ev.target.src = 'assets/images/default_image.png';
+  }
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

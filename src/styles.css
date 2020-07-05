@@ -808,3 +808,7 @@ button:focus{
 	}
 
 }
+
+a, .healthReadMore{
+	cursor: pointer !important;
+}

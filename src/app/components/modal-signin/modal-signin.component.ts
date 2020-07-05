@@ -20,6 +20,8 @@ import { IloginedUserData } from 'src/app/shared/models/logined-user-data';
 export class ModalSigninComponent implements OnDestroy {
   subscription: Subscription = new Subscription();
   loginForm: FormGroup;
+  err: boolean;
+  errMsg: string;
   constructor(
     public activeModal: NgbActiveModal,
     private langS: LangService,
@@ -70,7 +72,9 @@ export class ModalSigninComponent implements OnDestroy {
           this.authService.loginedUserData = res;
           this.activeModal.dismiss('Cross click');
         } else {
-          alert(res.loginAuthenticationResponse.MessageText);
+
+          this.errMsg = res.loginAuthenticationResponse.MessageText;
+          this.err = true;
         }
       });
     });
