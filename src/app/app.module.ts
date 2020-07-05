@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { RouterModule } from '@angular/router';
+import { RouterModule, CanActivate } from '@angular/router';
 import { AboutusComponent } from './pages/aboutus/aboutus.component';
 import { ContactusComponent } from './pages/contactus/contactus.component';
 import { PaymentPrivacyComponent } from './pages/payment-privacy/payment-privacy.component';
@@ -15,6 +15,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NumberOnlyDirective } from './shared/directives/number-only.directive';
+import { AuthGuard } from './shared/guard/auth.guard';
 
 const appRoutes = [
   {
@@ -61,7 +62,8 @@ const appRoutes = [
       {
         path: 'myaccount',
         loadChildren: () => import('./modules/myaccount/myaccount.module')
-          .then(m => m.MyaccountModule)
+          .then(m => m.MyaccountModule),
+        canActivate: [AuthGuard]
       }
     ]
   }

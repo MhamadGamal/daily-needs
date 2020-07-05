@@ -24,6 +24,8 @@ export class ModalSignupComponent implements OnDestroy {
   showVer: boolean;
   userData: any;
   language: string;
+  err: boolean;
+  errMsg: string;
   subscription: Subscription = new Subscription();
   constructor(
     public activeModal: NgbActiveModal,

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IloginedUserData, UpdateClientInfoResponse } from '../models/logined-user-data';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -8,7 +9,6 @@ import { IloginedUserData, UpdateClientInfoResponse } from '../models/logined-us
 export class AuthService {
     isLoggedIn = false;
     private userData: IloginedUserData;
-
     set loginedUserData(data: IloginedUserData) {
         this.userData = data;
         this.isLoggedIn = true;
@@ -19,7 +19,7 @@ export class AuthService {
         return this.userData;
     }
 
-    constructor() {
+    constructor(private router: Router) {
         if (localStorage.getItem('isLoggedIn') === 'true') {
             this.isLoggedIn = true;
         }
@@ -36,5 +36,6 @@ export class AuthService {
         this.isLoggedIn = false;
         localStorage.removeItem('loginedUserData');
         localStorage.removeItem('isLoggedIn');
+        this.router.navigate(['/home']);
     }
 }
