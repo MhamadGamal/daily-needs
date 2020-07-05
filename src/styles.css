@@ -632,16 +632,21 @@ table {
 	   text-align: right !important;
 	   font-family: 'El Messiri', sans-serif !important;
 	}
+	body[lang="ar"] .sliderTxt,
 	body[lang="ar"] .dailyNeed-title-font{
 		font-family: 'Lemonada', cursive !important;
 		font-size: 2.5rem;
 	}
-	body[lang="ar"] .dailyNeeds .blackTxt{
+	body[lang="ar"] .dailyNeeds .blackTxt
+	{
 		font-family: 'Lemonada', cursive !important;
 		font-size: 1.8rem;
 	}
 	body[lang="ar"] table,
-	body[lang="ar"] .dailyAppBenefit
+	body[lang="ar"] .dailyAppBenefit,
+	body[lang="ar"] .btn,
+	body[lang="ar"] .dropdown-item,
+	body[lang="ar"] .yourCart
 	{
 		font-family: 'El Messiri', sans-serif !important;
 	}

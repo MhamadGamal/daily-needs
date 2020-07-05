@@ -1,13 +1,15 @@
-<form [formGroup]="form" (ngSubmit)="saveForm()">
+<form [formGroup]="form" (ngSubmit)="saveForm(form.value)">
   <div class="row controlBtn">
-    <button class="controlBtnEdit" type="button" (click)="editForm()">Edit</button>
-    <button class="controlBtnSave d-none" type="submit">Save</button>
+    <button class="controlBtnEdit" *ngIf="!isEdit" type="button" (click)="editForm()"> {{"account.edit" | translate}}
+    </button>
+    <button class="controlBtnSave" *ngIf="isEdit" type="submit">{{"account.save" | translate}}</button>
   </div>
   <div class="clear"></div>
   <div class="row m-t-20">
     <div class="col-md-6">
       <div class="form-group">
-        <label class="control-label">First name<span class="text-danger">*</span></label>
+        <label class="control-label">{{"home.header.signup.fname" | translate}}<span
+            class="text-danger">*</span></label>
         <input type="test" id="firstName" class="form-control" formControlName="firstName">
         <div class="form-control-feedback" *ngIf="(form.get('firstName').touched  && form.get('firstName').invalid)">
           <span *ngIf="form.get('firstName').errors.required" class="text-danger">
@@ -19,7 +21,8 @@
     <!--/span-->
     <div class="col-md-6">
       <div class="form-group">
-        <label class="control-label">Last name<span class="text-danger">*</span></label>
+        <label class="control-label">{{"home.header.signup.lname" | translate}}<span
+            class="text-danger">*</span></label>
         <input type="text" id="lastName" class="form-control form-control-danger" formControlName="lastName">
         <div class="form-control-feedback" *ngIf="(form.get('lastName').touched  && form.get('lastName').invalid)">
           <span *ngIf="form.get('lastName').errors.required" class="text-danger">
@@ -33,7 +36,8 @@
   <div class="row">
     <div class="col-md-6">
       <div class="form-group">
-        <label class="control-label">Phone<span class="text-danger">*</span></label>
+        <label class="control-label">{{"home.header.signup.phone" | translate}}<span
+            class="text-danger">*</span></label>
         <input type="text" id="phone" class="form-control" formControlName="phone">
         <div class="form-control-feedback" *ngIf="(form.get('phone').touched  && form.get('phone').invalid)">
           <span *ngIf="form.get('phone').errors.required" class="text-danger">
@@ -45,7 +49,7 @@
     <!--/span-->
     <div class="col-md-6">
       <div class="form-group">
-        <label class="control-label">Email<span class="text-danger">*</span></label>
+        <label class="control-label">{{"home.header.login.email" | translate}}<span class="text-danger">*</span></label>
         <input type="email" id="email" class="form-control form-control-danger" formControlName="email">
         <div class="form-control-feedback" *ngIf="(form.get('email').touched  && form.get('email').invalid)">
           <span *ngIf="form.get('email').errors.required" class="text-danger">
@@ -56,49 +60,43 @@
     </div>
     <!--/span-->
   </div>
+</form>
+<form [formGroup]="addressForm">
   <div class="row mt-3">
     <div class="col-md-12">
       <div class="form-group">
-        <h5>Addresses</h5>
+        <h5>{{"account.addresses" | translate}}</h5>
         <hr>
-        <div class="row">
-          <div class="col-lg-8 pl-0 pr-0">
-            <input type="text" id="address" formControlName="address" class="form-control addressList">
+        <div class="row" *ngIf="hasAddress">
+          <div class="col-lg-8 pl-0 pr-0 row">
+            <input type="text" id="address" formControlName="address" class="form-control col addressList">
+            <a href="" class="col mt-1 edit-address">
+              <i class="fa fa-edit"></i>
+            </a>
           </div>
           <div class="col-lg-2 icon-control">
-            <i class="fa fa-edit d-none"></i>
+
           </div>
-          <div class="col-lg-2 icon-control">
-            <i class="fa fa-trash d-none"></i>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-8 pl-0 pr-0">
-            <input type="text" id="address2" formControlName="address" class="form-control addressList">
-          </div>
-          <div class="col-lg-2 icon-control">
-            <i class="fa fa-edit d-none"></i>
-          </div>
-          <div class="col-lg-2 icon-control">
-            <i class="fa fa-trash d-none"></i>
-          </div>
+          <!-- <div class="col-lg-2 icon-control">
+              <i class="fa fa-trash"></i>
+            </div> -->
         </div>
 
 
         <!-- <div class="form-control-feedback"
-            *ngIf="(form.get('type').touched  && form.get('type').invalid)">
-            <span *ngIf="form.get('type').errors.required" class="text-danger">
-              {{ 'generalMsg.error.requiredField' | translate }}
-            </span>
-          </div> -->
+              *ngIf="(form.get('type').touched  && form.get('type').invalid)">
+              <span *ngIf="form.get('type').errors.required" class="text-danger">
+                {{ 'generalMsg.error.requiredField' | translate }}
+              </span>
+            </div> -->
       </div>
     </div>
     <!--/span-->
   </div>
-  <app-add-new-address></app-add-new-address>
+</form>
+<app-add-new-address></app-add-new-address>
 
 
-  <!-- <div class="text-xs-right">
+<!-- <div class="text-xs-right">
     <button type="submit" class="btn btn-info">Save</button>
   </div> -->
-</form>

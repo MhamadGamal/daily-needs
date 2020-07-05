@@ -114,5 +114,31 @@
         "error": {
             "requiredField": "يجب إدخال هذا الحقل"
         }
+    },
+    "account": {
+        "edit": "تعديل",
+        "save": "حفظ",
+        "addresses": "العنوان",
+        "newaddresses": "اضافة عنوان جديد"
+    },
+    "address": {
+        "addNew": "اضافة عنوان جديد",
+        "addressName": "اسم العنوان",
+        "city": "المدينه",
+        "area": "المنطقه",
+        "mobile": "التليفون",
+        "street": "اسم الشارع",
+        "appartment": "رقم الشقه",
+        "details": "المزيد",
+        "add": "اضافة عنوان",
+        "cancel": "الغاء"
+    },
+    "search": {
+        "placeholder": "ما الذي تبحث عنه ؟",
+        "result": "نتيجة بحث ل "
+    },
+    "health": {
+        "title": "معلومات صجيه",
+        "more": "المزيد..."
     }
 }

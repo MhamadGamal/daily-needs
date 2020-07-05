@@ -1,6 +1,7 @@
 .addNewAddress p {
     font-weight: bold;
     color : rgba(255,159,0,1) !important;
+    cursor: pointer;
 }
 .addNewAddress i , .addNewAddress i:hover {
     font-size: 12px;

@@ -40,7 +40,8 @@ const appRoutes = [
       },
       {
         path: 'search',
-        component: SearchComponent
+        loadChildren: () => import('./modules/search/search.module')
+          .then(m => m.SearchModule)
       },
       {
         path: 'category',

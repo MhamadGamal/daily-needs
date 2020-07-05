@@ -11,6 +11,10 @@ import { AddNewAddressComponent } from '../../components/add-new-address/add-new
 import { McBreadcrumbsModule } from 'ngx-breadcrumbs';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FilterPipe } from 'src/app/shared/pipes/filter.pipe';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from 'src/environments/environment';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -39,9 +43,12 @@ const config: SwiperConfigInterface = {
     ReactiveFormsModule,
     FormsModule,
     MatCarouselModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule
   ],
   declarations: [
     AddNewAddressComponent,
+    FilterPipe
   ],
   exports: [
     AddNewAddressComponent,
@@ -50,7 +57,10 @@ const config: SwiperConfigInterface = {
     McBreadcrumbsModule,
     ReactiveFormsModule,
     FormsModule,
-    MatCarouselModule
+    MatCarouselModule,
+    FilterPipe,
+    AngularFireModule,
+    AngularFireDatabaseModule
 
   ],
   providers: [
