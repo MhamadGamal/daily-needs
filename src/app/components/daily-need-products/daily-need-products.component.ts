@@ -57,11 +57,20 @@ export class DailyNeedProductsComponent implements OnInit, OnDestroy {
   filterr(item: ICategoriesInfo) {
     this.max = 8;
     if (item.categoryID) {
-      // tslint:disable-next-line: max-line-length
-      this.filterdCat = this.lang === 'en' ? item.attributes.filter((att: Iattributes) => att.attributeID === '4')[0].attributeValue : item.attributes.filter((att: Iattributes) => att.attributeID === '9')[0].attributeValue;
-      // tslint:disable-next-line: max-line-length
-      this.filterdCatArr = this.menu.restaurantsItemsListResponse.resturentItemsInfo.filter((_item: IresturentItemsInfo) => _item.categoryIDs === item.categoryID);
+
+      this.filterdCat = this.lang === 'en' ? item.attributes.filter((att: Iattributes) => att.attributeID === '4')[0].attributeValue :
+        item.attributes.filter((att: Iattributes) => att.attributeID === '9')[0].attributeValue;
+
+      this.filterdCatArr = this.menu.restaurantsItemsListResponse.resturentItemsInfo
+        .filter((_item: IresturentItemsInfo) => {
+          if (typeof _item.categoryIDs === 'string') {
+            if (_item.categoryIDs === item.categoryID) { return _item; }
+          } else if (Array.isArray(typeof _item.categoryIDs)) {
+            if (_item.categoryIDs.includes(item.categoryID)) { return _item; }
+          }
+        });
     }
+
     if (this.filterdCat === 'all') {
       this.filterdCatArr = this.menu.restaurantsItemsListResponse.resturentItemsInfo;
     }
