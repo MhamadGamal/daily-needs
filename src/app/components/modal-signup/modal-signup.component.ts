@@ -24,6 +24,8 @@ export class ModalSignupComponent implements OnDestroy {
   showVer: boolean;
   userData: any;
   language: string;
+  err: boolean;
+  errMsg: string;
   subscription: Subscription = new Subscription();
   constructor(
     public activeModal: NgbActiveModal,
@@ -80,7 +82,6 @@ export class ModalSignupComponent implements OnDestroy {
       },
       'serviceName': 'WSIOrderClientinfo'
     };
-    console.log(JSON.stringify(reqBody));
     this.api.call('POST', reqBody).then((obs: Observable<any>) => {
       obs.subscribe((res: any) => {
         console.log(res);
@@ -160,7 +161,6 @@ export class ModalSignupComponent implements OnDestroy {
       },
       'serviceName': 'WSIOrderClientinfo'
     };
-    console.log(reqBody.clientRegister.clientInfo);
     this.api.call('POST', reqBody).then((obs: Observable<IClientRegisterResponse>) => {
       obs.subscribe((res: IClientRegisterResponse) => {
         this.refreshToken.authToken = res.token;

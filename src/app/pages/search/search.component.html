@@ -17,7 +17,8 @@
     </div>
     <div class="row ">
       <div *ngFor="let item of searchResult" class="col-lg-3 col-sm-6 dailyNeed-div-img">
-        <img class="dailyNeed-img" src="http://foodpage.dnsalias.com//Items/Small/{{item.itemID}}.png" />
+        <img class="dailyNeed-img" src="http://foodpage.dnsalias.com//Items/Small/{{item.itemID}}.png"
+          (error)="updateImage($event)" />
         <h4 *ngIf="language ==='en'" class="dailyNeed-title"> {{item.attributes | filter: "1"}} </h4>
         <h4 *ngIf="language ==='ar'" class="dailyNeed-title"> {{item.attributes | filter: "6"}} </h4>
         <p class="dailyNeed-price"> {{item.prices.priceNumber | currency: "EGP"}} </p>
@@ -27,7 +28,7 @@
       <div class="col-lg-12 healthContainer">
         <div class="row healthItem" *ngFor="let item of filteredhealthInfo">
           <div class="col-lg-3 col-sm-6 healthImgDiv pr-0 pl-0" routerLink="/health/{{item.id}}">
-            <img class="healthImg" [src]="item.img_url" />
+            <img class="healthImg" [src]="item.img_url" (error)="updateImage($event)" />
           </div>
           <div class="col-lg-8 healthTxtDiv">
             <div class="row infoLabel">

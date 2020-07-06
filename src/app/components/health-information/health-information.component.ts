@@ -35,6 +35,9 @@ export class HealthInformationComponent implements OnInit, OnDestroy {
 
     });
   }
+  updateImage(ev) {
+    ev.target.src = 'assets/images/default_image.png';
+  }
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

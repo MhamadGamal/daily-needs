@@ -27,7 +27,8 @@
     </div>
     <div class="row">
       <div *ngFor="let item of filterdCatArr | slice: 0: max" class="col-lg-3   col-md-4 col-sm-6 dailyNeed-div-img">
-        <img class="dailyNeed-img" src="http://foodpage.dnsalias.com//Items/Small/{{item.itemID}}.png" />
+        <img class="dailyNeed-img" [src]="'http://foodpage.dnsalias.com//Items/Small/'+item.itemID+'.png'"
+          (error)="updateImage($event)" />
         <h4 *ngIf="lang ==='en'" class="dailyNeed-title"> {{item.attributes | filter: "1"}} </h4>
         <h4 *ngIf="lang ==='ar'" class="dailyNeed-title"> {{item.attributes | filter: "6"}} </h4>
         <p class="dailyNeed-price"> {{item.prices.priceNumber | currency: "EGP"}} </p>

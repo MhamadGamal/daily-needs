@@ -77,7 +77,7 @@ export interface IresturentItemsInfo {
     itemDesc?: string;
     isFavorite?: string;
     availStatus?: string;
-    categoryIDs?: string;
+    categoryIDs?: string | string[];
     attributes?: Iattributes[];
     prices?: Iprices;
 }

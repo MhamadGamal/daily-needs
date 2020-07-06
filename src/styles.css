@@ -798,6 +798,7 @@ button:focus{
 .carousel .carousel-list .carousel-slide 
 {
 	height: 500px !important;
+	background-size: contain !important;
 }
 @media (max-width: 768px){
 	.carousel,
@@ -807,4 +808,8 @@ button:focus{
 		height: 350px !important;
 	}
 
+}
+
+a, .healthReadMore{
+	cursor: pointer !important;
 }

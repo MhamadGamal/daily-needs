@@ -1,9 +1,13 @@
 <div class="modal-header">
+  <h4 class="modal-title">{{"home.header.login.login" | translate}}</h4>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
+  <div *ngIf="err" class="alert alert-danger" role="alert">
+    {{errMsg}}
+  </div>
   <form [formGroup]="loginForm" autocomplete="off" (ngSubmit)="login(loginForm.value)">
     <label for="email"> {{"home.header.login.email" | translate}} </label>
     <div class="form-group">
@@ -26,7 +30,7 @@
         </small>
       </div>
     </div>
-    <button [disabled]="loginForm.invalid" type="submit" class="btn btn-success">
+    <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary signupBtn">
       {{"home.header.login.login" | translate}} </button>
   </form>
 </div>
