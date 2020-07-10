@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
+import { LangService } from 'src/app/shared/services/lang.service';
 
 @Component({
   selector: 'app-favourits',
@@ -9,18 +10,15 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class FavouritsComponent implements OnInit {
 
-  public pageName:string = "favourits";
-  // public pageNameSub:string = "health";
-  public lang:string = environment.lang;
-  public isLogged:boolean = false;
-
-  constructor(private translate: TranslateService) {
-    translate.setDefaultLang(this.lang); 
-    let token = localStorage.getItem('token');
-    if(token){
-        this.isLogged = true ;
-    }
-
+  lang: string;
+  subscription: Subscription = new Subscription();
+  constructor(private translate: TranslateService, private langS: LangService
+  ) {
+    this.subscription.add(
+      this.langS.lang.subscribe(lang => {
+        this.translate.use(lang);
+        this.lang = lang;
+      }));
   }
 
   ngOnInit() {

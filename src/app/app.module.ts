@@ -2,11 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { RouterModule, CanActivate } from '@angular/router';
-import { AboutusComponent } from './pages/aboutus/aboutus.component';
-import { ContactusComponent } from './pages/contactus/contactus.component';
-import { PaymentPrivacyComponent } from './pages/payment-privacy/payment-privacy.component';
-import { SearchComponent } from './pages/search/search.component';
+import { RouterModule } from '@angular/router';
 import { SharedModule } from './modules/shared/shared.module';
 import { ModalSignupComponent } from './components/modal-signup/modal-signup.component';
 import { ModalSigninComponent } from './components/modal-signin/modal-signin.component';
@@ -29,15 +25,18 @@ const appRoutes = [
       },
       {
         path: 'about',
-        component: AboutusComponent
+        loadChildren: () => import('./modules/about/about.module')
+          .then(m => m.AboutModule)
       },
       {
         path: 'contact-us',
-        component: ContactusComponent
+        loadChildren: () => import('./modules/contact/contact.module')
+          .then(m => m.ContactModule)
       },
       {
         path: 'privacy',
-        component: PaymentPrivacyComponent
+        loadChildren: () => import('./modules/privacy/privacy.module')
+          .then(m => m.PrivacyModule)
       },
       {
         path: 'search',

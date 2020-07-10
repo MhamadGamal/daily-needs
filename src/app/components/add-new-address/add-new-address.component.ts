@@ -81,12 +81,15 @@ export class AddNewAddressComponent implements OnInit {
         'sourceID': '702000110001'
       }
     };
-    this.api.call('POST', reqBody).then((obs: Observable<any>) => {
-      obs.subscribe((res: any) => {
-        console.log('newwwwww addd', res);
+    this.api.call('POST', reqBody).subscribe((res: any) => {
+      if (res.updateClientInfoResponse) {
         this.addAddress = false;
+      } else {
+        setTimeout(() => {
+          this.saveAddress(value);
+        }, 500);
+      }
 
-      });
     });
   }
   cancel() {

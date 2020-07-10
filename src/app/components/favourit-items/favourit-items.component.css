@@ -7,3 +7,9 @@
 .tdCart{
     width:35%
 }
+.btn-addCart{
+    padding: 10px 20px !important;
+}
+td p img{
+    width: 150px;
+}

@@ -67,7 +67,7 @@ export class AccountComponent implements OnInit {
     this.form.get('lastName').enable();
     this.form.get('email').enable();
     this.form.get('phone').enable();
-    this.form.get('address').enable();
+    // this.form.get('address').enable();
     this.isEdit = true;
   }
 
@@ -105,12 +105,14 @@ export class AccountComponent implements OnInit {
         'sourceID': '702000110001'
       }
     };
-    this.api.call('POST', reqBody).then((obs: Observable<IUpdateClientInfoResponse>) => {
-      obs.subscribe((res: IUpdateClientInfoResponse) => {
+    this.api.call('POST', reqBody).subscribe((res: IUpdateClientInfoResponse) => {
+      if (res.updateClientInfoResponse) {
         this.authService.loginedUserData.loginAuthenticationResponse.clientInfo.email = res.updateClientInfoResponse.clientInfo.email;
-        this.authService.loginedUserData.loginAuthenticationResponse.clientInfo.firstName = res.updateClientInfoResponse.clientInfo.firstName;
+        this.authService.loginedUserData.loginAuthenticationResponse.clientInfo.firstName =
+          res.updateClientInfoResponse.clientInfo.firstName;
         this.authService.loginedUserData.loginAuthenticationResponse.clientInfo.lastName = res.updateClientInfoResponse.clientInfo.lastName;
-        this.authService.loginedUserData.loginAuthenticationResponse.clientInfo.mobileNumber = res.updateClientInfoResponse.clientInfo.mobileNumber;
+        this.authService.loginedUserData.loginAuthenticationResponse.clientInfo.mobileNumber =
+          res.updateClientInfoResponse.clientInfo.mobileNumber;
         this.authService.updateData();
         this.form.get('firstName').disable();
         this.form.get('lastName').disable();
@@ -118,7 +120,11 @@ export class AccountComponent implements OnInit {
         this.form.get('phone').disable();
         this.form.get('address').disable();
         this.isEdit = false;
-      });
+      } else {
+        setTimeout(() => {
+          this.saveForm(value);
+        }, 500);
+      }
     });
 
   }
@@ -135,18 +141,20 @@ export class AccountComponent implements OnInit {
       },
       'serviceName': 'WSIOrderClientinfo'
     };
-    this.api.call('POST', reqBody).then((obs: Observable<any>) => {
-      obs.subscribe((res: any) => {
-        if (res.retrieveClientAddressResponse.clientAddressList) {
-          this.hasAddress = true;
-          this.addressForm.get('address').setValue(
-            res.retrieveClientAddressResponse.clientAddressList.addrClientCity + ' , ' +
-            res.retrieveClientAddressResponse.clientAddressList.addrLine1 + ' , ' +
-            res.retrieveClientAddressResponse.clientAddressList.addrLine2 + ' , ' +
-            res.retrieveClientAddressResponse.clientAddressList.addrLine7
-          );
-        }
-      });
+    this.api.call('POST', reqBody).subscribe((res: any) => {
+      if (res.retrieveClientAddressResponse) {
+        this.hasAddress = true;
+        this.addressForm.get('address').setValue(
+          res.retrieveClientAddressResponse.clientAddressList.addrClientCity + ' , ' +
+          res.retrieveClientAddressResponse.clientAddressList.addrLine1 + ' , ' +
+          res.retrieveClientAddressResponse.clientAddressList.addrLine2 + ' , ' +
+          res.retrieveClientAddressResponse.clientAddressList.addrLine7
+        );
+      } else {
+        setTimeout(() => {
+          this.getAddress();
+        }, 500);
+      }
     });
   }
 }

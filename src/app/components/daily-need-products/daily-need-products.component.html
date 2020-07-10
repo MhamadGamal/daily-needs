@@ -26,12 +26,21 @@
 
     </div>
     <div class="row">
-      <div *ngFor="let item of filterdCatArr | slice: 0: max" class="col-lg-3   col-md-4 col-sm-6 dailyNeed-div-img">
-        <img class="dailyNeed-img" [src]="'http://foodpage.dnsalias.com//Items/Small/'+item.itemID+'.png'"
+      <div *ngFor="let item of filterdCatArr | slice: 0: max" class="col-lg-3   col-md-4 col-sm-6 dailyNeed-div-img"
+        routerLink="/category/items/item-details/{{item.itemID}}">
+        <img class="dailyNeed-img" [src]="environment.imgUrl+'/Items/Small/'+item.itemID+'.png'"
           (error)="updateImage($event)" />
         <h4 *ngIf="lang ==='en'" class="dailyNeed-title"> {{item.attributes | filter: "1"}} </h4>
         <h4 *ngIf="lang ==='ar'" class="dailyNeed-title"> {{item.attributes | filter: "6"}} </h4>
-        <p class="dailyNeed-price"> {{item.prices.priceNumber | currency: "EGP"}} </p>
+        <p *ngIf="!type || type == 'cList'" class="dailyNeed-price"> {{item.prices.priceNumber | currency: "EGP"}} </p>
+        <div *ngIf="type == 'cList' && item.prices.discountValue && item.prices.discountValue != 0"
+          class="dailyNeed-price row">
+          {{item.prices.discountValue}}
+          <br>
+          <div class="col-lg-6 new-price">{{(item.prices.priceNumber - item.prices.discountValue) | currency: "EGP"}}
+          </div>
+          <div class="col-lg-6 old-price">{{item.prices.priceNumber | currency: "EGP"}}</div>
+        </div>
       </div>
     </div>
     <button *ngIf="filterdCatArr?.length > 7  && showLoadMore  " class="btn btn-success btn-more"

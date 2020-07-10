@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders, HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { RefreshTokenService } from '../services/refreshtoken.service';
 import { IToken } from '../models/refreshtoken';
+import { map, retry, retryWhen, delay, scan } from 'rxjs/operators';
+import { of } from 'rxjs/internal/observable/of';
 
 @Injectable({
   providedIn: 'root'
@@ -29,9 +30,7 @@ export class ApiInterceptorService {
   //     return this.http.post(baseUrl, body, { headers: reqHeaders });
   //   }
   // }
-  async call(method: string, body?) {
-    this.tokenres = await this.tokenService.getToken().first().toPromise();
-    this.tokenService.authToken = this.tokenres.token;
+  call(method: string, body?) {
     const time = new Date().getTime();
     const reqHeaders = new HttpHeaders({
       'token': this.tokenService.authToken,
@@ -43,7 +42,15 @@ export class ApiInterceptorService {
     if (method === 'GET') {
       return this.http.get(baseUrl, { headers: reqHeaders });
     } else if (method === 'POST') {
-      return this.http.post(baseUrl, body, { headers: reqHeaders });
+      return this.http.post(baseUrl, body, { headers: reqHeaders }).pipe(
+        map((res: any) => {
+          if (res.error) {
+            this.tokenService.getToken().subscribe(res => {
+              this.call(method, body);
+            });
+          }
+          return res;
+        }));
     }
   }
 }

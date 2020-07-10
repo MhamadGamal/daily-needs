@@ -6,7 +6,6 @@ import { Component, OnDestroy } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiInterceptorService } from 'src/app/shared/interceptor/api-interceptor.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { RefreshTokenService } from 'src/app/shared/services/refreshtoken.service';
 import { IloginedUserData } from 'src/app/shared/models/logined-user-data';
 
 
@@ -28,8 +27,7 @@ export class ModalSigninComponent implements OnDestroy {
     private translate: TranslateService,
     private formBuilder: FormBuilder,
     private api: ApiInterceptorService,
-    private authService: AuthService,
-    private refreshToken: RefreshTokenService
+    private authService: AuthService
   ) {
     this.subscription.add(
       this.langS.lang.subscribe(lang => {
@@ -41,6 +39,7 @@ export class ModalSigninComponent implements OnDestroy {
     });
   }
   login(value) {
+    this.err = false;
     const reqBody = {
       'loginAuthentication': {
         'additionalData': [
@@ -65,9 +64,8 @@ export class ModalSigninComponent implements OnDestroy {
       },
       'serviceName': 'WSIOrderClientinfo'
     };
-    this.api.call('POST', reqBody).then((obs: Observable<IloginedUserData>) => {
-      obs.subscribe((res: IloginedUserData) => {
-        console.log(res);
+    this.api.call('POST', reqBody).subscribe((res: IloginedUserData) => {
+      if (res.loginAuthenticationResponse) {
         if (res.loginAuthenticationResponse.MessageText === 'Approved') {
           this.authService.loginedUserData = res;
           this.activeModal.dismiss('Cross click');
@@ -76,7 +74,11 @@ export class ModalSigninComponent implements OnDestroy {
           this.errMsg = res.loginAuthenticationResponse.MessageText;
           this.err = true;
         }
-      });
+      } else {
+        setTimeout(() => {
+          this.login(value);
+        }, 500);
+      }
     });
   }
   ngOnDestroy() {

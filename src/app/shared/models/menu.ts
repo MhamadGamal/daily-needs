@@ -82,8 +82,8 @@ export interface IresturentItemsInfo {
     prices?: Iprices;
 }
 export interface Iprices {
-    priceNumber?: string;
-    discountValue?: string;
+    priceNumber?: number;
+    discountValue?: number;
     discountTypeID?: string;
     discountTypeName?: string;
     categoryName?: string;

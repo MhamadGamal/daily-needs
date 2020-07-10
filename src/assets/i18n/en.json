@@ -113,6 +113,12 @@
         "success": {},
         "error": {
             "requiredField": "This field is required"
+        },
+        "cart": {
+            "addToCart": " Add To Cart"
+        },
+        "favourite": {
+            "wish": "Add to wishlist"
         }
     },
     "account": {
@@ -140,5 +146,41 @@
     "health": {
         "title": "Health Information",
         "more": "Read More..."
+    },
+    "favourite": {
+        "items": "Items",
+        "hinfo": "Health Info",
+        "product": "Product",
+        "uinfo": "Unit Info",
+        "price": "Price"
+    },
+    "about": {
+        "mainTitle": "About Us",
+        "title": "Daily Needs",
+        "title2": "Little Story",
+        "title3": "Discover",
+        "title4": "Our values",
+        "desc": " Our farm is a second-generation organic farm that was our parents, Mark & Renée Elliott’s dream to offer thebest and healthiest range of organic foods available, promote health in the community and bring a sense of discovery and adventure into food shopping.Visit our site for a complete list of fresh, organic fruit and vegetables we are offering.",
+        "item1": {
+            "title": "Delivery",
+            "desc": " No more driving and parking for your vegetables! We deliver directly to your doorstep. Save time going to the grocery store."
+        },
+        "item2": {
+            "title": "Flexibility",
+            "desc": " Choose the delivery frequency that best fits your needs: weekly, every other week, every 3rd or every 4th week delivery."
+        },
+        "item3": {
+            "title": "Organic Food",
+            "desc": "  We deliver organic produce that is pesticide-free and sustainably-grown, ensuring that we maintain healthy communities."
+        },
+        "item4": {
+            "title": "Healthy Diet",
+            "desc": "  Get produce delivered home on a set frequency is essential to obtaining the recommended daily fruits and daily vegetables."
+        }
+    },
+    "programs": {
+        "title": "Programs",
+        "wp": "Why programs?",
+        "desc": "Daily J is a system that serves multiple healthy nutrition products Provide and deliver ready-made healthy nutrition juice, that can work as Detoxes for the body and give it the amount of Vegetables and Fruits needed very easy to use , order and deliver your orders in your suitable time"
     }
 }

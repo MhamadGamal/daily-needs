@@ -9,7 +9,7 @@
       <div class="col-lg-8">
         <div class="row healthItem" *ngFor="let item of healthInfo">
           <div class="col-lg-5 healthImgDiv pr-0 pl-0" routerLink="/health/{{item.id}}">
-            <img class="healthImg" [src]="item.img_url" />
+            <img class="healthImg" [src]="item.img_url" (error)="updateImage($event)" />
           </div>
           <div class="col-lg-6 healthTxtDiv">
             <div class="row infoLabel">

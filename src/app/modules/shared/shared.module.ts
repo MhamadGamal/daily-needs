@@ -1,3 +1,4 @@
+import { DailyNeedProductsComponent } from 'src/app/components/daily-need-products/daily-need-products.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -48,9 +49,11 @@ const config: SwiperConfigInterface = {
   ],
   declarations: [
     AddNewAddressComponent,
-    FilterPipe
+    FilterPipe,
+    DailyNeedProductsComponent
   ],
   exports: [
+    DailyNeedProductsComponent,
     AddNewAddressComponent,
     TranslateModule,
     SwiperModule,

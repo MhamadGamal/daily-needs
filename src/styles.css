@@ -465,7 +465,9 @@ li.active , a.active ,.nav-item .active ,.navbar-light .navbar-nav .active>.nav-
 }
 
 .healthInfo-img{
-	width: 100%
+	width: 100%;
+    min-height: 210px;
+    margin-bottom: 15px;
 }
 
 .healthReadMore{
