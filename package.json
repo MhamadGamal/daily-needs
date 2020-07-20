@@ -33,7 +33,9 @@
     "jquery": "^3.3.1",
     "ng6-bootstrap-modal": "^1.0.2",
     "ngx-breadcrumbs": "0.0.3",
+    "ngx-owl-carousel": "^2.0.7",
     "ngx-swiper-wrapper": "^7.2.1",
+    "owl.carousel": "^2.3.4",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

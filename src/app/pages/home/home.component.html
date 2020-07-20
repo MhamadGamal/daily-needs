@@ -1,9 +1,4 @@
-<!-- <swiper [config]="config">
-    <div *ngFor="let slide of slides" class="slider text-center">
-        <img class="swiperImg" src="{{slide}}" />
-        <button class="btn btn-success discoverBtn">{{ 'home.slider.discoverBtn' | translate }}</button>
-    </div>
-</swiper> -->
+
 <mat-carousel timings="250ms ease-in" [autoplay]="true" interval="2000" color="accent" maxWidth="auto" proportion="25"
     slides="5" [loop]="true" [hideArrows]="false" [hideIndicators]="true" [useKeyboard]="true" [useMouseWheel]="false"
     orientation="rtl">
@@ -14,6 +9,8 @@
         </div>
     </mat-carousel-slide>
 </mat-carousel>
+
+
 
 <app-daily-need-products></app-daily-need-products>
 

@@ -16,6 +16,8 @@ import { FilterPipe } from 'src/app/shared/pipes/filter.pipe';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
+import { OwlModule } from 'ngx-owl-carousel';
+import { RelatedProductsComponent } from 'src/app/components/related-products/related-products.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -45,15 +47,18 @@ const config: SwiperConfigInterface = {
     FormsModule,
     MatCarouselModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    OwlModule
   ],
   declarations: [
     AddNewAddressComponent,
     FilterPipe,
-    DailyNeedProductsComponent
+    DailyNeedProductsComponent,
+    RelatedProductsComponent
   ],
   exports: [
     DailyNeedProductsComponent,
+    RelatedProductsComponent,
     AddNewAddressComponent,
     TranslateModule,
     SwiperModule,
@@ -63,7 +68,8 @@ const config: SwiperConfigInterface = {
     MatCarouselModule,
     FilterPipe,
     AngularFireModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    OwlModule
 
   ],
   providers: [

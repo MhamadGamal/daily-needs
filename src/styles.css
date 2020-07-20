@@ -815,3 +815,40 @@ button:focus{
 a, .healthReadMore{
 	cursor: pointer !important;
 }
+
+
+/*  owl carousel settings */
+.owl-carousel{
+	direction: ltr !important;
+}
+.owl-nav{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.owl-nav button {
+	position: absolute;
+	top: 15%;
+	direction: ltr !important;
+
+}
+.owl-nav button.disabled:hover {
+	cursor: not-allowed;
+}
+.owl-nav button span {
+	font-size: 4rem;
+}
+.owl-nav button.owl-prev {
+	left: -40px;
+}
+.owl-nav button.owl-next {
+	right: -40px;
+}
+.owl-theme .owl-nav [class*=owl-]:hover {
+    background: transparent;
+    color: #4c4b4b;
+    text-decoration: none;
+}

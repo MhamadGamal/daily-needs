@@ -16,10 +16,31 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   id: string;
   menu: IMenu;
   filterdCatArr: IresturentItemsInfo[];
-  relatedItems: IresturentItemsInfo[];
+  relatedItems: IresturentItemsInfo[] = [];
   lang: string;
   subscription: Subscription = new Subscription();
   environment = environment;
+  relatedCarouselOption = {
+    items: 4,
+    dots: false,
+    nav: true,
+    margin: 20,
+    rtl: true,
+    responsive: {
+      0: {
+          items: 1
+      },
+      600: {
+          items: 2
+      },
+      1000: {
+          items: 3
+      },
+      1200: {
+          items: 4
+      }
+    }
+  };
   constructor(private translate: TranslateService, private langS: LangService,
     private menuItemsService: MenuItemsService
   ) {
@@ -27,6 +48,9 @@ export class ProgramsComponent implements OnInit, OnDestroy {
       this.langS.lang.subscribe(lang => {
         this.translate.use(lang);
         this.lang = lang;
+        if(this.relatedItems) {
+          this.relatedItems  = this.relatedItems;
+        }
       }));
   }
 
@@ -82,7 +106,23 @@ export class ProgramsComponent implements OnInit, OnDestroy {
           this.programms.push(item);
         }
       });
-    console.log(this.programms)
+
+      // get realted items
+      this.programms.forEach((item: ICategoriesInfo) => {
+        if(item.categoryID){
+          this.menu.restaurantsItemsListResponse.resturentItemsInfo
+          .filter((_item: IresturentItemsInfo) => {
+            if (typeof _item.categoryIDs === 'string') {
+              if (_item.categoryIDs === item.categoryID) { this.relatedItems.push(_item); }
+            } else if (Array.isArray(typeof _item.categoryIDs)) {
+              if (_item.categoryIDs.includes(item.categoryID)) { this.relatedItems.push(_item); }
+            }
+          });
+        }
+      });
+      console.log(this.programms)
+      console.log('related')
+      console.log(this.relatedItems);
   }
   updateImage(ev) {
     ev.target.src = 'assets/images/default_image.png';

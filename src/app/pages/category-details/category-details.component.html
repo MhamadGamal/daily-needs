@@ -32,7 +32,7 @@
           <i class="fa fa-star rating-active"></i>
           <i class="fa fa-star rating-disable"></i>
           <span class="reviews">(2 customer reviews)</span> -->
-          <p *ngIf="targetItem?.prices.discountValue && targetItem.prices.discountValue != 0; noDiscount"
+          <p *ngIf="targetItem?.prices.discountValue && targetItem.prices.discountValue != 0; else noDiscount"
             class="item-price">
             <span><del>{{targetItem?.prices.priceNumber | currency: "EGP"}}</del></span>
             <span

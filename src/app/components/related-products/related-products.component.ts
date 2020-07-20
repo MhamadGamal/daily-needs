@@ -1,37 +1,34 @@
-import { Component, OnInit ,Input } from '@angular/core';
-import { SwiperComponent, SwiperDirective, SwiperConfigInterface,
-  SwiperScrollbarInterface, SwiperPaginationInterface } from 'ngx-swiper-wrapper';
+import { environment } from 'src/environments/environment';
+import { Component, OnInit , Input, OnChanges } from '@angular/core';
+import { IresturentItemsInfo } from 'src/app/shared/models/menu';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-related-products',
   templateUrl: './related-products.component.html',
   styleUrls: ['./related-products.component.css']
 })
-export class RelatedProductsComponent implements OnInit {
+export class RelatedProductsComponent implements OnInit, OnChanges {
+  environment = environment;
+  @Input() relatedProg: Array<IresturentItemsInfo>;
+  @Input() lang: string;
+  @Input() setting: object;
+  slides;
 
-  @Input() lang;
-  public slides = [
-    'assets/dynamicImg/need1.png',
-    'assets/dynamicImg/need2.png',
-    'assets/dynamicImg/need3.png',
-    'assets/dynamicImg/need4.png',
-    'assets/dynamicImg/need2.png',
-    'assets/dynamicImg/need3.png',
-  ];
-
-  public config: SwiperConfigInterface = {
-    direction: 'horizontal',
-    slidesPerView: 3,
-    keyboard: true,
-    mousewheel: false,
-    scrollbar: false,
-    navigation: true,
-    pagination: false
-  };
-
-  constructor() { }
-
-  ngOnInit() {
+  subscription: Subscription = new Subscription();
+  CarouselOptions;
+  constructor() {
   }
 
+  ngOnChanges() {
+    this.CarouselOptions = this.setting;
+    this.CarouselOptions.rtl = this.lang === 'en' ? false : true;
+    this.slides = this.relatedProg;
+  }
+  ngOnInit() {
+  }
+  updateImage(ev) {
+    ev.target.src = 'assets/images/default_image.png';
+  }
 }

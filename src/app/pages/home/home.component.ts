@@ -1,7 +1,7 @@
 import { LangService } from './../../shared/services/lang.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { IMenu, IresturentItemsInfo, Iattributes } from 'src/app/shared/models/menu';
 import { MenuItemsService } from 'src/app/shared/services/menu-items.service';
 import { environment } from 'src/environments/environment';
