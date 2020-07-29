@@ -1,3 +1,6 @@
+@import '../node_modules/angular-notifier/styles.css';
+@import '../node_modules/angular-notifier/styles/core.css';
+@import '../node_modules/angular-notifier/styles/themes/theme-material.css';
 /* You can add global styles to this file, and also import other style files */
 /* html {
 	font-family: HelveticaNeue !important;
@@ -612,7 +615,9 @@ table {
 	color : white !important;
 	background-color : rgba(255,159,0,1) !important;
 }
-
+div:focus{
+	outline: none !important;
+}
 .clear{
 	clear: both;
 }
@@ -829,11 +834,17 @@ a, .healthReadMore{
     left: 0;
     z-index: -1;
 }
-.owl-nav button {
+.owl-nav .owl-prev,
+.owl-nav .owl-next{
 	position: absolute;
-	top: 15%;
+	top: 24%;
 	direction: ltr !important;
 
+}
+.owl-theme .owl-nav [class*=owl-]{
+	color: #313131;
+	font-size: 2.5rem;
+	background: transparent;
 }
 .owl-nav button.disabled:hover {
 	cursor: not-allowed;
@@ -841,14 +852,35 @@ a, .healthReadMore{
 .owl-nav button span {
 	font-size: 4rem;
 }
-.owl-nav button.owl-prev {
-	left: -40px;
+.owl-nav .owl-prev {
+	left: -60px;
 }
-.owl-nav button.owl-next {
-	right: -40px;
+.owl-nav .owl-next {
+	right: -60px;
 }
 .owl-theme .owl-nav [class*=owl-]:hover {
     background: transparent;
     color: #4c4b4b;
     text-decoration: none;
+}
+.notifier__notification {
+	top: 10% !important;
+	right: 20px !important;
+	left: auto !important;
+	bottom: auto !important;
+}
+body[lang="ar"] .notifier__notification {
+	top: 10% !important;
+	left: 20px !important;
+	right: auto !important;
+	bottom: auto !important;
+}
+.notifier__notification--material .notifier__notification-button{
+	margin: 0 5px !important;
+}
+.list-group{list-style: none; padding: 0; width: 100%;}
+.list-group > li {
+	background-color: rgb(240, 239, 240);
+	padding: 5px 10px;
+	margin: 5px 0;
 }

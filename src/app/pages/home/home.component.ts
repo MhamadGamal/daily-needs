@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
 export class HomeComponent implements OnInit, OnDestroy {
   filterdCatArr: IresturentItemsInfo[];
   menu: IMenu;
+  isItemLoaded: boolean;
   slides: string[] = [];
   environment = environment;
   lang: string;
@@ -37,6 +38,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.slides.push(environment.imgUrl + '/Items/Small/' + item.itemID + '.png');
         }
       });
+      this.isItemLoaded = true;
     }
     if (!this.menu) {
       this.getMenu();
@@ -54,6 +56,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             this.slides.push(environment.imgUrl + '/Items/Small/' + item.itemID + '.png');
           }
         });
+        this.isItemLoaded = true;
       } else {
         setTimeout(() => {
           this.getMenu();

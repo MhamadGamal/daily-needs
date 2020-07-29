@@ -9,6 +9,10 @@
 .programCard{
     margin-bottom: 40px;
     cursor: pointer;
+    border: 1px solid #eeeded;
+}
+.programCard .info{
+    padding: 15px;
 }
 
 .programImg{

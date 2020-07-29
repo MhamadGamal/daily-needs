@@ -18,6 +18,9 @@
 			</div>
 
 		</div>
+		<ngx-skeleton-loader *ngIf="!isItemLoaded" appearance="circle" count="3" animation="pulse"
+			[theme]="{ 'border-radius': '0', 'background-color': '#cecece', height: '200px', width: '30%' }">
+		</ngx-skeleton-loader>
 
 	</div>
 </div>

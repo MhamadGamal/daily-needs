@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { ProgramsComponent } from '../../pages/programs/programs.component';
 import { ProgramDetailsComponent } from '../../pages/program-details/program-details.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { RelatedProductsComponent } from 'src/app/components/related-products/related-products.component';
 
 
 const appRoutes: Routes = [
@@ -15,9 +17,10 @@ const appRoutes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(appRoutes),
-    SharedModule
+    SharedModule,
+    CarouselModule
   ],
-  declarations: [ProgramsComponent, ProgramDetailsComponent],
+  declarations: [ProgramsComponent, ProgramDetailsComponent, RelatedProductsComponent],
   exports: [
     RouterModule,
   ],

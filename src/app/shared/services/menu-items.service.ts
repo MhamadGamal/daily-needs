@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { IMenu } from '../models/menu';
+import { IMenu, IresturentItemsInfo } from '../models/menu';
 import { ApiInterceptorService } from '../interceptor/api-interceptor.service';
 
 @Injectable({
@@ -8,6 +8,7 @@ import { ApiInterceptorService } from '../interceptor/api-interceptor.service';
 
 export class MenuItemsService {
     menu: IMenu;
+    relatedItems: IresturentItemsInfo[];
     constructor(private api: ApiInterceptorService) { }
     getMenu() {
         const reqBody = {

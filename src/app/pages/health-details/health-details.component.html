@@ -2,11 +2,15 @@
   <img class="smallImgSlider" src="assets/dynamicImg/healthInfoCover.png" />
   <p class="sliderTxt"> {{"health.title" | translate}} </p>
 </div>
-
 <mc-breadcrumbs></mc-breadcrumbs>
 <div class="healthPage">
   <div class="container">
-    <div class="row">
+    <div *ngIf="!isItemLoaded" class="first-section-wrapper">
+      <ngx-skeleton-loader appearance="line" count="8" animation="pulse"
+        [theme]="{ 'border-radius': '0', 'background-color': '#cecece', height: '30px' }">
+      </ngx-skeleton-loader>
+    </div>
+    <div class="row" *ngIf="isItemLoaded">
       <div class="col-lg-8 mt-4">
         <div class="row pr-0 pl-0">
           <img class="itemImg" src="{{targetHealthInfo.img_url}}" (error)="updateImage($event)" />
@@ -34,7 +38,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4 healthPopular">
+      <!-- <div class="col-lg-4 healthPopular">
         <div class="row mt-4">
           <input type="text" class="form-control" placeholder="Search for products" />
         </div>
@@ -56,7 +60,7 @@
 
         </div>
 
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

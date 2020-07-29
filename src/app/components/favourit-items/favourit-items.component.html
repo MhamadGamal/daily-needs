@@ -1,15 +1,18 @@
 <div class="cartItems">
-  <table class="table table-bordered text-center">
+  <ngx-skeleton-loader *ngIf="!isItemsLoaded" appearance="line" count="5" animation="pulse"
+    [theme]="{ 'border-radius': '0', 'background-color': '#cecece', height: '20px' }">
+  </ngx-skeleton-loader>
+  <table class="table table-bordered text-center" *ngIf="isItemsLoaded">
     <thead class="thead-light">
       <tr>
         <th scope="">{{'favourite.product' | translate}}</th>
         <th scope="">{{'favourite.uinfo' | translate}}</th>
         <th scope="">{{'favourite.price' | translate}}</th>
         <th scope=""></th>
-        <th scope=""></th>
       </tr>
     </thead>
     <tbody>
+
       <tr *ngFor="let item of favouriteList">
         <td scope="">
           <p class="d-flex align-items-center">
@@ -21,14 +24,11 @@
         <td>
           <h5 *ngIf="lang ==='en'"> {{item.attributes | filter: "1"}} </h5>
           <h5 *ngIf="lang ==='ar'"> {{item.attributes | filter: "6"}} </h5>
-          <p> {{item.prices.priceNumber | currency: "EGP"}} </p>
+          <p> {{item.prices.priceNumber | currency: " EGP "}} </p>
         </td>
 
         <td class="tdPrice">
-          <p>{{item.prices.priceNumber | currency: "EGP"}}</p>
-        </td>
-        <td class="trashIcon">
-          <i class="fa fa-trash"></i>
+          <p>{{item.prices.priceNumber | currency: " EGP "}}</p>
         </td>
         <td class="tdCart">
           <button class="btn btn-success btn-addCart"> {{'generalMsg.cart.addToCart' | translate}} </button>

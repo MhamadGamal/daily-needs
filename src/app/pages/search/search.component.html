@@ -21,7 +21,7 @@
           (error)="updateImage($event)" />
         <h4 *ngIf="language ==='en'" class="dailyNeed-title"> {{item.attributes | filter: "1"}} </h4>
         <h4 *ngIf="language ==='ar'" class="dailyNeed-title"> {{item.attributes | filter: "6"}} </h4>
-        <p class="dailyNeed-price"> {{item.prices.priceNumber | currency: "EGP"}} </p>
+        <p class="dailyNeed-price"> {{item.prices.priceNumber | currency: " EGP "}} </p>
       </div>
     </div>
     <div class="row">

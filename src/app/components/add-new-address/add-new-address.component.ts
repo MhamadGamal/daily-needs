@@ -63,7 +63,7 @@ export class AddNewAddressComponent implements OnInit {
           'addrClientCity': value.city,
           'addrLine1': value.area,
           'addrLine2': value.street,
-          'addrLine3': '12',
+          'addrLine3': value.addressName,
           'addrLine4': '143',
           'addrLine5': value.details,
           'addrLine6': '',
@@ -84,7 +84,7 @@ export class AddNewAddressComponent implements OnInit {
     this.api.call('POST', reqBody).subscribe((res: any) => {
       if (res.updateClientInfoResponse) {
         this.addAddress = false;
-      } else {
+      } else if (res.error) {
         setTimeout(() => {
           this.saveAddress(value);
         }, 500);

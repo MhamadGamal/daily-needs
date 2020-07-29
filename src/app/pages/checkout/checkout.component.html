@@ -1,224 +1,122 @@
 <div class="slider-details text-center">
   <img class="smallImgSlider" src="assets/dynamicImg/checkout.png" />
-  <p class="sliderTxt">Check out</p>
+  <p class="sliderTxt"> {{'checkout.title' | translate}} </p>
 </div>
 <mc-breadcrumbs></mc-breadcrumbs>
 
 <div class="checkout">
-  <div class="container">
-    <h5>1- Choose shipping adress</h5>
-    <div class="firstStep">
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="address" id="exampleRadios1" value="option1" checked>
-        <label class="form-check-label" for="exampleRadios1">
-          Home - 33 Mahmoud Ismaiel.ST El-Bustan - Old Cairo
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="address" id="exampleRadios2" value="option2">
-        <label class="form-check-label" for="exampleRadios2">
-          Work - 16 Taher Ismaiel.ST El-Bustan - New Cairo
-        </label>
-      </div>
-      <app-add-new-address [lang]="lang"></app-add-new-address>
-    </div>
-
-    <hr>
-
-    <h5>2- Choose Payment Method</h5>
-    <div class="secStep">
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="payment" id="inlineRadio1" value="option1">
-        <label class="form-check-label" for="inlineRadio1">Cash on delevery</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="payment" id="inlineRadio2" value="option2">
-        <label class="form-check-label" for="inlineRadio2">Credit Cart</label>
-      </div>
-    </div>
-    <hr>
-    <h5>3- Delivery time</h5>
-    <div class="thirdStep">
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="deliveryTime" id="exampleRadios1" value="option1" checked>
-        <label class="form-check-label" for="exampleRadios1">
-          As soon as possible.
-          <br>
-          <span>*Normally the order will be delivered after 24 hours.*</span>
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="deliveryTime" id="exampleRadios2" value="option2">
-        <label class="form-check-label" for="exampleRadios2">
-          Schedule it
-        </label>
-        <div class="form-row">
-          <div class="col">
-            <input type="date" class="form-control" />
+  <form [formGroup]="checkoutForm" (ngSubmit)="checkout(checkoutForm.value)">
+    <div class="container">
+      <h5>1- {{'checkout.address' | translate}}</h5>
+      <div class="firstStep">
+        <ng-container *ngFor="let address of addressList">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" formControlName="address" id="exampleRadios1"
+              [value]="address">
+            <label class="form-check-label" for="exampleRadios1">
+              {{
+                address.addrClientCity + ' , ' +
+                address.addrLine1 + ' , ' +
+                address.addrLine2 + ' , ' +
+                address.addrLine7
+              }}
+            </label>
           </div>
-          <div class="col">
-            <input type="time" class="form-control" />
-          </div>
-        </div>
+        </ng-container>
+        <app-add-new-address></app-add-new-address>
       </div>
-    </div>
-    <hr>
-    <h5>4- Delivery time</h5>
-    <div class="row fourtStep">
-      <div class="col-lg-8 cartItems">
-        <table class="table table-bordered text-center">
-          <thead class="thead-light">
-            <tr>
-              <th scope="">Product</th>
-              <th scope="">Unit Info</th>
-              <th scope="">Qty</th>
-              <th scope="">Subtotal</th>
-              <th scope=""></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td scope="">
-                <img src="assets/dynamicImg/cartItem.png" />
-              </td>
-              <td>
-                <h5>Carrot</h5>
-                <p>20 EGP</p>
-              </td>
-              <td>
-                <div class="input-group">
-                  <button type="button" class="btn btn-default btn-number btn-number-minus" data-type="minus"
-                    data-field="quant[1]">
-                    <i class="fa fa-minus"></i>
-                  </button>
-                  <input type="text" name="quant[1]" class="form-control input-number text-center" value="1" min="1"
-                    max="100">
-                  <button type="button" class="btn btn-default btn-number btn-number-plus" data-type="plus"
-                    data-field="quant[1]">
-                    <i class="fa fa-plus"></i>
-                  </button>
-                </div>
-              </td>
-              <td>
-                <p>20 EGP</p>
-              </td>
-              <td class="trashIcon">
-                <i class="fa fa-trash"></i></td>
-            </tr>
-            <tr>
-              <td scope="">
-                <img src="assets/dynamicImg/cartItem.png" />
-              </td>
-              <td>
-                <h5>Carrot</h5>
-                <p>20 EGP</p>
-              </td>
-              <td>
-                <div class="input-group">
-                  <button type="button" class="btn btn-default btn-number btn-number-minus" data-type="minus"
-                    data-field="quant[1]">
-                    <i class="fa fa-minus"></i>
-                  </button>
-                  <input type="text" name="quant[1]" class="form-control input-number text-center" value="1" min="1"
-                    max="100">
-                  <button type="button" class="btn btn-default btn-number btn-number-plus" data-type="plus"
-                    data-field="quant[1]">
-                    <i class="fa fa-plus"></i>
-                  </button>
-                </div>
-              </td>
-              <td>
-                <p>20 EGP</p>
-              </td>
-              <td class="trashIcon">
-                <i class="fa fa-trash"></i>
-              </td>
-            </tr>
-            <tr>
-              <td scope="">
-                <img src="assets/dynamicImg/cartItem.png" />
-              </td>
-              <td>
-                <h5>Carrot</h5>
-                <p>20 EGP</p>
-              </td>
-              <td>
-                <div class="input-group">
-                  <button type="button" class="btn btn-default btn-number btn-number-minus" data-type="minus"
-                    data-field="quant[1]">
-                    <i class="fa fa-minus"></i>
-                  </button>
-                  <input type="text" name="quant[1]" class="form-control input-number text-center" value="1" min="1"
-                    max="100">
-                  <button type="button" class="btn btn-default btn-number btn-number-plus" data-type="plus"
-                    data-field="quant[1]">
-                    <i class="fa fa-plus"></i>
-                  </button>
-                </div>
-              </td>
-              <td>
-                <p>20 EGP</p>
-              </td>
-              <td class="trashIcon">
-                <i class="fa fa-trash"></i>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <button class="btn btn-success placeOrder">Place Order</button>
+      <hr>
+      <notifier-container></notifier-container>
+      <h5>2- {{'checkout.payment' | translate}}</h5>
+      <div class="secStep">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" formControlName="paymentMethod" id="inlineRadio1" value="cash">
+          <label class="form-check-label mb-0" for="inlineRadio1">{{'checkout.cash' | translate}}</label>
+        </div>
+        <!-- <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" formControlName="paymentMethod" id="inlineRadio2" value="credit">
+        <label class="form-check-label" for="inlineRadio2">{{'checkout.credit' | translate}}</label>
+      </div> -->
       </div>
-      <div class="col-lg-4 cartTotal text-center">
-        <div class="row rowItem">
-          <div class="col-lg-4 itemTitle">Pricing</div>
-          <div class="col-lg-8 itemCost">218.00 EGP</div>
+      <hr>
+      <h5>3- {{'checkout.deliveryTime' | translate}} </h5>
+      <div class="thirdStep">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" formControlName="deliveryType" id="exampleRadios1" value="asap"
+            checked>
+          <label class="form-check-label" for="exampleRadios1">
+            {{'checkout.asap' | translate}}
+            <br>
+            <span>{{'checkout.asapMsg' | translate}}</span>
+          </label>
         </div>
-        <hr>
-        <div class="row rowItem">
-          <div class="col-lg-4 itemTitle">Vat</div>
-          <div class="col-lg-8 itemCost">18.00 EGP</div>
-        </div>
-        <hr>
-        <div class="row rowItem">
-          <div class="col-lg-4 itemTitle">shipping</div>
-          <div class="col-lg-8 itemCost">20.00 EGP</div>
-        </div>
-        <hr>
-        <div class="row rowItem">
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Enter cupon" aria-label="Recipient's username"
-              aria-describedby="basic-addon2">
-            <div class="input-group-append">
-              <button class="btn btn-warning cartSubmit " type="button">Submit</button>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" formControlName="deliveryType" id="exampleRadios2"
+            value="schedueled">
+          <label class="form-check-label" for="exampleRadios2">
+            {{'checkout.sch' | translate}}
+          </label>
+          <div class="form-row">
+            <div class="col">
+              <input type="date" formControlName="date" class="form-control" />
+            </div>
+            <div class="col">
+              <input type="time" formControlName="time" class="form-control" />
             </div>
           </div>
-          <!-- <input type="text" class="form-control" /> -->
         </div>
-        <div class="row rowItem">
-          <div class="col-lg-4 itemTitle">Total price</div>
-          <div class="col-lg-8 itemCost">250.00 EGP</div>
-        </div>
-        <div class="row">
-          <button class="btn btn-success btns proceed">Proceed to checkout</button>
-        </div>
-        <!-- <div class="divSeparatorFooter mb-3 mt-3"></div> -->
-        <div class=" mb-3 mt-3">or</div>
-        <!-- <div class="divSeparatorFooter  mb-3 mt-3"></div> -->
-        <div class="row">
-          <button class="btn btn-light btns">Schedule order</button>
-        </div>
-
-        <p class="mt-5">
-          <q>
-            To guarantee fresh products, This order will be delivered after 24hrs.
-          </q>
-        </p>
       </div>
-    </div>
+      <hr>
+      <h5>4- {{'checkout.oSummary' | translate}}</h5>
+      <div class="row fourtStep">
+        <div class="col-lg-8 cartItems">
+          <cart-data></cart-data>
+          <button [disabled]="checkoutForm.invalid" type="submit"
+            class="btn btn-success placeOrder">{{'checkout.order' | translate}}</button>
+        </div>
+        <div class="col-lg-4 cartTotal text-center">
+          <div class="row rowItem">
+            <div class="col-lg-4 itemTitle">{{'home.header.Pricing' | translate}}</div>
+            <div class="col-lg-8 itemCost">{{cartService.totalPrice | currency: " EGP "}} </div>
+          </div>
+          <hr>
+          <div class="row rowItem">
+            <div class="col-lg-4 itemTitle">{{'home.header.vat' | translate}}</div>
+            <div class="col-lg-8 itemCost">{{cartService.vat | currency: " EGP "}} </div>
+          </div>
+          <hr>
+          <div class="row rowItem">
+            <div class="col-lg-4 itemTitle">{{'home.header.shipping' | translate}}</div>
+            <div class="col-lg-8 itemCost">{{cartService.shipping | currency: " EGP "}} </div>
+          </div>
+          <hr>
+          <div class="row rowItem">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="{{'cart.enterCopon' | translate}}"
+                aria-label="Recipient's username" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-warning cartSubmit" type="button"> {{'home.footer.submit' | translate}} </button>
+              </div>
+            </div>
+          </div>
+          <div class="row rowItem">
+            <div class="col-lg-4 itemTitle">{{'cart.tPrice' | translate}}</div>
+            <div class="col-lg-8 itemCost">
+              {{(cartService.totalPrice + cartService.shipping + cartService.vat) | currency: " EGP "}} </div>
+          </div>
+          <p class="mt-5">
+            <q>
+              {{'cart.msg' | translate}}
+            </q>
+          </p>
+        </div>
+      </div>
 
-    <!-- <div class="custom-file">
+      <!-- <div class="custom-file">
             <input type="text" class="custom-file-input" id="customFile">
             <label class="custom-file-label" for="customFile">Choose file</label>
           </div> -->
-  </div>
+    </div>
+  </form>
 
 </div>

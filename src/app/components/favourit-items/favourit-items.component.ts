@@ -15,6 +15,7 @@ import { IFavouriteItemsRs, IitemsTab } from 'src/app/shared/models/favouriteIte
 })
 export class FavouritItemsComponent implements OnInit, OnDestroy {
   menu: IMenu;
+  isItemsLoaded: boolean;
   filterdCatArr: IresturentItemsInfo[];
   favItems: IresturentItemsInfo[];
   lang: string;
@@ -63,6 +64,7 @@ export class FavouritItemsComponent implements OnInit, OnDestroy {
         } else {
           this.favouriteList.push(fav);
         }
+        this.isItemsLoaded = true;
       } else {
         setTimeout(() => {
           this.getFavourite();

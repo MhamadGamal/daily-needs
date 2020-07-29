@@ -1,16 +1,16 @@
-import { CartService } from 'src/app/shared/services/cart.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
 import { LangService } from 'src/app/shared/services/lang.service';
+import { CartService } from 'src/app/shared/services/cart.service';
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  selector: 'cart-data',
+  templateUrl: './cart-data.component.html',
+  styleUrls: ['./cart-data.component.css']
 })
-export class CartComponent implements OnInit, OnDestroy {
+export class CartDataComponent implements OnInit {
 
   lang: string;
   subscription: Subscription = new Subscription();
@@ -33,5 +33,4 @@ export class CartComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
 }

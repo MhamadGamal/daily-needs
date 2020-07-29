@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { RefreshTokenService } from '../services/refreshtoken.service';
 import { IToken } from '../models/refreshtoken';
-import { map, retry, retryWhen, delay, scan } from 'rxjs/operators';
-import { of } from 'rxjs/internal/observable/of';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

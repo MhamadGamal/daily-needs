@@ -5,6 +5,9 @@
 <mc-breadcrumbs></mc-breadcrumbs>
 <div class="relatedProduct">
   <div class="container">
+    <ngx-skeleton-loader *ngIf="!isItemLoaded" appearance="circle" count="3" animation="pulse"
+      [theme]="{ 'border-radius': '0', 'background-color': '#cecece', height: '200px', width: '30%' }">
+    </ngx-skeleton-loader>
     <div class="row">
       <div *ngFor="let item of menu?.restaurantsItemsListResponse?.categoryType?.categoriesInfo"
         class=" col-md-3 col-sm-6 category-div-img" routerLink="/category/items/{{item.categoryID}}">

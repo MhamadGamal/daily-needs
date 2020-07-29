@@ -63,6 +63,11 @@ const appRoutes = [
         loadChildren: () => import('./modules/myaccount/myaccount.module')
           .then(m => m.MyaccountModule),
         canActivate: [AuthGuard]
+      },
+      {
+        path: 'cart',
+        loadChildren: () => import('./modules/checkout/checkout.module')
+          .then(m => m.CheckoutModule)
       }
     ]
   }

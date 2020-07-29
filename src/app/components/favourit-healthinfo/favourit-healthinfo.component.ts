@@ -12,6 +12,7 @@ import { HealthInfoService } from 'src/app/shared/services/firebase/healthInfo.s
 })
 export class FavouritHealthinfoComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();
+  isItemsLoaded: boolean;
   healthInfo: IHealthInfo[];
   favHealthInfo: IHealthInfo[];
   language: string;
@@ -27,6 +28,7 @@ export class FavouritHealthinfoComponent implements OnInit, OnDestroy {
     this.healthInfo = this.healthInfoService.healthInfo;
     if (this.healthInfo) {
       this.favHealthInfo = this.healthInfo.filter((item: IHealthInfo) => item.isFav === true);
+      this.isItemsLoaded = true;
     } else {
       this.getHealthInfo();
     }
@@ -36,7 +38,7 @@ export class FavouritHealthinfoComponent implements OnInit, OnDestroy {
       this.healthInfo = data;
       this.healthInfoService.healthInfo = data;
       this.favHealthInfo = this.healthInfo.filter((item: IHealthInfo) => item.isFav === true);
-
+      this.isItemsLoaded = true;
     });
   }
   updateImage(ev) {

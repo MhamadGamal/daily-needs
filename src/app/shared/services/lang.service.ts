@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
     providedIn: 'root'
 })
 export class LangService {
-    lang = new BehaviorSubject('ar');
+    lang = new BehaviorSubject('en');
     constructor() {
         if (localStorage.getItem('language')) {
             this.changeLang(localStorage.getItem('language'));

@@ -63,3 +63,17 @@
 .signUp, .signIn{
     cursor: pointer;
 }
+.cart-icon span{
+    position: absolute;
+    display: inline-block;
+    min-width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: rgb(122 201 67);
+    color: #fff;
+    top: -5px;
+    left: 27%;
+    font-size: 12px;
+    text-align: center;
+    line-height: 16px;
+}

@@ -16,8 +16,8 @@ import { FilterPipe } from 'src/app/shared/pipes/filter.pipe';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
-import { OwlModule } from 'ngx-owl-carousel';
-import { RelatedProductsComponent } from 'src/app/components/related-products/related-products.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { NotifierModule } from 'angular-notifier';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -32,7 +32,7 @@ const config: SwiperConfigInterface = {
   imports: [
     CommonModule,
     TranslateModule.forRoot({
-      defaultLanguage: 'ar',
+      defaultLanguage: 'en',
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
@@ -48,17 +48,17 @@ const config: SwiperConfigInterface = {
     MatCarouselModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
-    OwlModule
+    NgxSkeletonLoaderModule,
+    NotifierModule
   ],
   declarations: [
     AddNewAddressComponent,
     FilterPipe,
     DailyNeedProductsComponent,
-    RelatedProductsComponent
+
   ],
   exports: [
     DailyNeedProductsComponent,
-    RelatedProductsComponent,
     AddNewAddressComponent,
     TranslateModule,
     SwiperModule,
@@ -69,7 +69,8 @@ const config: SwiperConfigInterface = {
     FilterPipe,
     AngularFireModule,
     AngularFireDatabaseModule,
-    OwlModule
+    NgxSkeletonLoaderModule,
+    NotifierModule
 
   ],
   providers: [

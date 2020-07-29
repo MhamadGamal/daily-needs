@@ -1,3 +1,4 @@
+import { CartService } from 'src/app/shared/services/cart.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IMenu, IresturentItemsInfo, ICategoriesInfo, Iattributes } from 'src/app/shared/models/menu';
@@ -5,6 +6,7 @@ import { Subscription, Observable } from 'rxjs';
 import { LangService } from 'src/app/shared/services/lang.service';
 import { MenuItemsService } from 'src/app/shared/services/menu-items.service';
 import { environment } from 'src/environments/environment';
+import { ProgramDetailsComponent } from '../program-details/program-details.component';
 
 @Component({
   selector: 'app-programs',
@@ -12,45 +14,23 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./programs.component.css']
 })
 export class ProgramsComponent implements OnInit, OnDestroy {
-  programms: Array<IresturentItemsInfo | ICategoriesInfo>;
+  programms: Array<any>;
   id: string;
   menu: IMenu;
+  isItemLoaded: boolean;
   filterdCatArr: IresturentItemsInfo[];
   relatedItems: IresturentItemsInfo[] = [];
   lang: string;
   subscription: Subscription = new Subscription();
   environment = environment;
-  relatedCarouselOption = {
-    items: 4,
-    dots: false,
-    nav: true,
-    margin: 20,
-    rtl: true,
-    responsive: {
-      0: {
-          items: 1
-      },
-      600: {
-          items: 2
-      },
-      1000: {
-          items: 3
-      },
-      1200: {
-          items: 4
-      }
-    }
-  };
   constructor(private translate: TranslateService, private langS: LangService,
-    private menuItemsService: MenuItemsService
+    private menuItemsService: MenuItemsService,
+    private cartService: CartService
   ) {
     this.subscription.add(
       this.langS.lang.subscribe(lang => {
         this.translate.use(lang);
         this.lang = lang;
-        if(this.relatedItems) {
-          this.relatedItems  = this.relatedItems;
-        }
       }));
   }
 
@@ -59,6 +39,9 @@ export class ProgramsComponent implements OnInit, OnDestroy {
       this.menu = this.menuItemsService.menu;
       this.filterdCatArr = this.menuItemsService.menu.restaurantsItemsListResponse.resturentItemsInfo;
       this.getPrograms();
+      if (this.menuItemsService.relatedItems) {
+        this.relatedItems = this.menuItemsService.relatedItems;
+      }
     }
     if (!this.menu) {
       this.getMenu();
@@ -78,7 +61,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
       }
     },
       err => {
-        console.log(err)
+        console.log(err);
       });
   }
   getPrograms() {
@@ -94,23 +77,23 @@ export class ProgramsComponent implements OnInit, OnDestroy {
           return item;
         }
       });
-    this.menu.restaurantsItemsListResponse.resturentItemsInfo
-      .filter((item: IresturentItemsInfo) => {
-        let isP;
-        const p = item.attributes.filter((i: Iattributes) => {
-          if (i.attributeID === '121' && i.attributeValue === '001') {
-            isP = true;
-          }
-        });
-        if (isP) {
-          this.programms.push(item);
-        }
-      });
+    // this.menu.restaurantsItemsListResponse.resturentItemsInfo
+    //   .filter((item: IresturentItemsInfo) => {
+    //     let isP;
+    //     const p = item.attributes.filter((i: Iattributes) => {
+    //       if (i.attributeID === '121' && i.attributeValue === '001') {
+    //         isP = true;
+    //       }
+    //     });
+    //     if (isP) {
+    //       this.programms.push(item);
+    //     }
+    //   });
 
-      // get realted items
-      this.programms.forEach((item: ICategoriesInfo) => {
-        if(item.categoryID){
-          this.menu.restaurantsItemsListResponse.resturentItemsInfo
+    // get realted items
+    this.programms.forEach((item: ICategoriesInfo) => {
+      if (item.categoryID) {
+        this.menu.restaurantsItemsListResponse.resturentItemsInfo
           .filter((_item: IresturentItemsInfo) => {
             if (typeof _item.categoryIDs === 'string') {
               if (_item.categoryIDs === item.categoryID) { this.relatedItems.push(_item); }
@@ -118,14 +101,34 @@ export class ProgramsComponent implements OnInit, OnDestroy {
               if (_item.categoryIDs.includes(item.categoryID)) { this.relatedItems.push(_item); }
             }
           });
-        }
-      });
-      console.log(this.programms)
-      console.log('related')
-      console.log(this.relatedItems);
+      }
+    });
+    console.log(this.programms);
+    console.log('related');
+    this.menuItemsService.relatedItems = this.relatedItems;
+    console.log(this.relatedItems);
+    this.isItemLoaded = true;
   }
   updateImage(ev) {
     ev.target.src = 'assets/images/default_image.png';
+  }
+  addToCart(id) {
+    debugger;
+    let related = [];
+    if (id) {
+      this.menu.restaurantsItemsListResponse.resturentItemsInfo
+        .filter((_item: IresturentItemsInfo) => {
+          if (typeof _item.categoryIDs === 'string') {
+            if (_item.categoryIDs === id) { related.push(_item); }
+          } else if (Array.isArray(typeof _item.categoryIDs)) {
+            if (_item.categoryIDs.includes(id)) { related.push(_item); }
+          }
+        });
+    }
+    console.log(related);
+    related.forEach((item: IresturentItemsInfo) => {
+      this.cartService.addToCart(item.itemID, 1);
+    });
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();

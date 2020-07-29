@@ -7,12 +7,12 @@ import { CategoryDetailsComponent } from '../../pages/category-details/category-
 import { CartComponent } from '../../pages/cart/cart.component';
 import { CheckoutComponent } from '../../pages/checkout/checkout.component';
 import { CategoryItemListComponent } from '../../pages/category-item-list/category-item-list.component';
+import { CartDataComponent } from 'src/app/pages/cart-data/cart-data.component';
 
 
 const appRoutes: Routes = [
-  { path: '', component: CategoryComponent },
-  { path: 'items/:categoryId', component: CategoryItemListComponent },
-  { path: 'items/item-details/:itemId', component: CategoryDetailsComponent }
+  { path: '', component: CartComponent },
+  { path: 'checkout', component: CheckoutComponent }
 ];
 
 @NgModule({
@@ -21,7 +21,7 @@ const appRoutes: Routes = [
     RouterModule.forChild(appRoutes),
     SharedModule,
   ],
-  declarations: [CategoryComponent, CategoryDetailsComponent, CartComponent, CheckoutComponent, CategoryItemListComponent],
+  declarations: [CartComponent, CheckoutComponent, CartDataComponent],
   exports: [RouterModule],
 })
-export class CategoryModule { }
+export class CheckoutModule { }

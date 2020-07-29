@@ -20,6 +20,7 @@ export class DailyNeedProductsComponent implements OnInit, OnDestroy {
   menu: IMenu;
   filterdCatArr: IresturentItemsInfo[];
   max = 8;
+  isItemLoaded: boolean;
   showLoadMore = true;
   @Input() type: string;
   @Input() filterCList: ICategoriesInfo;
@@ -38,6 +39,7 @@ export class DailyNeedProductsComponent implements OnInit, OnDestroy {
     if (this.menuItemsService.menu) {
       this.menu = this.menuItemsService.menu;
       this.filterdCatArr = this.menuItemsService.menu.restaurantsItemsListResponse.resturentItemsInfo;
+      this.isItemLoaded = true;
       if (this.filterCList) {
         this.filterr(this.filterCList);
       }
@@ -54,6 +56,7 @@ export class DailyNeedProductsComponent implements OnInit, OnDestroy {
         this.menu = menu;
         this.menuItemsService.menu = menu;
         this.filterdCatArr = menu.restaurantsItemsListResponse.resturentItemsInfo;
+        this.isItemLoaded = true;
         if (this.filterCList) {
           this.filterr(this.filterCList);
         }

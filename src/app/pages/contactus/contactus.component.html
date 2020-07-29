@@ -1,13 +1,13 @@
 <div class="slider-details text-center">
   <img class="smallImgSlider" src="assets/dynamicImg/contact.png" />
-  <p class="sliderTxt">Contact us</p>
+  <p class="sliderTxt"> {{'contactUs.title' | translate}} </p>
 </div>
 <mc-breadcrumbs></mc-breadcrumbs>
 <div class="contactus">
   <div class="container">
     <div class="text-center">
-      <h2 class="dailyNeed-title dailyNeed-title-font">Get In Touch</h2>
-      <h2 class="dailyNeed-title blackTxt">With Us</h2>
+      <h2 class="dailyNeed-title dailyNeed-title-font">{{'contactUs.get' | translate}}</h2>
+      <h2 class="dailyNeed-title blackTxt">{{'contactUs.us' | translate}}</h2>
     </div>
     <div class="titleIconDiv text-center">
       <div class="divSeparator"></div>
@@ -17,28 +17,28 @@
     <div class="row text-center">
       <div class="col-lg-3 conatctDiv">
         <img class="location" src="assets/images/location.png" />
-        <h5>Address</h5>
+        <h5>{{'contactUs.address' | translate}}</h5>
         <div class="contactTxt">
-          104 Abo El Ezz st.5th Settelment, New Cairo, Egypt
+          {{'contactUs.addressDesc' | translate}}
         </div>
       </div>
       <div class="col-lg-3 conatctDiv">
         <img class="contactImg" src="assets/images/phone.png" />
-        <h5>Phone</h5>
+        <h5> {{'contactUs.phone' | translate}}</h5>
         <div class="contactTxt">
           +2 0100 678 2387
         </div>
       </div>
       <div class="col-lg-3 conatctDiv">
         <img class="email" src="assets/images/email.png" />
-        <h5>Email</h5>
+        <h5>{{'contactUs.email' | translate}}</h5>
         <div class="contactTxt">
           Info@Dailyneeds.com
         </div>
       </div>
       <div class="col-lg-3 conatctDiv">
         <img class="contactImg" src="assets/images/web.png" />
-        <h5>Website</h5>
+        <h5>{{'contactUs.website' | translate}}</h5>
         <div class="contactTxt">
           www.Dailyneeds.com
         </div>
@@ -50,7 +50,7 @@
 <div class="contactForm">
   <div class="container">
     <div class="text-center">
-      <h2 class="dailyNeed-title dailyNeed-title-font">Leave us a message</h2>
+      <h2 class="dailyNeed-title dailyNeed-title-font">{{'contactUs.lmessage' | translate}}</h2>
     </div>
     <div class="titleIconDiv text-center">
       <div class="divSeparator"></div>
@@ -58,26 +58,53 @@
       <div class="divSeparator"></div>
     </div>
 
-    <form>
+    <form [formGroup]="contactForm">
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="username">Your name</label>
-          <input type="text" class="form-control" id="username">
+          <label for="username">{{'contactUs.form.name' | translate}}</label>
+          <input type="text" class="form-control" formControlName="name" id="username">
+          <div class="form-text text-danger" *ngIf='contactForm.get("name").invalid && contactForm.get("name").touched'>
+            <small *ngIf='contactForm.get("name").errors.required'>
+              {{"home.header.validation.required" | translate}}
+            </small>
+          </div>
         </div>
         <div class="form-group col-md-6">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" id="email">
+          <label for="email">{{'contactUs.email' | translate}}</label>
+          <input type="email" class="form-control" formControlName="email" id="email">
+          <div class="form-text text-danger"
+            *ngIf='contactForm.get("email").invalid && contactForm.get("email").touched'>
+            <small *ngIf='contactForm.get("email").errors.required'>
+              {{"home.header.validation.required" | translate}}
+            </small>
+            <small *ngIf='contactForm.get("email").errors.email'>
+              {{"home.header.validation.email" | translate}}
+            </small>
+          </div>
         </div>
       </div>
       <div class="form-group">
-        <label for="subject">Subject</label>
-        <input type="text" class="form-control" id="subject">
+        <label for="subject">{{'contactUs.form.subject' | translate}}</label>
+        <input type="text" class="form-control" formControlName="subject" id="subject">
+        <div class="form-text text-danger"
+          *ngIf='contactForm.get("subject").invalid && contactForm.get("subject").touched'>
+          <small *ngIf='contactForm.get("subject").errors.required'>
+            {{"home.header.validation.required" | translate}}
+          </small>
+        </div>
       </div>
       <div class="form-group">
-        <label for="message">Message</label>
-        <textarea class="form-control" id="message"></textarea>
+        <label for="message">{{'contactUs.form.message' | translate}}</label>
+        <textarea class="form-control" formControlName="message" id="message"></textarea>
+        <div class="form-text text-danger"
+          *ngIf='contactForm.get("message").invalid && contactForm.get("message").touched'>
+          <small *ngIf='contactForm.get("message").errors.required'>
+            {{"home.header.validation.required" | translate}}
+          </small>
+        </div>
       </div>
-      <button type="submit" class="btn btn-primary">Send now</button>
+      <button type="submit" [disabled]="contactForm.invalid"
+        class="btn btn-primary">{{'contactUs.form.send' | translate}}</button>
     </form>
   </div>
 </div>

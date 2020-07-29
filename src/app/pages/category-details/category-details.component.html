@@ -21,7 +21,12 @@
           </div>
         </div> -->
       </div>
-      <div class="col-lg-6">
+      <div class="col-lg-6" *ngIf="!isItemLoaded">
+        <ngx-skeleton-loader appearance="line" count="4" animation="pulse"
+          [theme]="{ 'border-radius': '0', 'background-color': '#cecece', height: '30px' }">
+        </ngx-skeleton-loader>
+      </div>
+      <div class="col-lg-6" *ngIf="isItemLoaded">
         <h4 class="item-details-title" *ngIf="lang ==='en'">
           {{targetItem?.attributes | filter: "1"}} </h4>
         <h4 class="item-details-title" *ngIf="lang ==='ar'">
@@ -34,13 +39,13 @@
           <span class="reviews">(2 customer reviews)</span> -->
           <p *ngIf="targetItem?.prices.discountValue && targetItem.prices.discountValue != 0; else noDiscount"
             class="item-price">
-            <span><del>{{targetItem?.prices.priceNumber | currency: "EGP"}}</del></span>
+            <span><del>{{targetItem?.prices.priceNumber | currency: " EGP "}}</del></span>
             <span
-              class="dailyNeed-price">{{(targetItem?.prices.priceNumber - targetItem.prices.discountValue) | currency: "EGP"}}</span>
+              class="dailyNeed-price">{{(targetItem?.prices.priceNumber - targetItem.prices.discountValue) | currency: " EGP "}}</span>
           </p>
           <ng-template #noDiscount>
             <p class="item-price">
-              <span class="dailyNeed-price">{{targetItem?.prices.priceNumber | currency: "EGP"}}</span>
+              <span class="dailyNeed-price">{{targetItem?.prices.priceNumber | currency: " EGP "}}</span>
             </p>
           </ng-template>
         </div>
@@ -49,15 +54,12 @@
             <ng-container *ngIf="lang == 'en'"> {{targetItem?.attributes | filter: "22"}} </ng-container>
             <ng-container *ngIf="lang == 'ar'"> {{targetItem?.attributes | filter: "23"}} </ng-container>
           </p>
-          <!-- <h6>Size</h6>
+          <h6> {{'category.size' | translate}} </h6>
           <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-            <label class="custom-control-label" for="customRadioInline1">Toggle this custom radio</label>
+            <input type="radio" id="customRadioInline1" checked name="customRadioInline1" class="custom-control-input">
+            <label class="custom-control-label" for="customRadioInline1"> {{targetItem?.prices.categoryName}} </label>
           </div>
-          <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-            <label class="custom-control-label" for="customRadioInline2">Or toggle this other custom radio</label>
-          </div> -->
+
 
           <!-- <h6>Extras</h6>
           <div class="custom-control custom-radio custom-control-inline">
@@ -69,24 +71,25 @@
             <label class="custom-control-label" for="customRadioInline4">Or toggle this other custom radio</label>
           </div> -->
         </div>
+        <notifier-container></notifier-container>
         <div class="cart">
           <div class="row">
             <div class="col-lg-4 col-7 cart-items">
               <div class="input-group">
-                <button type="button" class="btn btn-default btn-number btn-number-minus" data-type="minus"
-                  data-field="quant[1]">
+                <button type="button" (click)="cartItems = cartItems > 1 ?  cartItems - 1 : 1"
+                  class="btn btn-default btn-number btn-number-minus" data-type="minus" data-field="quant[1]">
                   <i class="fa fa-minus"></i>
                 </button>
-                <input type="text" name="quant[1]" class="form-control input-number text-center" value="1" min="1"
-                  max="100">
-                <button type="button" class="btn btn-default btn-number btn-number-plus" data-type="plus"
-                  data-field="quant[1]">
+                <input type="text" class="form-control input-number text-center" [(ngModel)]="cartItems" max="100">
+                <button type="button" (click)="cartItems = cartItems + 1"
+                  class="btn btn-default btn-number btn-number-plus" data-type="plus" data-field="quant[1]">
                   <i class="fa fa-plus"></i>
                 </button>
               </div>
             </div>
             <div class=" col-md-4 col-5 cart-items">
-              <button class="btn btn-success addCart"> {{'generalMsg.cart.addToCart' | translate}} </button>
+              <button (click)="cartService.addToCart(targetItem.itemID, cartItems)" class="btn btn-success addCart">
+                {{'generalMsg.cart.addToCart' | translate}} </button>
             </div>
             <div class="col-lg-4 col-xs-12 wishlist">
               <a (click)="addToFavourite()">
@@ -98,73 +101,31 @@
         </div>
       </div>
     </div>
-    <!-- <hr>
+    <hr>
     <div class="tabDiv">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
           <a class="nav-link active" id="information-tab" data-toggle="tab" href="#information" role="tab"
-            aria-controls="information" aria-selected="true">Information</a>
+            aria-controls="information" aria-selected="true">{{'category.info' | translate}}</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews"
-            aria-selected="false">Reviews</a>
+            aria-selected="false">{{'category.reviews' | translate}}</a>
         </li>
       </ul>
 
       <div class="tab-content">
         <div class="tab-pane active" id="information" role="tabpanel" aria-labelledby="information-tab">
-          <p>Daily J is a system that serves multiple healthy nutrition products Provide and deliver ready-made healthy
-            nutrition juice, that can work as Detoxes for the body and give it the amount of Vegetables and Fruits
-            needed
-            very easy to use , order and deliver your orders in your suitable time.</p>
-          <div class="row">
-            <h5>Daily course</h5>
-            <ul>
-              <li>Carrot Juice</li>
-              <li>Orange Juice</li>
-              <li>Rocca Juice</li>
-              <li>Tomato Juice</li>
-              <li>Kiwi Juice</li>
-              <li>Rocca Juice</li>
-            </ul>
-          </div>
-          <div class="row">
-            <h5>Daily course</h5>
-            <ul>
-              <li>Carrot Juice</li>
-              <li>Orange Juice</li>
-              <li>Rocca Juice</li>
-              <li>Tomato Juice</li>
-              <li>Kiwi Juice</li>
-              <li>Rocca Juice</li>
-            </ul>
-          </div>
+          <p>
+            <ng-container *ngIf="lang == 'en'"> {{targetItem?.attributes | filter: "22"}} </ng-container>
+            <ng-container *ngIf="lang == 'ar'"> {{targetItem?.attributes | filter: "23"}} </ng-container>
+          </p>
+
         </div>
         <div class="tab-pane" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-          <div class="row">
-            <h5>Daily course</h5>
-            <ul>
-              <li>Carrot Juice</li>
-              <li>Orange Juice</li>
-              <li>Rocca Juice</li>
-              <li>Tomato Juice</li>
-              <li>Kiwi Juice</li>
-              <li>Rocca Juice</li>
-            </ul>
-          </div>
-          <div class="row">
-            <h5>Daily course</h5>
-            <ul>
-              <li>Carrot Juice</li>
-              <li>Orange Juice</li>
-              <li>Rocca Juice</li>
-              <li>Tomato Juice</li>
-              <li>Kiwi Juice</li>
-              <li>Rocca Juice</li>
-            </ul>
-          </div>
+          .....
         </div>
       </div>
-    </div> -->
+    </div>
   </div>
 </div>
