@@ -11,6 +11,7 @@ import { IAddressInfo } from 'src/app/shared/models/address';
 import { ApiInterceptorService } from 'src/app/shared/interceptor/api-interceptor.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { NotifierService } from 'angular-notifier';
+import { MenuItemsService } from 'src/app/shared/services/menu-items.service';
 
 declare var $: any;
 @Component({
@@ -29,7 +30,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     private api: ApiInterceptorService,
     public authService: AuthService,
     private notifierService: NotifierService,
-    private router: Router
+    private router: Router,
+    private menuItemsService: MenuItemsService
   ) {
     this.subscription.add(
       this.langS.lang.subscribe(lang => {
@@ -221,12 +223,12 @@ export class CheckoutComponent implements OnInit, OnDestroy {
               'paymentMethodName': value.paymentMethod,
               'restaurantOrderInfo': {
                 'orderRequireClientInfo': {
-                  'accountNumber': '00005076001',
-                  'clientNumber': '00005076',
+                  'accountNumber': this.authService.loginedUserData.loginAuthenticationResponse.accountInfo.accountNumber,
+                  'clientNumber': this.authService.loginedUserData.loginAuthenticationResponse.clientInfo.clientNumber,
                   'groupNumber': '00005076'
                 },
-                'restaurantBranchID': '4968',
-                'restaurantBranchName': 'Daily Needs'
+                'restaurantBranchID': this.menuItemsService.menu.restaurantsItemsListResponse.restaurantInfo.branchId,
+                'restaurantBranchName': this.menuItemsService.menu.restaurantsItemsListResponse.restaurantInfo.restaurantName
               },
               'voucher': {
                 'voucherDescribtion': '',
