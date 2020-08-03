@@ -1,34 +1,71 @@
 <div class="slider-details text-center">
 	<img class="smallImgSlider" src="assets/dynamicImg/category.png" />
-	<p class="sliderTxt">Program details</p>
+	<p class="sliderTxt"> {{'programs.pDetails' | translate}} </p>
 </div>
 <mc-breadcrumbs></mc-breadcrumbs>
 <div class="itemDetailsDiv">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6">
-				<img class="itemDetails" src="assets/dynamicImg/juice_details.png">
+				<img class="itemDetails"
+					[src]="targetProgramms?.prices?environment.imgUrl+'/Items/Small/'+targetProgramms?.itemID+'.png': environment.imgUrl+'/Program/Small/'+targetProgramms?.categoryID+'.png'"
+					(error)="updateImage($event)">
 			</div>
-			<div class="col-lg-6">
-				<h4 class="item-details-title">5 Days Detox program packaging.</h4>
-				<div>
-					<i class="fa fa-star rating-active"></i>
-					<i class="fa fa-star rating-active"></i>
-					<i class="fa fa-star rating-active"></i>
-					<i class="fa fa-star rating-disable"></i>
-					<span class="reviews">(2 customer reviews)</span>
-					<p class="item-price">
-						<span><del>150 EGP</del></span>
-						<span class="dailyNeed-price">100 EGP</span>
-					</p>
+			<div class="col-lg-6" *ngIf="!isItemLoaded">
+				<ngx-skeleton-loader appearance="line" count="4" animation="pulse"
+					[theme]="{ 'border-radius': '0', 'background-color': '#cecece', height: '30px' }">
+				</ngx-skeleton-loader>
+			</div>
+			<div class="col-lg-6" *ngIf="isItemLoaded">
+				<ng-container *ngIf="targetProgramms?.prices">
+					<h4 class="item-details-title" *ngIf="lang ==='en'">
+						{{targetProgramms?.attributes | filter: "1"}} </h4>
+					<h4 class="item-details-title" *ngIf="lang ==='ar'">
+						{{targetProgramms?.attributes | filter: "6"}} </h4>
+				</ng-container>
+				<ng-container *ngIf="!targetProgramms?.prices">
+					<h4 class="item-details-title" *ngIf="lang ==='en'">
+						{{targetProgramms?.attributes | filter: "4"}} </h4>
+					<h4 class="item-details-title" *ngIf="lang ==='ar'">
+						{{targetProgramms?.attributes | filter: "9"}} </h4>
+				</ng-container>
+				<div class="item-price">
+					<ng-container
+						*ngIf="targetProgramms?.prices?.discountValue && targetProgramms?.prices?.discountValue != 0;else noDiscount">
+						<div class="">
+							<del>
+								{{(targetProgramms?.prices?.priceNumber - targetProgramms?.prices?.discountValue) | currency: " EGP "}}
+							</del>
+							<span class="dailyNeed-price">
+								{{targetProgramms?.prices?.priceNumber | currency: " EGP "}}
+							</span>
+						</div>
+
+					</ng-container>
+					<ng-template #noDiscount>
+						<div class="newPrice">
+							<div *ngIf="targetProgramms?.prices">
+								<span class="dailyNeed-price">
+									{{targetProgramms?.prices?.priceNumber | currency: " EGP "}}
+								</span>
+							</div>
+						</div>
+					</ng-template>
 				</div>
 				<div>
-					<p>
-						Daily J is a system that serves multiple healthy nutrition products Provide and deliver
-						ready-made healthy
-						nutrition juice, that can work as Detoxes for the body and give it the amount.
-					</p>
-					<h5>Daily course</h5>
+					<div class="desc">
+						<p *ngIf="targetProgramms?.prices">
+							<ng-container *ngIf="lang == 'en'"> {{targetProgramms?.attributes | filter: "22"}}
+							</ng-container>
+							<ng-container *ngIf="lang == 'ar'"> {{targetProgramms?.attributes | filter: "23"}}
+							</ng-container>
+						</p>
+					</div>
+					<!-- <p *ngIf="!targetProgramms?.prices">
+						<ng-container *ngIf="lang == 'en'"> {{targetProgramms?.attributes | filter: "22"}} </ng-container>
+						<ng-container *ngIf="lang == 'ar'"> {{targetProgramms?.attributes | filter: "23"}} </ng-container>
+					</p> -->
+					<!-- <h5>Daily course</h5>
 					<ul>
 						<li>Carrot Juice</li>
 						<li>Orange Juice</li>
@@ -36,36 +73,44 @@
 						<li>Tomato Juice</li>
 						<li>Kiwi Juice</li>
 						<li>Rocca Juice</li>
-					</ul>
+					</ul> -->
 				</div>
+				<notifier-container></notifier-container>
+
 				<div class="cart">
 					<div class="row">
-						<div class="col-lg-4 col-xs-12 cart-items">
+						<div class="col-lg-4 col-7 cart-items">
 							<div class="input-group">
-								<button type="button" class="btn btn-default btn-number btn-number-minus"
-									data-type="minus" data-field="quant[1]">
+
+								<button type="button" (click)="cartItems = cartItems > 1 ?  cartItems - 1 : 1"
+									class="btn btn-default btn-number btn-number-minus" data-type="minus"
+									data-field="quant[1]">
 									<i class="fa fa-minus"></i>
 								</button>
-								<input type="text" name="quant[1]" class="form-control input-number text-center"
-									value="1" min="1" max="100">
-								<button type="button" class="btn btn-default btn-number btn-number-plus"
-									data-type="plus" data-field="quant[1]">
+								<input type="text" class="form-control input-number text-center" value="1"
+									[(ngModel)]="cartItems" max="100">
+								<button type="button" (click)="cartItems = cartItems + 1"
+									class="btn btn-default btn-number btn-number-plus" data-type="plus"
+									data-field="quant[1]">
 									<i class="fa fa-plus"></i>
 								</button>
 							</div>
 						</div>
-						<div class="col-lg-4 col-xs-12 cart-items">
-							<button class="btn btn-success addCart">Add to cart</button>
+						<div class=" col-md-4 col-5 cart-items">
+							<button (click)="addToCart(cartItems)" class="btn btn-success addCart">
+								{{'generalMsg.cart.addToCart' | translate}} </button>
 						</div>
 						<div class="col-lg-4 col-xs-12 wishlist">
-							<i class="fas fa-heart"></i>
-							<span>Add to wishlist</span>
+							<a (click)="addToFavourite()">
+								<i class="fa-heart" [ngClass]="{'fas':isFavourite, 'far': !isFavourite}"></i>
+								<span>{{'generalMsg.favourite.wish' | translate}}</span>
+							</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="row text-center items-div">
+		<!-- <div class="row text-center items-div">
 			<div class="col-lg-2">
 				<img src="assets/dynamicImg/item1.png">
 			</div>
@@ -84,36 +129,36 @@
 			<div class="col-lg-2">
 				<img src="assets/dynamicImg/item3.png">
 			</div>
-		</div>
+		</div> -->
 		<div class="tabDiv">
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
 				<li class="nav-item">
-					<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-						aria-controls="home" aria-selected="true">Home</a>
+					<a class="nav-link active" id="home-tab" data-toggle="tab" href="#Description" role="tab"
+						aria-controls="Description" aria-selected="true"> {{'programs.dexc' | translate}} </a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-						aria-controls="profile" aria-selected="false">Profile</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab"
-						aria-controls="messages" aria-selected="false">Messages</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab"
-						aria-controls="settings" aria-selected="false">Settings</a>
+					<a class="nav-link" id="profile-tab" data-toggle="tab" href="#Reviews" role="tab"
+						aria-controls="Reviews" aria-selected="false">{{'programs.reviews' | translate}}</a>
 				</li>
 			</ul>
 
 			<div class="tab-content">
-				<div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">tab1</div>
-				<div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">tabe2</div>
-				<div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">tab3...</div>
-				<div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">.tab4.</div>
+				<div class="tab-pane active" id="Description" role="tabpanel" aria-labelledby="Description-tab">
+					<p *ngIf="targetProgramms?.prices">
+						<ng-container *ngIf="lang == 'en'"> {{targetProgramms?.attributes | filter: "22"}}
+						</ng-container>
+						<ng-container *ngIf="lang == 'ar'"> {{targetProgramms?.attributes | filter: "23"}}
+						</ng-container>
+					</p>
+				</div>
+				<div class="tab-pane" id="Reviews" role="tabpanel" aria-labelledby="Reviews-tab">
+					......
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
 
-<app-related-products [lang]="lang"></app-related-products>
+<app-related-products [relatedProg]="relatedItems" [lang]="lang">
+</app-related-products>

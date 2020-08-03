@@ -1,39 +1,22 @@
 <div class="slider-details text-center">
   <img class="smallImgSlider" src="assets/dynamicImg/category.png" />
-  <p class="sliderTxt">Category</p>
+  <p class="sliderTxt"> {{'home.header.category' | translate}} </p>
 </div>
 <mc-breadcrumbs></mc-breadcrumbs>
 <div class="relatedProduct">
   <div class="container">
+    <ngx-skeleton-loader *ngIf="!isItemLoaded" appearance="circle" count="3" animation="pulse"
+      [theme]="{ 'border-radius': '0', 'background-color': '#cecece', height: '200px', width: '30%' }">
+    </ngx-skeleton-loader>
     <div class="row">
-      <div class="col-lg-2 col-xs-3 category-div-img" routerLink="/{{lang}}/category/items/1">
-        <img class="category-img" src="assets/dynamicImg/need1.jpg" />
-        <h4 class="category-title">Carrot</h4>
+      <div *ngFor="let item of menu?.restaurantsItemsListResponse?.categoryType?.categoriesInfo"
+        class=" col-md-3 col-sm-6 category-div-img" routerLink="/category/items/{{item.categoryID}}">
+        <img class="category-img" [src]="environment.imgUrl+'/Category/Small/'+item.categoryID+'.png'"
+          (error)="updateImage($event)" />
+        <h5 *ngIf="lang ==='en'" class="category-title"> {{item.attributes | filter: "4"}} </h5>
+        <h5 *ngIf="lang ==='ar'" class="category-title"> {{item.attributes | filter: "9"}} </h5>
       </div>
-      <div class="col-lg-2 col-xs-3 category-div-img" routerLink="/{{lang}}/category/items/1">
-        <img class="category-img" src="assets/dynamicImg/need2.png" />
-        <h4 class="category-title">Milk plant</h4>
-      </div>
-      <div class="col-lg-2 col-xs-3 category-div-img" routerLink="/{{lang}}/category/items/1">
-        <img class="category-img" src="assets/dynamicImg/need3.png" />
-        <h4 class="category-title">Detox drink</h4>
-      </div>
-      <div class="col-lg-2 col-xs-3 category-div-img" routerLink="/{{lang}}/category/items/1">
-        <img class="category-img" src="assets/dynamicImg/need4.png" />
-        <h4 class="category-title">Fresh cuts</h4>
-      </div>
-      <div class="col-lg-2 col-xs-3 category-div-img" routerLink="/{{lang}}/category/items/1">
-        <img class="category-img" src="assets/dynamicImg/need1.png" />
-        <h4 class="category-title">Fresh cuts</h4>
-      </div>
-      <div class="col-lg-2 col-xs-3 category-div-img" routerLink="/{{lang}}/category/items/1">
-        <img class="category-img" src="assets/dynamicImg/need2.png" />
-        <h4 class="category-title">Fresh cuts</h4>
-      </div>
-      <div class="col-lg-2 col-xs-3 category-div-img" routerLink="/{{lang}}/category/items/1">
-        <img class="category-img" src="assets/dynamicImg/need3.png" />
-        <h4 class="category-title">Fresh cuts</h4>
-      </div>
+
     </div>
   </div>
 </div>

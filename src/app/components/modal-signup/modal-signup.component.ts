@@ -47,7 +47,10 @@ export class ModalSignupComponent implements OnDestroy {
       cPassword: [null, [Validators.required]],
       fname: [null, [Validators.required]],
       lname: [null, [Validators.required]],
-      phone: [null, [Validators.required, Validators.pattern('^[0-9]*$')]],
+      phone: [null, [Validators.required, Validators
+        .pattern(
+          '^[+]*[(]{0,1}[\u0000-\u007F\u0660-\u0669]{1,3}[)]{0,1}[-\s\./\u0000-\u007F\u0660-\u0669]*$'
+        )]],
     },
       {
         validator: this.checkPasswordMatching
@@ -82,12 +85,15 @@ export class ModalSignupComponent implements OnDestroy {
       },
       'serviceName': 'WSIOrderClientinfo'
     };
-    this.api.call('POST', reqBody).then((obs: Observable<any>) => {
-      obs.subscribe((res: any) => {
-        console.log(res);
+    this.api.call('POST', reqBody).subscribe((res: any) => {
+      if (res.clientRegisterResponse) {
         this.verId = res.clientRegisterResponse.verificationHistID;
         this.showVer = true;
-      });
+      } else {
+        setTimeout(() => {
+          this.signup(value);
+        }, 500);
+      }
     });
   }
 
@@ -111,12 +117,14 @@ export class ModalSignupComponent implements OnDestroy {
       },
       'serviceName': 'WSIOrderClientinfo'
     };
-    this.api.call('POST', verBody).then((obs: Observable<any>) => {
-      obs.subscribe((res: any) => {
-        if (res) {
-          this.updateProfile(vCode);
-        }
-      });
+    this.api.call('POST', verBody).subscribe((res: any) => {
+      if (res) {
+        this.updateProfile(vCode);
+      } else {
+        setTimeout(() => {
+          this.verfication(vCode);
+        }, 500);
+      }
     });
   }
   updateProfile(vCode) {
@@ -161,11 +169,15 @@ export class ModalSignupComponent implements OnDestroy {
       },
       'serviceName': 'WSIOrderClientinfo'
     };
-    this.api.call('POST', reqBody).then((obs: Observable<IClientRegisterResponse>) => {
-      obs.subscribe((res: IClientRegisterResponse) => {
+    this.api.call('POST', reqBody).subscribe((res: IClientRegisterResponse) => {
+      if (res.clientRegisterResponse) {
         this.refreshToken.authToken = res.token;
         this.updateName(res.clientRegisterResponse.clientInfo.clientNumber);
-      });
+      } else {
+        setTimeout(() => {
+          this.updateProfile(vCode);
+        }, 500);
+      }
     });
   }
   updateName(num) {
@@ -202,15 +214,19 @@ export class ModalSignupComponent implements OnDestroy {
         'sourceID': '702000110001'
       }
     };
-    this.api.call('POST', reqBody).then((obs: Observable<UpdateClientInfoResponse>) => {
-      obs.subscribe((res: UpdateClientInfoResponse) => {
+    this.api.call('POST', reqBody).subscribe((res: UpdateClientInfoResponse) => {
+      if (res.clientInfo) {
         const login = new ModalSigninComponent(
-          this.activeModal, this.langS, this.translate, this.formBuilder, this.api, this.authService, this.refreshToken);
+          this.activeModal, this.langS, this.translate, this.formBuilder, this.api, this.authService);
         login.login({
           email: this.userData.email,
           password: this.userData.password,
         });
-      });
+      } else {
+        setTimeout(() => {
+          this.updateName(num);
+        }, 500);
+      }
     });
   }
   ngOnDestroy() {

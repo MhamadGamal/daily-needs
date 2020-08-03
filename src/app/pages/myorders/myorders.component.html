@@ -1,32 +1,32 @@
 <ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
   <li class="nav-item">
     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#current" role="tab" aria-controls="home"
-      aria-selected="true">Current</a>
+      aria-selected="true"> {{'order.current' | translate}} </a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#scheduled" role="tab" aria-controls="profile"
-      aria-selected="false">Scheduled</a>
+      aria-selected="false"> {{'order.Scheduled' | translate}} </a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="contact-tab" data-toggle="tab" href="#previous" role="tab" aria-controls="contact"
-      aria-selected="false">Previous</a>
+      aria-selected="false"> {{'order.Previous' | translate}} </a>
   </li>
 </ul>
 <div class="tab-content mt-4" id="myTabContent">
   <div class="tab-pane fade show active" id="current" role="tabpanel" aria-labelledby="home-tab">
-    <h6 class="submitHead">Submitted</h6>
-    <app-myorders-content [lang]="lang"></app-myorders-content>
-    <h6 class="onwayHead">on the way</h6>
-    <app-myorders-content [lang]="lang"></app-myorders-content>
+    <h6 class="submitHead"> {{'order.Submitted' | translate}}</h6>
+    <app-myorders-content [Orders]="processing"></app-myorders-content>
+    <h6 class="onwayHead"> {{'order.onWay' | translate}}</h6>
+    <app-myorders-content [Orders]="onWay"></app-myorders-content>
   </div>
   <div class="tab-pane fade" id="scheduled" role="tabpanel" aria-labelledby="profile-tab">
-    <h6 class="submitHead">Submitted</h6>
-    <app-myorders-content [lang]="lang"></app-myorders-content>
+    <h6 class="submitHead"> {{'order.Scheduled' | translate}}</h6>
+    <app-myorders-content [Orders]="scheduled"></app-myorders-content>
   </div>
   <div class="tab-pane fade" id="previous" role="tabpanel" aria-labelledby="contact-tab">
-    <h6 class="deliveredHead">Delivered</h6>
-    <app-myorders-content [lang]="lang"></app-myorders-content>
-    <h6 class="cancelHead">Cancelled</h6>
-    <app-myorders-content [lang]="lang"></app-myorders-content>
+    <h6 class="deliveredHead"> {{'order.Delivered' | translate}}</h6>
+    <app-myorders-content [Orders]="previous"></app-myorders-content>
+    <h6 class="cancelHead"> {{'order.Cancelled' | translate}}</h6>
+    <app-myorders-content [Orders]="canceled"></app-myorders-content>
   </div>
 </div>

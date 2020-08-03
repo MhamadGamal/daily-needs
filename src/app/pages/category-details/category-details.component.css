@@ -70,3 +70,8 @@ button:focus{
 ul{
     width: 100%;
 }
+@media (min-width: 776px){
+	.desc{
+		min-height: 250px;
+	}
+}

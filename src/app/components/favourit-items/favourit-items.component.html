@@ -1,55 +1,40 @@
 <div class="cartItems">
-    <table class="table table-bordered text-center">
-      <thead class="thead-light">
-        <tr>
-          <th scope="">Product</th>
-          <th scope="">Unit Info</th>
-          <th scope="">Price</th>
-          <th scope=""></th>
-          <th scope=""></th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td scope="">
-                <i class="fa fa-heart text-danger"></i>
-                <img src="assets/dynamicImg/cartItem.png" />
-              </td>
-              <td>
-                <h5>Carrot</h5>
-                <p>20 EGP</p>
-              </td>
-    
-              <td class="tdPrice">
-                <p>20 EGP</p>
-              </td>
-              <td class="trashIcon">
-                <i class="fa fa-trash"></i>
-              </td>
-              <td class="tdCart">
-                  <button class="btn btn-success btn-addCart">Add to cart</button>
-                </td>
-            </tr>
-        <tr>
-          <td scope="">
-            <i class="fa fa-heart text-danger"></i>
-            <img src="assets/dynamicImg/cartItem.png" />
-          </td>
-          <td>
-            <h5>Carrot</h5>
-            <p>20 EGP</p>
-          </td>
+  <ngx-skeleton-loader *ngIf="!isItemsLoaded" appearance="line" count="5" animation="pulse"
+    [theme]="{ 'border-radius': '0', 'background-color': '#cecece', height: '20px' }">
+  </ngx-skeleton-loader>
+  <table class="table table-bordered text-center" *ngIf="isItemsLoaded">
+    <thead class="thead-light">
+      <tr>
+        <th scope="">{{'favourite.product' | translate}}</th>
+        <th scope="">{{'favourite.uinfo' | translate}}</th>
+        <th scope="">{{'favourite.price' | translate}}</th>
+        <th scope=""></th>
+      </tr>
+    </thead>
+    <tbody>
 
-          <td class="tdPrice">
-            <p>20 EGP</p>
-          </td>
-          <td class="trashIcon">
-            <i class="fa fa-trash"></i>
-          </td>
-          <td class="tdCart">
-              <button class="btn btn-success btn-addCart">Add to cart</button>
-            </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+      <tr *ngFor="let item of favouriteList">
+        <td scope="">
+          <p class="d-flex align-items-center">
+            <i class="fa fa-heart text-danger"></i>
+            <img [src]="environment.imgUrl+'/Items/Small/'+item.itemID+'.png'" (error)="updateImage($event)"
+              class="img-fluid" />
+          </p>
+        </td>
+        <td>
+          <h5 *ngIf="lang ==='en'"> {{item.attributes | filter: "1"}} </h5>
+          <h5 *ngIf="lang ==='ar'"> {{item.attributes | filter: "6"}} </h5>
+          <p> {{item.prices.priceNumber | currency: " EGP "}} </p>
+        </td>
+
+        <td class="tdPrice">
+          <p>{{item.prices.priceNumber | currency: " EGP "}}</p>
+        </td>
+        <td class="tdCart">
+          <button class="btn btn-success btn-addCart"> {{'generalMsg.cart.addToCart' | translate}} </button>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>

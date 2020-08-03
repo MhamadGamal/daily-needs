@@ -1,9 +1,10 @@
 import { LangService } from './../../shared/services/lang.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { IMenu, IresturentItemsInfo, Iattributes } from 'src/app/shared/models/menu';
 import { MenuItemsService } from 'src/app/shared/services/menu-items.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -13,9 +14,9 @@ import { MenuItemsService } from 'src/app/shared/services/menu-items.service';
 export class HomeComponent implements OnInit, OnDestroy {
   filterdCatArr: IresturentItemsInfo[];
   menu: IMenu;
+  isItemLoaded: boolean;
   slides: string[] = [];
-
-
+  environment = environment;
   lang: string;
   subscription: Subscription = new Subscription();
   constructor(private translate: TranslateService, private langS: LangService, private menuItemsService: MenuItemsService) {
@@ -34,30 +35,33 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.filterdCatArr.filter((item: IresturentItemsInfo) => {
         const target = item.attributes.filter((att: Iattributes) => att.attributeID === '120')[0];
         if (target) {
-          this.slides.push('http://foodpage.dnsalias.com//Items/Small/' + item.itemID + '.png');
+          this.slides.push(environment.imgUrl + '/Items/Small/' + item.itemID + '.png');
         }
       });
+      this.isItemLoaded = true;
     }
     if (!this.menu) {
       this.getMenu();
     }
   }
   getMenu() {
-    this.menuItemsService.getMenu().then((res: Observable<IMenu>) => {
-      this.subscription.add(
-        res
-          .subscribe((menu: IMenu) => {
-            this.menu = menu;
-            this.menuItemsService.menu = menu;
-            this.filterdCatArr = menu.restaurantsItemsListResponse.resturentItemsInfo;
-            this.filterdCatArr.filter((item: IresturentItemsInfo) => {
-              const target = item.attributes.filter((att: Iattributes) => att.attributeID === '120')[0];
-              if (target) {
-                this.slides.push('http://foodpage.dnsalias.com//Items/Small/' + item.itemID + '.png');
-              }
-            });
-          })
-      );
+    this.menuItemsService.getMenu().subscribe((menu: IMenu) => {
+      if (menu.restaurantsItemsListResponse) {
+        this.menu = menu;
+        this.menuItemsService.menu = menu;
+        this.filterdCatArr = menu.restaurantsItemsListResponse.resturentItemsInfo;
+        this.filterdCatArr.filter((item: IresturentItemsInfo) => {
+          const target = item.attributes.filter((att: Iattributes) => att.attributeID === '120')[0];
+          if (target) {
+            this.slides.push(environment.imgUrl + '/Items/Small/' + item.itemID + '.png');
+          }
+        });
+        this.isItemLoaded = true;
+      } else {
+        setTimeout(() => {
+          this.getMenu();
+        }, 500);
+      }
     });
   }
 

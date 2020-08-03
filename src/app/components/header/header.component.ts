@@ -1,12 +1,13 @@
+import { CartService } from './../../shared/services/cart.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { LangService } from './../../shared/services/lang.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { DialogService } from 'ng6-bootstrap-modal';
 import { ModalSignupComponent } from '../modal-signup/modal-signup.component';
 import { ModalSigninComponent } from '../modal-signin/modal-signin.component';
 import { Subscription } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -15,15 +16,17 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  lang: string;
   isLogged: boolean;
-  subscription: Subscription = new Subscription();
   showSignIn = false;
+  lang: string;
+  environment = environment;
+  subscription: Subscription = new Subscription();
   constructor(
     private translate: TranslateService,
     private langS: LangService,
     private modalService: NgbModal,
-    public authService: AuthService
+    public authService: AuthService,
+    public cartService: CartService
   ) {
     this.subscription.add(
       this.langS.lang.subscribe(lang => {
@@ -53,7 +56,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
   }
-
+  updateImage(ev) {
+    ev.target.src = 'assets/images/default_image.png';
+  }
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

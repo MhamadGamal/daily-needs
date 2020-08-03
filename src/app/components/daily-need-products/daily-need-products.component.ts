@@ -1,12 +1,12 @@
 import { ICategoriesInfo, Iattributes, IresturentItemsInfo } from './../../shared/models/menu';
 import { MenuItemsService } from './../../shared/services/menu-items.service';
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, OnChanges, DoCheck } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { LangService } from 'src/app/shared/services/lang.service';
 import { IMenu } from 'src/app/shared/models/menu';
-import { HealthInfoService } from 'src/app/shared/services/firebase/healthInfo.service';
-import { IHealthInfo } from 'src/app/shared/services/firebase/policy.model';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-daily-need-products',
@@ -14,13 +14,17 @@ import { IHealthInfo } from 'src/app/shared/services/firebase/policy.model';
   styleUrls: ['./daily-need-products.component.css']
 })
 export class DailyNeedProductsComponent implements OnInit, OnDestroy {
-  menu: IMenu;
   lang: string;
   subscription: Subscription = new Subscription();
   filterdCat = 'all';
+  menu: IMenu;
   filterdCatArr: IresturentItemsInfo[];
   max = 8;
-  showLoadMore: boolean = true;
+  isItemLoaded: boolean;
+  showLoadMore = true;
+  @Input() type: string;
+  @Input() filterCList: ICategoriesInfo;
+  environment = environment;
   constructor(private translate: TranslateService, private langS: LangService,
     private menuItemsService: MenuItemsService
   ) {
@@ -35,22 +39,32 @@ export class DailyNeedProductsComponent implements OnInit, OnDestroy {
     if (this.menuItemsService.menu) {
       this.menu = this.menuItemsService.menu;
       this.filterdCatArr = this.menuItemsService.menu.restaurantsItemsListResponse.resturentItemsInfo;
+      this.isItemLoaded = true;
+      if (this.filterCList) {
+        this.filterr(this.filterCList);
+      }
     }
     if (!this.menu) {
       this.getMenu();
     }
+
   }
+
   getMenu() {
-    this.menuItemsService.getMenu().then((res: Observable<IMenu>) => {
-      this.subscription.add(
-        res
-          .subscribe((menu: IMenu) => {
-            console.log(menu);
-            this.menu = menu;
-            this.menuItemsService.menu = menu;
-            this.filterdCatArr = menu.restaurantsItemsListResponse.resturentItemsInfo;
-          })
-      );
+    this.menuItemsService.getMenu().subscribe((menu: IMenu) => {
+      if (menu.restaurantsItemsListResponse) {
+        this.menu = menu;
+        this.menuItemsService.menu = menu;
+        this.filterdCatArr = menu.restaurantsItemsListResponse.resturentItemsInfo;
+        this.isItemLoaded = true;
+        if (this.filterCList) {
+          this.filterr(this.filterCList);
+        }
+      } else {
+        setTimeout(() => {
+          this.getMenu();
+        }, 500);
+      }
     });
   }
 

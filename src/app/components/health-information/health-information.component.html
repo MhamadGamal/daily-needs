@@ -2,7 +2,7 @@
 	<div class="container">
 		<h2 class="dailyNeed-title dailyNeed-title-font">{{"home.health.title" | translate}}</h2>
 		<div class="row ">
-			<div *ngFor="let item of healthInfo | slice: 0: 3" class="col-lg-4 col-sm-6 dailyNeed-div-img">
+			<div *ngFor="let item of dashboardHealthInfo" class="col-lg-4 col-sm-6 dailyNeed-div-img">
 				<img class="healthInfo-img" [src]="item?.img_url" (error)="updateImage($event)" />
 				<h5 class="wrapTxt title" routerLink="/health/{{item.id}}">
 					<ng-container *ngIf="language === 'en'"> {{item.title}} </ng-container>
@@ -18,6 +18,9 @@
 			</div>
 
 		</div>
+		<ngx-skeleton-loader *ngIf="!isItemLoaded" appearance="circle" count="3" animation="pulse"
+			[theme]="{ 'border-radius': '0', 'background-color': '#cecece', height: '200px', width: '30%' }">
+		</ngx-skeleton-loader>
 
 	</div>
 </div>

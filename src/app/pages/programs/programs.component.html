@@ -1,79 +1,75 @@
 <div class="slider-details text-center">
   <img class="smallImgSlider" src="assets/dynamicImg/category.png" />
-  <p class="sliderTxt">Programs</p>
+  <p class="sliderTxt"> {{'programs.title' | translate}} </p>
 </div>
 <mc-breadcrumbs></mc-breadcrumbs>
 <div class="programsDesc">
   <div class="container">
-    <h4>Why programs?</h4>
+    <h4> {{'programs.wp' | translate}} </h4>
     <div>
-      Daily J is a system that serves multiple healthy nutrition products Provide and deliver ready-made healthy
-      nutrition juice, that can work as Detoxes for the body and give it the amount of Vegetables and Fruits needed very
-      easy to use , order and deliver your orders in your suitable time
+      {{'programs.desc' | translate}}
     </div>
   </div>
 </div>
 
 <div class="programsSummary">
   <div class="container">
+    <ngx-skeleton-loader *ngIf="!isItemLoaded" appearance="circle" count="2" animation="pulse"
+      [theme]="{ 'border-radius': '0', 'background-color': '#cecece', height: '200px', width: '45%' }">
+    </ngx-skeleton-loader>
     <div class="row">
-      <div class="col-lg-6 col-sm-12 programCard" routerLink="/{{lang}}/programs/1">
-        <img class="programImg" src="assets/dynamicImg/program1.png" />
-        <h4 class="programTitle">3 Days Detox program packaging.</h4>
-        <div class="row">
-          <div class="col-lg-3 newPrice">
-            100 EGP
+      <div *ngFor="let item of programms" class="col-lg-6">
+        <div class="programCard">
+          <div class="img-holder" [routerLink]="item.prices?'/programs/'+item.itemID : '/programs/'+item.categoryID">
+            <img class="programImg"
+              [src]="item.prices?environment.imgUrl+'/Items/Small/'+item.itemID+'.png': environment.imgUrl+'/Program/Small/'+item.categoryID+'.png'"
+              (error)="updateImage($event)" />
           </div>
-          <div class="col-lg-4 oldPrice">
-            150 EGP
-          </div>
-          <div class="col-lg-5 cardBtn">
-            <button class="btn btn-success btn-addCart">Add to cart</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6 col-sm-12 programCard" routerLink="/{{lang}}/programs/1">
-        <img class="programImg" src="assets/dynamicImg/program3.png" />
-        <h4 class="programTitle">5 Days Detox program packaging.</h4>
-        <div class="row">
-          <div class="col-lg-3 newPrice">
-            100 EGP
-          </div>
-          <div class="col-lg-4 oldPrice">
-            150 EGP
-          </div>
-          <div class="col-lg-5 cardBtn">
-            <button class="btn btn-success btn-addCart">Add to cart</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6 col-sm-12 programCard" routerLink="/{{lang}}/programs/1">
-        <img class="programImg" src="assets/dynamicImg/program2.png" />
-        <h4 class="programTitle">7 Days Detox program packaging.</h4>
-        <div class="row">
-          <div class="col-lg-3 newPrice">
-            100 EGP
-          </div>
-          <div class="col-lg-4 oldPrice">
-            150 EGP
-          </div>
-          <div class="col-lg-5 cardBtn">
-            <button class="btn btn-success btn-addCart">Add to cart</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6 col-sm-12 programCard" routerLink="/{{lang}}/programs/1">
-        <img class="programImg" src="assets/dynamicImg/program1.png" />
-        <h4 class="programTitle">Soon</h4>
-        <div class="row">
-          <div class="col-lg-3 newPrice">
-            100 EGP
-          </div>
-          <div class="col-lg-4 oldPrice">
-            150 EGP
-          </div>
-          <div class="col-lg-5 cardBtn">
-            <button class="btn btn-success btn-addCart">Add to cart</button>
+          <div class="info">
+            <ng-container *ngIf="item.prices">
+              <h4 class="programTitle" *ngIf="lang ==='en'">
+                {{item.attributes | filter: "1"}} </h4>
+              <h4 class="programTitle" *ngIf="lang ==='ar'">
+                {{item.attributes | filter: "6"}} </h4>
+            </ng-container>
+            <ng-container *ngIf="!item.prices">
+              <h4 class="programTitle" *ngIf="lang ==='en'">
+                {{item.attributes | filter: "4"}} </h4>
+              <h4 class="programTitle" *ngIf="lang ==='ar'">
+                {{item.attributes | filter: "9"}} </h4>
+            </ng-container>
+            <div class="row">
+              <ng-container *ngIf="item.prices?.discountValue && item.prices?.discountValue != 0;else noDiscount">
+                <div class="col-lg-3 newPrice">
+                  {{(item.prices?.priceNumber - item.prices?.discountValue) | currency: " EGP "}}
+                </div>
+                <div class="col-lg-4 oldPrice">
+                  {{item.prices?.priceNumber | currency: " EGP "}}
+                </div>
+                <div class="col-lg-5 cardBtn">
+                  <button (click)="id = item.prices? item.itemID: item.categoryID;  addToCart(id)"
+                    class="btn btn-success btn-addCart"> {{'generalMsg.cart.addToCart' | translate}} </button>
+                </div>
+              </ng-container>
+              <ng-template #noDiscount>
+                <div class="col-lg-7 newPrice">
+                  <div *ngIf="item.prices">
+                    {{item.prices?.priceNumber | currency: " EGP "}}
+                  </div>
+                </div>
+                <div class="col-lg-5 cardBtn">
+                  <button (click)="id = item.prices? item.itemID: item.categoryID;  addToCart(id)"
+                    class="btn btn-success btn-addCart"> {{'generalMsg.cart.addToCart' | translate}} </button>
+                </div>
+              </ng-template>
+
+              <!-- <ng-container>
+                <div class="col-lg-7"></div>
+                <div class="col-lg-5 cardBtn" *ngIf="item.prices">
+                  <button class="btn btn-success btn-addCart"> {{'generalMsg.cart.addToCart' | translate}} </button>
+                </div>
+              </ng-container> -->
+            </div>
           </div>
         </div>
       </div>
@@ -81,4 +77,5 @@
   </div>
 </div>
 
-<app-related-products [lang]="lang"></app-related-products>
+<app-related-products [relatedProg]="relatedItems" [lang]="lang">
+</app-related-products>

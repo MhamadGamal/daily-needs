@@ -1,3 +1,4 @@
+import { DailyNeedProductsComponent } from 'src/app/components/daily-need-products/daily-need-products.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -15,6 +16,8 @@ import { FilterPipe } from 'src/app/shared/pipes/filter.pipe';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { NotifierModule } from 'angular-notifier';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -29,7 +32,7 @@ const config: SwiperConfigInterface = {
   imports: [
     CommonModule,
     TranslateModule.forRoot({
-      defaultLanguage: 'ar',
+      defaultLanguage: 'en',
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
@@ -44,13 +47,18 @@ const config: SwiperConfigInterface = {
     FormsModule,
     MatCarouselModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    NgxSkeletonLoaderModule,
+    NotifierModule
   ],
   declarations: [
     AddNewAddressComponent,
-    FilterPipe
+    FilterPipe,
+    DailyNeedProductsComponent,
+
   ],
   exports: [
+    DailyNeedProductsComponent,
     AddNewAddressComponent,
     TranslateModule,
     SwiperModule,
@@ -60,7 +68,9 @@ const config: SwiperConfigInterface = {
     MatCarouselModule,
     FilterPipe,
     AngularFireModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    NgxSkeletonLoaderModule,
+    NotifierModule
 
   ],
   providers: [

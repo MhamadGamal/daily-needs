@@ -73,6 +73,8 @@ export interface IrestaurantAdditonalData {
 }
 export interface IresturentItemsInfo {
     itemID?: string;
+    cartItemsNum?: number;
+    selectedTime?: number;
     itemName?: string;
     itemDesc?: string;
     isFavorite?: string;
@@ -82,8 +84,8 @@ export interface IresturentItemsInfo {
     prices?: Iprices;
 }
 export interface Iprices {
-    priceNumber?: string;
-    discountValue?: string;
+    priceNumber?: number;
+    discountValue?: number;
     discountTypeID?: string;
     discountTypeName?: string;
     categoryName?: string;

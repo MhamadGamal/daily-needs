@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HealthDetailsComponent implements OnInit, OnDestroy {
   id: string;
+  isItemLoaded: boolean;
   subscription: Subscription = new Subscription();
   healthInfo: IHealthInfo[];
   targetHealthInfo: IHealthInfo;
@@ -35,6 +36,7 @@ export class HealthDetailsComponent implements OnInit, OnDestroy {
     this.healthInfoService.getHealthInfo().subscribe((data: IHealthInfo[]) => {
       this.healthInfo = data;
       this.targetHealthInfo = data.filter((item: IHealthInfo) => item.id === this.id)[0];
+      this.isItemLoaded = true;
     });
   }
   updateImage(ev) {

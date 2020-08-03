@@ -63,16 +63,29 @@
 </form>
 <form [formGroup]="addressForm">
   <div class="row mt-3">
-    <div class="col-md-12">
+    <ngx-skeleton-loader *ngIf="!isAddressLoaded" appearance="line" count="2" animation="pulse"
+      [theme]="{ 'border-radius': '0', 'background-color': '#cecece', height: '20px' }">
+    </ngx-skeleton-loader>
+    <div *ngIf="isAddressLoaded" class="col-md-12">
       <div class="form-group">
         <h5>{{"account.addresses" | translate}}</h5>
         <hr>
         <div class="row" *ngIf="hasAddress">
           <div class="col-lg-8 pl-0 pr-0 row">
-            <input type="text" id="address" formControlName="address" class="form-control col addressList">
-            <a href="" class="col mt-1 edit-address">
+            <!-- <input type="text" id="address" formControlName="address" class="form-control col addressList"> -->
+            <ul class="list-group">
+              <li class="list-item" *ngFor="let address of addressList">
+                {{
+                  address.addrClientCity + ' , ' +
+                  address.addrLine1 + ' , ' +
+                  address.addrLine2 + ' , ' +
+                  address.addrLine7
+                }}
+              </li>
+            </ul>
+            <!-- <a href="" class="col mt-1 edit-address">
               <i class="fa fa-edit"></i>
-            </a>
+            </a> -->
           </div>
           <div class="col-lg-2 icon-control">
 
@@ -83,12 +96,7 @@
         </div>
 
 
-        <!-- <div class="form-control-feedback"
-              *ngIf="(form.get('type').touched  && form.get('type').invalid)">
-              <span *ngIf="form.get('type').errors.required" class="text-danger">
-                {{ 'generalMsg.error.requiredField' | translate }}
-              </span>
-            </div> -->
+
       </div>
     </div>
     <!--/span-->

@@ -13,7 +13,9 @@ import { HealthInfoService } from 'src/app/shared/services/firebase/healthInfo.s
 export class HealthInformationComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription();
   healthInfo: IHealthInfo[];
+  dashboardHealthInfo: IHealthInfo[];
   language: string;
+  isItemLoaded: boolean;
   constructor(private translate: TranslateService, private langS: LangService, private healthInfoService: HealthInfoService) {
     this.subscription.add(
       this.langS.lang.subscribe(lang => {
@@ -24,7 +26,10 @@ export class HealthInformationComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.healthInfo = this.healthInfoService.healthInfo;
-    if (!this.healthInfo) {
+    if (this.healthInfo) {
+      this.dashboardHealthInfo = this.healthInfo.filter((item: IHealthInfo) => item.isDashBoard === true);
+      this.isItemLoaded = true;
+    } else {
       this.getHealthInfo();
     }
   }
@@ -32,7 +37,8 @@ export class HealthInformationComponent implements OnInit, OnDestroy {
     this.healthInfoService.getHealthInfo().subscribe((data: IHealthInfo[]) => {
       this.healthInfo = data;
       this.healthInfoService.healthInfo = data;
-
+      this.dashboardHealthInfo = this.healthInfo.filter((item: IHealthInfo) => item.isDashBoard === true);
+      this.isItemLoaded = true;
     });
   }
   updateImage(ev) {

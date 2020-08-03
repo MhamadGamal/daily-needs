@@ -13,6 +13,7 @@ import { HealthInfoService } from 'src/app/shared/services/firebase/healthInfo.s
 })
 export class HealthComponent implements OnInit, OnDestroy {
   language: string;
+  isItemLoaded: boolean;
   subscription: Subscription = new Subscription();
   healthInfo: IHealthInfo[];
   constructor(private translate: TranslateService, private langS: LangService, private healthInfoService: HealthInfoService) {
@@ -27,13 +28,19 @@ export class HealthComponent implements OnInit, OnDestroy {
     this.healthInfo = this.healthInfoService.healthInfo;
     if (!this.healthInfo) {
       this.getHealthInfo();
+    } else {
+      this.isItemLoaded = true;
     }
   }
   getHealthInfo() {
     this.healthInfoService.getHealthInfo().subscribe((data: IHealthInfo[]) => {
       this.healthInfo = data;
       this.healthInfoService.healthInfo = data;
+      this.isItemLoaded = true;
     });
+  }
+  updateImage(ev) {
+    ev.target.src = 'assets/images/default_image.png';
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();

@@ -1,37 +1,56 @@
-import { Component, OnInit ,Input } from '@angular/core';
-import { SwiperComponent, SwiperDirective, SwiperConfigInterface,
-  SwiperScrollbarInterface, SwiperPaginationInterface } from 'ngx-swiper-wrapper';
+import { environment } from 'src/environments/environment';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { IresturentItemsInfo } from 'src/app/shared/models/menu';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-related-products',
   templateUrl: './related-products.component.html',
   styleUrls: ['./related-products.component.css']
 })
-export class RelatedProductsComponent implements OnInit {
-
-  @Input() lang;
-  public slides = [
-    'assets/dynamicImg/need1.png',
-    'assets/dynamicImg/need2.png',
-    'assets/dynamicImg/need3.png',
-    'assets/dynamicImg/need4.png',
-    'assets/dynamicImg/need2.png',
-    'assets/dynamicImg/need3.png',
-  ];
-
-  public config: SwiperConfigInterface = {
-    direction: 'horizontal',
-    slidesPerView: 3,
-    keyboard: true,
-    mousewheel: false,
-    scrollbar: false,
-    navigation: true,
-    pagination: false
+export class RelatedProductsComponent implements OnInit, OnChanges {
+  environment = environment;
+  @Input() relatedProg: Array<IresturentItemsInfo>;
+  @Input() lang: string;
+  slides;
+  isItemLoaded: boolean;
+  subscription: Subscription = new Subscription();
+  CarouselOptions = {
+    items: 4,
+    dots: false,
+    nav: true,
+    margin: 20,
+    navText: ['<i class="fas fa-chevron-left"></i>', '<i class="fas fa-chevron-right"></i>'],
+    // rtl: true,
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: 2
+      },
+      1000: {
+        items: 3
+      },
+      1200: {
+        items: 4
+      }
+    }
   };
-
-  constructor() { }
-
-  ngOnInit() {
+  constructor() {
   }
 
+  ngOnChanges() {
+    if (this.CarouselOptions) {
+      // this.CarouselOptions.rtl = this.lang === 'en' ? false : true;
+    }
+    this.slides = this.relatedProg;
+  }
+  ngOnInit() {
+    this.isItemLoaded = true;
+  }
+  updateImage(ev) {
+    ev.target.src = 'assets/images/default_image.png';
+  }
 }

@@ -1,64 +1,26 @@
-    <div class="row healthItem">
-      <div class="col-lg-4 healthImgDiv pr-0 pl-0" routerLink="/{{lang}}/health/1">
-        <img class="healthImg" src="assets/dynamicImg/healthInfo1.png" />
-      </div>
-      <div class="col-lg-6 healthTxtDiv">
-        <div class="row infoLabel">
-            <i class="far fa-calendar-alt "></i>
-            <span>4 December 2019</span>
-            <i class="far fa-comments"></i>
-            <span>13</span>
-        </div>
-        <h5 class="wrapTxt title" routerLink="/{{lang}}/health/1">How to steam & purée</h5>
-        <div class="wrapTxt">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-        </div>
-        <div class="mt-3 mb-3">
-            <div class="divSeparatorFooter"></div>
-             <a>Read more.....</a>
-         </div>
-      </div>
+<div class="row healthItem" *ngFor="let item of favHealthInfo">
+  <div class="col-lg-5 healthImgDiv pr-0 pl-0" routerLink="/health/{{item.id}}">
+    <img class="healthImg" [src]="item.img_url" (error)="updateImage($event)" />
+  </div>
+  <div class="col-lg-6 healthTxtDiv">
+    <div class="row infoLabel">
+      <span><i class="far fa-calendar-alt"></i> {{item.date}} </span>
+      <span><i class="far fa-comments"></i> {{item.comments}} </span>
     </div>
-    <div class="row healthItem" >
-      <div class="col-lg-4 healthImgDiv pr-0 pl-0" routerLink="/{{lang}}/health/1">
-        <img class="healthImg" src="assets/dynamicImg/healthInfo2.png" />
-      </div>
-      <div class="col-lg-6 healthTxtDiv">
-        <div class="row infoLabel">
-            <i class="far fa-calendar-alt "></i>
-            <span>4 December 2019</span>
-            <i class="far fa-comments"></i>
-            <span>13</span>
-        </div>
-        <h5 class="wrapTxt title" routerLink="/{{lang}}/health/1">Great bulk recipes to help</h5>
-        <div class="wrapTxt">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-        </div>
-        <div class="mt-3 mb-3">
-            <div class="divSeparatorFooter"></div>
-             <a>Read more.....</a>
-         </div>
-      </div>
+    <h5 class="wrapTxt title" routerLink="/health/{{item.id}}">
+      <ng-container *ngIf="language === 'en'"> {{item.title}} </ng-container>
+      <ng-container *ngIf="language === 'ar'"> {{item.titleAr}} </ng-container>
+    </h5>
+    <div class="wrapTxt">
+      <ng-container *ngIf="language === 'en'"> {{item.description}} </ng-container>
+      <ng-container *ngIf="language === 'ar'"> {{item.descAr}} </ng-container>
     </div>
-    <div class="row healthItem" >
-      <div class="col-lg-4 healthImgDiv pr-0 pl-0" routerLink="/{{lang}}/health/1">
-        <img class="healthImg" src="assets/dynamicImg/healthInfo3.png" />
-      </div>
-      <div class="col-lg-6 healthTxtDiv">
-        <div class="row infoLabel">
-            <i class="far fa-calendar-alt "></i>
-            <span>4 December 2019</span>
-            <i class="far fa-comments"></i>
-            <span>13</span>
-        </div>
-        <h5 class="wrapTxt title" routerLink="/{{lang}}/health/1">How can salmon be raised</h5>
-        <div class="wrapTxt">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-        </div>
-        <div class="mt-3 mb-3">
-            <div class="divSeparatorFooter"></div>
-             <a>Read more.....</a>
-         </div>
-      </div>
+    <div class="mt-3 mb-3">
+      <div class="divSeparatorFooter"></div>
+      <a routerLink="/health/{{item.id}}">{{"health.more" | translate}}</a>
     </div>
-  
+  </div>
+</div>
+<ngx-skeleton-loader *ngIf="!isItemsLoaded" appearance="line" count="5" animation="pulse"
+  [theme]="{ 'border-radius': '0', 'background-color': '#cecece', height: '20px' }">
+</ngx-skeleton-loader>

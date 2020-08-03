@@ -1,3 +1,6 @@
+@import '../node_modules/angular-notifier/styles.css';
+@import '../node_modules/angular-notifier/styles/core.css';
+@import '../node_modules/angular-notifier/styles/themes/theme-material.css';
 /* You can add global styles to this file, and also import other style files */
 /* html {
 	font-family: HelveticaNeue !important;
@@ -465,7 +468,9 @@ li.active , a.active ,.nav-item .active ,.navbar-light .navbar-nav .active>.nav-
 }
 
 .healthInfo-img{
-	width: 100%
+	width: 100%;
+    min-height: 210px;
+    margin-bottom: 15px;
 }
 
 .healthReadMore{
@@ -610,7 +615,9 @@ table {
 	color : white !important;
 	background-color : rgba(255,159,0,1) !important;
 }
-
+div:focus{
+	outline: none !important;
+}
 .clear{
 	clear: both;
 }
@@ -812,4 +819,68 @@ button:focus{
 
 a, .healthReadMore{
 	cursor: pointer !important;
+}
+
+
+/*  owl carousel settings */
+.owl-carousel{
+	direction: ltr !important;
+}
+.owl-nav{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.owl-nav .owl-prev,
+.owl-nav .owl-next{
+	position: absolute;
+	top: 24%;
+	direction: ltr !important;
+
+}
+.owl-theme .owl-nav [class*=owl-]{
+	color: #313131;
+	font-size: 2.5rem;
+	background: transparent;
+}
+.owl-nav button.disabled:hover {
+	cursor: not-allowed;
+}
+.owl-nav button span {
+	font-size: 4rem;
+}
+.owl-nav .owl-prev {
+	left: -60px;
+}
+.owl-nav .owl-next {
+	right: -60px;
+}
+.owl-theme .owl-nav [class*=owl-]:hover {
+    background: transparent;
+    color: #4c4b4b;
+    text-decoration: none;
+}
+.notifier__notification {
+	top: 10% !important;
+	right: 20px !important;
+	left: auto !important;
+	bottom: auto !important;
+}
+body[lang="ar"] .notifier__notification {
+	top: 10% !important;
+	left: 20px !important;
+	right: auto !important;
+	bottom: auto !important;
+}
+.notifier__notification--material .notifier__notification-button{
+	margin: 0 5px !important;
+}
+.list-group{list-style: none; padding: 0; width: 100%;}
+.list-group > li {
+	background-color: rgb(240, 239, 240);
+	padding: 5px 10px;
+	margin: 5px 0;
 }

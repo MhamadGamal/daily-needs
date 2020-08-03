@@ -9,33 +9,48 @@
       <img class="titleIcon" src="assets/images/titleIcon.png" />
       <div class="divSeparator"></div>
     </div>
+    <ng-container *ngIf="isItemLoaded">
+      <div class="dailyNeed-title">
+        <a class="dailyNeed-link" [class]="{'active': filterdCat === 'all'}"
+          (click)="filterdCat = 'all'; filterr('all')">{{"home.dailyNeeds.filter.all" | translate}}</a>
+        <ng-container *ngFor="let item of menu?.restaurantsItemsListResponse.categoryType.categoriesInfo">
+          <div class="divSeparator"></div>
+          <a *ngIf="lang ==='en'" class="dailyNeed-link"
+            [class]="{'active': filterdCat === (item.attributes | filter: '4') }"
+            (click)="filterr(item)">{{item.attributes | filter: "4"}}</a>
 
-    <div class="dailyNeed-title">
-      <a class="dailyNeed-link" [class]="{'active': filterdCat === 'all'}"
-        (click)="filterdCat = 'all'; filterr('all')">{{"home.dailyNeeds.filter.all" | translate}}</a>
-      <ng-container *ngFor="let item of menu?.restaurantsItemsListResponse.categoryType.categoriesInfo">
-        <div class="divSeparator"></div>
-        <a *ngIf="lang ==='en'" class="dailyNeed-link"
-          [class]="{'active': filterdCat === (item.attributes | filter: '4') }"
-          (click)="filterr(item)">{{item.attributes | filter: "4"}}</a>
+          <a *ngIf="lang ==='ar'" class="dailyNeed-link"
+            [class]="{'active': filterdCat === (item.attributes | filter: '9') }"
+            (click)="filterr( item)">{{item.attributes | filter: "9"}}</a>
+        </ng-container>
 
-        <a *ngIf="lang ==='ar'" class="dailyNeed-link"
-          [class]="{'active': filterdCat === (item.attributes | filter: '9') }"
-          (click)="filterr( item)">{{item.attributes | filter: "9"}}</a>
-      </ng-container>
-
-    </div>
-    <div class="row">
-      <div *ngFor="let item of filterdCatArr | slice: 0: max" class="col-lg-3   col-md-4 col-sm-6 dailyNeed-div-img">
-        <img class="dailyNeed-img" [src]="'http://foodpage.dnsalias.com//Items/Small/'+item.itemID+'.png'"
-          (error)="updateImage($event)" />
-        <h4 *ngIf="lang ==='en'" class="dailyNeed-title"> {{item.attributes | filter: "1"}} </h4>
-        <h4 *ngIf="lang ==='ar'" class="dailyNeed-title"> {{item.attributes | filter: "6"}} </h4>
-        <p class="dailyNeed-price"> {{item.prices.priceNumber | currency: "EGP"}} </p>
       </div>
-    </div>
-    <button *ngIf="filterdCatArr?.length > 7  && showLoadMore  " class="btn btn-success btn-more"
-      (click)="loadMore()">{{"home.dailyNeeds.seeMore" | translate}}</button>
+      <div class="row">
+        <div *ngFor="let item of filterdCatArr | slice: 0: max" class="col-lg-3   col-md-4 col-sm-6 dailyNeed-div-img"
+          routerLink="/category/items/item-details/{{item.itemID}}">
+          <img class="dailyNeed-img" [src]="environment.imgUrl+'/Items/Small/'+item.itemID+'.png'"
+            (error)="updateImage($event)" />
+          <h4 *ngIf="lang ==='en'" class="dailyNeed-title"> {{item.attributes | filter: "1"}} </h4>
+          <h4 *ngIf="lang ==='ar'" class="dailyNeed-title"> {{item.attributes | filter: "6"}} </h4>
+          <p *ngIf="!type || type == 'cList'" class="dailyNeed-price"> {{item.prices.priceNumber | currency: " EGP "}}
+          </p>
+          <div *ngIf="type == 'cList' && item.prices.discountValue && item.prices.discountValue != 0"
+            class="dailyNeed-price row">
+            {{item.prices.discountValue}}
+            <br>
+            <div class="col-lg-6 new-price">
+              {{(item.prices.priceNumber - item.prices.discountValue) | currency: " EGP "}}
+            </div>
+            <div class="col-lg-6 old-price">{{item.prices.priceNumber | currency: " EGP "}}</div>
+          </div>
+        </div>
+      </div>
+      <button *ngIf="filterdCatArr?.length > 7  && showLoadMore  " class="btn btn-success btn-more"
+        (click)="loadMore()">{{"home.dailyNeeds.seeMore" | translate}}</button>
+    </ng-container>
+    <ngx-skeleton-loader *ngIf="!isItemLoaded" appearance="circle" count="6" animation="pulse"
+      [theme]="{ 'border-radius': '0', 'background-color': '#cecece', height: '200px', width: '30%' }">
+    </ngx-skeleton-loader>
 
   </div>
 </div>

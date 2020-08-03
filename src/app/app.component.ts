@@ -11,9 +11,9 @@ import { RefreshTokenService } from './shared/services/refreshtoken.service';
 })
 export class AppComponent implements OnInit {
   constructor(public translate: TranslateService, private langS: LangService, private tokenService: RefreshTokenService) {
-    this.tokenService.getToken().subscribe((res: any) => {
-      this.tokenService.authToken = res.token;
-    });
+    // this.tokenService.getToken().subscribe((res: any) => {
+    //   this.tokenService.authToken = res.token;
+    // });
   }
   ngOnInit() {
     this.langS.lang.subscribe(lang => {

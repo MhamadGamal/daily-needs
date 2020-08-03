@@ -7,6 +7,7 @@ import { ApiInterceptorService } from 'src/app/shared/interceptor/api-intercepto
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { UpdateClientInfoResponse, IUpdateClientInfoResponse } from 'src/app/shared/models/logined-user-data';
 import { ModalSigninComponent } from '../modal-signin/modal-signin.component';
+import { IAddressInfo } from 'src/app/shared/models/address';
 
 declare var $: any;
 
@@ -16,8 +17,8 @@ declare var $: any;
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
-
-
+  addressList: Array<IAddressInfo>;
+  isAddressLoaded: boolean;
   isEdit: boolean;
   form: FormGroup;
   addressForm: FormGroup;
@@ -67,7 +68,7 @@ export class AccountComponent implements OnInit {
     this.form.get('lastName').enable();
     this.form.get('email').enable();
     this.form.get('phone').enable();
-    this.form.get('address').enable();
+    // this.form.get('address').enable();
     this.isEdit = true;
   }
 
@@ -105,12 +106,14 @@ export class AccountComponent implements OnInit {
         'sourceID': '702000110001'
       }
     };
-    this.api.call('POST', reqBody).then((obs: Observable<IUpdateClientInfoResponse>) => {
-      obs.subscribe((res: IUpdateClientInfoResponse) => {
+    this.api.call('POST', reqBody).subscribe((res: IUpdateClientInfoResponse) => {
+      if (res.updateClientInfoResponse) {
         this.authService.loginedUserData.loginAuthenticationResponse.clientInfo.email = res.updateClientInfoResponse.clientInfo.email;
-        this.authService.loginedUserData.loginAuthenticationResponse.clientInfo.firstName = res.updateClientInfoResponse.clientInfo.firstName;
+        this.authService.loginedUserData.loginAuthenticationResponse.clientInfo.firstName =
+          res.updateClientInfoResponse.clientInfo.firstName;
         this.authService.loginedUserData.loginAuthenticationResponse.clientInfo.lastName = res.updateClientInfoResponse.clientInfo.lastName;
-        this.authService.loginedUserData.loginAuthenticationResponse.clientInfo.mobileNumber = res.updateClientInfoResponse.clientInfo.mobileNumber;
+        this.authService.loginedUserData.loginAuthenticationResponse.clientInfo.mobileNumber =
+          res.updateClientInfoResponse.clientInfo.mobileNumber;
         this.authService.updateData();
         this.form.get('firstName').disable();
         this.form.get('lastName').disable();
@@ -118,7 +121,11 @@ export class AccountComponent implements OnInit {
         this.form.get('phone').disable();
         this.form.get('address').disable();
         this.isEdit = false;
-      });
+      } else {
+        setTimeout(() => {
+          this.saveForm(value);
+        }, 500);
+      }
     });
 
   }
@@ -135,18 +142,38 @@ export class AccountComponent implements OnInit {
       },
       'serviceName': 'WSIOrderClientinfo'
     };
-    this.api.call('POST', reqBody).then((obs: Observable<any>) => {
-      obs.subscribe((res: any) => {
-        if (res.retrieveClientAddressResponse.clientAddressList) {
-          this.hasAddress = true;
-          this.addressForm.get('address').setValue(
-            res.retrieveClientAddressResponse.clientAddressList.addrClientCity + ' , ' +
-            res.retrieveClientAddressResponse.clientAddressList.addrLine1 + ' , ' +
-            res.retrieveClientAddressResponse.clientAddressList.addrLine2 + ' , ' +
-            res.retrieveClientAddressResponse.clientAddressList.addrLine7
-          );
+    this.api.call('POST', reqBody).subscribe((res: any) => {
+      debugger;
+      if (res.retrieveClientAddressResponse) {
+        if (Array.isArray(res.retrieveClientAddressResponse.clientAddressList)) {
+          this.addressList = res.retrieveClientAddressResponse.clientAddressList;
+        } else {
+          this.addressList.push({
+            FGeoLocationLat: res.retrieveClientAddressResponse.clientAddressList.FGeoLocationLat,
+            FGeoLocationLong: res.retrieveClientAddressResponse.clientAddressList.FGeoLocationLong,
+            addrClientCity: res.retrieveClientAddressResponse.clientAddressList.addrClientCity,
+            addrLine1: res.retrieveClientAddressResponse.clientAddressList.addrLine1,
+            addrLine2: res.retrieveClientAddressResponse.clientAddressList.addrLine2,
+            addrLine3: res.retrieveClientAddressResponse.clientAddressList.addrLine3,
+            addrLine4: res.retrieveClientAddressResponse.clientAddressList.addrLine4,
+            addrLine5: res.retrieveClientAddressResponse.clientAddressList.addrLine5,
+            addrLine6: res.retrieveClientAddressResponse.clientAddressList.addrLine6,
+            addrLine7: res.retrieveClientAddressResponse.clientAddressList.addrLine7,
+            addressCategory: res.retrieveClientAddressResponse.clientAddressList,
+            addressID: res.retrieveClientAddressResponse.clientAddressList.addressCategory,
+            areaId: res.retrieveClientAddressResponse.clientAddressList.areaId,
+            clientCountry: res.retrieveClientAddressResponse.clientAddressList.clientCountry,
+            isDefault: res.retrieveClientAddressResponse.clientAddressList.isDefault,
+            postCode: res.retrieveClientAddressResponse.clientAddressList.postCode,
+          });
         }
-      });
+        this.hasAddress = true;
+        this.isAddressLoaded = true;
+      } else {
+        setTimeout(() => {
+          this.getAddress();
+        }, 500);
+      }
     });
   }
 }
