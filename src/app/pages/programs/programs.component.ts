@@ -91,7 +91,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
       });
 
     // get realted items
-    this.programms.forEach((item: ICategoriesInfo) => {
+    this.programms.forEach((item: any) => {
       if (item.categoryID) {
         this.menu.restaurantsItemsListResponse.resturentItemsInfo
           .filter((_item: IresturentItemsInfo) => {

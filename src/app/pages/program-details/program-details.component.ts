@@ -99,9 +99,10 @@ export class ProgramDetailsComponent implements OnInit, OnDestroy {
           this.programms.push(item);
         }
       });
-
+    // target prog dtails
     this.targetProgramms = this.programms
       .find((p: any) => p.categoryID === this.id || p.itemID === this.id);
+    // related progs
     this.relatedItems = this.getRelatedItems(this.targetProgramms.categoryID);
     console.log(this.targetProgramms);
     this.isItemLoaded = true;
@@ -109,7 +110,7 @@ export class ProgramDetailsComponent implements OnInit, OnDestroy {
 
   }
   getRelatedItems(id) {
-    let related = [];
+    const related = [];
     if (id) {
       this.menu.restaurantsItemsListResponse.resturentItemsInfo
         .filter((_item: IresturentItemsInfo) => {
@@ -172,7 +173,6 @@ export class ProgramDetailsComponent implements OnInit, OnDestroy {
   }
   addToCart(num) {
     this.relatedItems.forEach((item: IresturentItemsInfo) => {
-      debugger;
       this.cartService.addToCart(item.itemID, num);
     });
   }
