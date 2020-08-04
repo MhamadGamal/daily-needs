@@ -57,7 +57,7 @@
                     {{item.prices?.priceNumber | currency: " EGP "}}
                   </div>
                 </div>
-                <div class="col-lg-5 cardBtn">
+                <div *ngIf="item.prices" class="col-lg-5 cardBtn">
                   <button (click)="id = item.prices? item.itemID: item.categoryID;  addToCart(id)"
                     class="btn btn-success btn-addCart"> {{'generalMsg.cart.addToCart' | translate}} </button>
                 </div>

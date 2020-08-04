@@ -15,7 +15,11 @@ export class RefreshTokenService {
         this.token = 'Bearer ' + _token;
         localStorage.setItem('authtoken', this.token)
     }
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {
+        if (localStorage.getItem('authtoken')) {
+            this.token = localStorage.getItem('authtoken');
+        }
+    }
     getToken() {
         const time = new Date().getTime();
 

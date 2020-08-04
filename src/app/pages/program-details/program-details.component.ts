@@ -123,15 +123,15 @@ export class ProgramDetailsComponent implements OnInit, OnDestroy {
     }
   }
   addToFavourite() {
-    if (this.authService.isLoggedIn && !this.isFavourite) {
-      let id;
-      if (this.targetProgramms.prices) {
-        id = this.targetProgramms.itemID;
-      } else {
-        id = this.targetProgramms.categoryID;
-      }
-      this.isFavourite = true;
-      if (this.isFavourite) {
+    if (this.authService.isLoggedIn) {
+      if (!this.isFavourite) {
+        let id;
+        if (this.targetProgramms.prices) {
+          id = this.targetProgramms.itemID;
+        } else {
+          id = this.targetProgramms.categoryID;
+        }
+        this.isFavourite = true;
         const reqBody = {
           'serviceName': 'WSIOrderClientinfo',
           'setClientFavoriteItems': {

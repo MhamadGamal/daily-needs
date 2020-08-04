@@ -79,9 +79,9 @@ export class CategoryDetailsComponent implements OnInit, OnDestroy {
   }
 
   addToFavourite() {
-    if (this.authService.isLoggedIn && !this.isFavourite) {
-      this.isFavourite = true;
-      if (this.isFavourite) {
+    if (this.authService.isLoggedIn) {
+      if (!this.isFavourite) {
+        this.isFavourite = true;
         const reqBody = {
           'serviceName': 'WSIOrderClientinfo',
           'setClientFavoriteItems': {

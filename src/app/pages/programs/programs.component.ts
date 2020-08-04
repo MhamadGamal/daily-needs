@@ -77,18 +77,18 @@ export class ProgramsComponent implements OnInit, OnDestroy {
           return item;
         }
       });
-    // this.menu.restaurantsItemsListResponse.resturentItemsInfo
-    //   .filter((item: IresturentItemsInfo) => {
-    //     let isP;
-    //     const p = item.attributes.filter((i: Iattributes) => {
-    //       if (i.attributeID === '121' && i.attributeValue === '001') {
-    //         isP = true;
-    //       }
-    //     });
-    //     if (isP) {
-    //       this.programms.push(item);
-    //     }
-    //   });
+    this.menu.restaurantsItemsListResponse.resturentItemsInfo
+      .filter((item: IresturentItemsInfo) => {
+        let isP;
+        const p = item.attributes.filter((i: Iattributes) => {
+          if (i.attributeID === '121' && i.attributeValue === '001') {
+            isP = true;
+          }
+        });
+        if (isP) {
+          this.programms.push(item);
+        }
+      });
 
     // get realted items
     this.programms.forEach((item: ICategoriesInfo) => {
@@ -113,8 +113,7 @@ export class ProgramsComponent implements OnInit, OnDestroy {
     ev.target.src = 'assets/images/default_image.png';
   }
   addToCart(id) {
-    debugger;
-    let related = [];
+    const related = [];
     if (id) {
       this.menu.restaurantsItemsListResponse.resturentItemsInfo
         .filter((_item: IresturentItemsInfo) => {
