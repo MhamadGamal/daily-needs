@@ -105,6 +105,8 @@ export class ProgramDetailsComponent implements OnInit, OnDestroy {
     this.relatedItems = this.getRelatedItems(this.targetProgramms.categoryID);
     console.log(this.targetProgramms);
     this.isItemLoaded = true;
+    this.isFavourite = this.targetProgramms.isFavorite === 'Y' ? true : false;
+
   }
   getRelatedItems(id) {
     let related = [];
@@ -121,7 +123,7 @@ export class ProgramDetailsComponent implements OnInit, OnDestroy {
     }
   }
   addToFavourite() {
-    if (this.authService.isLoggedIn) {
+    if (this.authService.isLoggedIn && !this.isFavourite) {
       let id;
       if (this.targetProgramms.prices) {
         id = this.targetProgramms.itemID;

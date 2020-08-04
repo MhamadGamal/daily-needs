@@ -1,6 +1,6 @@
 <div class="slider-details text-center">
   <img class="smallImgSlider" src="assets/dynamicImg/category.png" />
-  <p class="sliderTxt"> {{'programs.title' | translate}} </p>
+  <!-- <p class="sliderTxt"> {{'programs.title' | translate}} </p> -->
 </div>
 <mc-breadcrumbs></mc-breadcrumbs>
 <div class="programsDesc">
@@ -22,7 +22,7 @@
         <div class="programCard">
           <div class="img-holder" [routerLink]="item.prices?'/programs/'+item.itemID : '/programs/'+item.categoryID">
             <img class="programImg"
-              [src]="item.prices?environment.imgUrl+'/Items/Small/'+item.itemID+'.png': environment.imgUrl+'/Program/Small/'+item.categoryID+'.png'"
+              [src]="item.prices?environment.imgUrl+'/Items/Large/'+item.itemID+'.png': environment.imgUrl+'/Program/Small/'+item.categoryID+'.png'"
               (error)="updateImage($event)" />
           </div>
           <div class="info">

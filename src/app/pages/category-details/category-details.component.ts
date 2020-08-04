@@ -63,6 +63,7 @@ export class CategoryDetailsComponent implements OnInit, OnDestroy {
         this.menuItemsService.menu = menu;
         this.filterdCatArr = menu.restaurantsItemsListResponse.resturentItemsInfo;
         this.targetItem = this.filterdCatArr.filter((item: IresturentItemsInfo) => item.itemID === this.id)[0];
+        this.isFavourite = this.targetItem.isFavorite === 'Y' ? true : false;
         this.isItemLoaded = true;
         console.log(this.targetItem);
       } else {
@@ -78,7 +79,7 @@ export class CategoryDetailsComponent implements OnInit, OnDestroy {
   }
 
   addToFavourite() {
-    if (this.authService.isLoggedIn) {
+    if (this.authService.isLoggedIn && !this.isFavourite) {
       this.isFavourite = true;
       if (this.isFavourite) {
         const reqBody = {
