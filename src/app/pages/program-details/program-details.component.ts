@@ -103,7 +103,13 @@ export class ProgramDetailsComponent implements OnInit, OnDestroy {
     this.targetProgramms = this.programms
       .find((p: any) => p.categoryID === this.id || p.itemID === this.id);
     // related progs
-    this.relatedItems = this.getRelatedItems(this.targetProgramms.categoryID);
+    if (this.targetProgramms.threeLevel) {
+      // this.relatedItems = this.getComponents(this.targetProgramms.itemID);
+      this.getComponents(this.targetProgramms.itemID);
+    } else {
+      this.relatedItems = this.getRelatedItems(this.targetProgramms.categoryID);
+
+    }
     console.log(this.targetProgramms);
     this.isItemLoaded = true;
     this.isFavourite = this.targetProgramms.isFavorite === 'Y' ? true : false;
@@ -122,6 +128,59 @@ export class ProgramDetailsComponent implements OnInit, OnDestroy {
         });
       return related;
     }
+  }
+  getComponents(id) {
+    const reqBody = {
+      'restaurantsItemsList': {
+        'additionalData': [
+          {
+            'lang': 'EN'
+          }
+        ],
+        'areaID': '',
+        'branchId': id,
+        'channelInfo': {
+          'AcquirerCountry': '818',
+          'merchantName': 'android|10|31567f21-7ec3-43ca-ad3b-27528c4821ee|1.0.0'
+        },
+        'clientNumber': '03513168',
+        'institutionNumber': '00000002',
+        'processCode': '144100',
+        'resturantID': id,
+        'sourceID': '702000110001'
+      },
+      'serviceName': 'WSIOrderActivities'
+    };
+    this.api.call('POST', reqBody).subscribe((res: any) => {
+      if (res.restaurantsItemsListResponse.resturentItemsInfo.extraGroup.extraItems) {
+        const formattedItems = [];
+        res.restaurantsItemsListResponse.resturentItemsInfo.extraGroup.extraItems.forEach((item: any) => {
+          formattedItems.push(item.itemID);
+        });
+        formattedItems.forEach((id) => {
+          const target = this.menu.restaurantsItemsListResponse.resturentItemsInfo.find((item: IresturentItemsInfo) => item.itemID === id);
+          if (target) {
+            this.relatedItems.push(target);
+          } else {
+            res.restaurantsItemsListResponse.resturentItemsInfo.extraGroup.extraItems.forEach((item: any) => {
+              if (item.itemID === id) {
+                this.relatedItems.push({
+                  itemID: item.itemID,
+                  itemName: item.itemName,
+                  prices: {
+                    categoryID: item.extraItemInfo.extraItemCatID,
+                    maxExtraItemQuantity: item.extraItemInfo.maxItemQuantity,
+                    minExtraItemQuantity: item.extraItemInfo.minItemQuantity,
+                    priceItemCategoryID: item.extraItemInfo.priceItemCategoryIDs
+                  }
+                });
+              }
+            });
+          }
+        });
+        localStorage.setItem('s_relatedItems', JSON.stringify(this.relatedItems));
+      }
+    });
   }
   addToFavourite() {
     if (this.authService.isLoggedIn) {

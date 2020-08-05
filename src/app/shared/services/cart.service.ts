@@ -31,7 +31,6 @@ export class CartService {
     }
   }
   addToCart(id: string, itemNo: number) {
-    debugger;
     if (id && Number(itemNo)) {
       this.menuItemsService.menu.restaurantsItemsListResponse.resturentItemsInfo.forEach((item: IresturentItemsInfo) => {
         if (item.itemID === id) {

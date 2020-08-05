@@ -4,6 +4,8 @@ export interface IOrderInfo {
     orderDate?: string;
     orderID?: string;
     orderStatus?: IOrderStatus;
+    address: string;
+    items: string;
     restaurantOrderInfo?: IRestaurantOrderInfo;
 }
 export interface IOrderStatus {

@@ -1,0 +1,44 @@
+.smallImgSlider{
+    height: auto;
+}
+.programsDesc , .programsSummary{
+    border-bottom : 1px solid #ccc;
+}
+
+.programTitle {
+    margin: 15px 0px;
+}
+
+.programCard{
+    margin-bottom: 40px;
+    cursor: pointer;
+    border: 1px solid #eeeded;
+}
+.programCard .info{
+    padding: 15px;
+}
+
+.programImg{
+    width: 100%
+}
+
+.oldPrice {
+    text-decoration-line: line-through;
+    display: flex;
+    align-items: center;
+    color:rgba(74,74,74,1)
+}
+
+.newPrice{
+    display: flex;
+    align-items: center;
+    color: rgba(122,201,67,1);
+    font-weight: bold;
+}
+.img-holder{
+    height: 250px;
+    overflow: hidden;
+}
+.img-holder img{
+    height: 100%;
+}

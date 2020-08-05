@@ -20,7 +20,8 @@
     <div class="row">
       <div *ngFor="let item of programms" class="col-lg-6">
         <div class="programCard">
-          <div class="img-holder" [routerLink]="item.prices?'/programs/'+item.itemID : '/programs/'+item.categoryID">
+          <div class="img-holder"
+            [routerLink]="item.prices?'/programs/'+item.itemID : item.threeLevel? '/programs/sub/'+item.categoryID: '/programs/'+item.categoryID">
             <img class="programImg"
               [src]="item.prices?environment.imgUrl+'/Items/Large/'+item.itemID+'.png': environment.imgUrl+'/Program/Small/'+item.categoryID+'.png'"
               (error)="updateImage($event)" />
@@ -77,5 +78,5 @@
   </div>
 </div>
 
-<app-related-products [relatedProg]="relatedItems" [lang]="lang">
-</app-related-products>
+<!-- <app-related-products [relatedProg]="relatedItems" [lang]="lang">
+</app-related-products> -->

@@ -16,6 +16,7 @@ export class MyordersComponent implements OnInit {
   scheduled: Array<IOrderInfo>;
   processing: Array<IOrderInfo>;
   previous: Array<IOrderInfo>;
+  delivered: Array<IOrderInfo>;
   canceled: Array<IOrderInfo>;
   onWay: Array<IOrderInfo>;
   language: string;
@@ -58,8 +59,17 @@ export class MyordersComponent implements OnInit {
       if (res.orderHistoryResponse) {
         this.OrderFullInfo = res.orderHistoryResponse.OrderFullInfo;
         console.log(this.OrderFullInfo);
-        this.processing = this.OrderFullInfo.filter((order: IOrderInfo) => order.orderStatus.orderStatusName === 'Processing your info.');
-        this.scheduled = this.OrderFullInfo.filter((order: IOrderInfo) => order.orderStatus.orderStatusName === 'Order Scheduled');
+        this.processing = this.OrderFullInfo.filter((order: IOrderInfo) => order.orderStatus.orderStatusID === '18');
+        this.onWay = this.OrderFullInfo.filter((order: IOrderInfo) => order.orderStatus.orderStatusID === '7');
+        this.scheduled = this.OrderFullInfo.filter((order: IOrderInfo) => order.orderStatus.orderStatusID === '9');
+        this.delivered = this.OrderFullInfo.filter((order: IOrderInfo) => order.orderStatus.orderStatusID === '10');
+        this.canceled = this.OrderFullInfo.filter((order: IOrderInfo) => order.orderStatus.orderStatusID === '20');
+        this.OrderFullInfo.forEach((order: IOrderInfo, i) => {
+          this.getOrdersDetails(order.orderID).subscribe((res: any) => {
+            this.OrderFullInfo[i].address = res.orderHistoryResponse.OrderFullInfo.deliveryAddress.deliveryAddress;
+            this.OrderFullInfo[i].items = res.orderHistoryResponse.OrderFullInfo.orderItemsDetails.length ? res.orderHistoryResponse.OrderFullInfo.orderItemsDetails.length : 1;
+          })
+        })
       } else if (res.error) {
         setTimeout(() => {
           this.getOrders();
@@ -67,4 +77,26 @@ export class MyordersComponent implements OnInit {
       }
     });
   }
+
+  getOrdersDetails(id) {
+    const reqBody = {
+      'orderHistory': {
+        'IClientNumber': id,
+        'additionalDataTab': {
+          'lang': 'EN'
+        },
+        'channelInfo': {
+          'AcquirerCountry': '818',
+          'merchantName': 'android|10|ade87cca-b81a-4dec-af88-fc14a166d749|1.0.0'
+        },
+        'institutionNumber': '00000002',
+        'processCode': '190400',
+        'sourceID': '702000110001'
+      },
+      'serviceName': 'WSIOrderActivities'
+    };
+    return this.api.call('POST', reqBody)
+  }
 }
+
+

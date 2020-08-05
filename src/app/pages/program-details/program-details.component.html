@@ -1,5 +1,7 @@
 <div class="slider-details text-center">
-	<img class="smallImgSlider" src="assets/dynamicImg/category.png" />
+	<img class="smallImgSlider"
+		[src]="targetProgramms?.prices?environment.imgUrl+'/Items/Large/'+targetProgramms?.itemID+'.png': environment.imgUrl+'/Program/Small/'+targetProgramms?.categoryID+'.png'"
+		(error)="updateImage($event)" />
 	<!-- <p class="sliderTxt"> {{'programs.pDetails' | translate}} </p> -->
 </div>
 <mc-breadcrumbs></mc-breadcrumbs>
@@ -8,7 +10,7 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<img class="itemDetails"
-					[src]="targetProgramms?.prices?environment.imgUrl+'/Items/Large/'+targetProgramms?.itemID+'.png': environment.imgUrl+'/Program/Small/'+targetProgramms?.categoryID+'.png'"
+					[src]="targetProgramms?.prices?environment.imgUrl+'/Items/Large/'+targetProgramms?.itemID+'.png': environment.imgUrl+'/Program/Large/'+targetProgramms?.categoryID+'.png'"
 					(error)="updateImage($event)">
 			</div>
 			<div class="col-lg-6" *ngIf="!isItemLoaded">
@@ -101,10 +103,10 @@
 								{{'generalMsg.cart.addToCart' | translate}} </button>
 						</div>
 						<div class="col-lg-4 col-xs-12 wishlist">
-							<a (click)="addToFavourite()">
+							<!-- <a (click)="addToFavourite()">
 								<i class="fa-heart" [ngClass]="{'fas':isFavourite, 'far': !isFavourite}"></i>
 								<span>{{'generalMsg.favourite.wish' | translate}}</span>
-							</a>
+							</a> -->
 						</div>
 					</div>
 				</div>
@@ -133,17 +135,33 @@
 		<div class="tabDiv">
 			<ul class="nav nav-tabs" id="myTab" role="tablist">
 				<li class="nav-item">
-					<a class="nav-link active" id="home-tab" data-toggle="tab" href="#Description" role="tab"
+					<a class="nav-link active" id="Items-tab" data-toggle="tab" href="#Items" role="tab"
+						aria-controls="Reviews" aria-selected="false">{{'favourite.items' | translate}}</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="Description-tab" data-toggle="tab" href="#Description" role="tab"
 						aria-controls="Description" aria-selected="true"> {{'programs.dexc' | translate}} </a>
 				</li>
-				<!-- <li class="nav-item">
-					<a class="nav-link" id="profile-tab" data-toggle="tab" href="#Reviews" role="tab"
-						aria-controls="Reviews" aria-selected="false">{{'programs.reviews' | translate}}</a>
-				</li> -->
+
 			</ul>
 
 			<div class="tab-content">
-				<div class="tab-pane active" id="Description" role="tabpanel" aria-labelledby="Description-tab">
+				<div class="tab-pane active" id="Items" role="tabpanel" aria-labelledby="Items-tab">
+					<div class="row mt-5">
+						<div *ngFor="let item of relatedItems" class="col-md-6">
+							<div class="itemcomp my-3 d-flex align-items-center">
+								<img width="130" [src]="environment.imgUrl+'/Items/Small/'+item?.itemID+'.png'"
+									(error)="updateImage($event)">
+								<h5 class="item-details-title" *ngIf="lang ==='en'">
+									{{item?.attributes | filter: "1"}} </h5>
+								<h5 class="item-details-title" *ngIf="lang ==='ar'">
+									{{item?.attributes | filter: "6"}} </h5>
+								<h5 *ngIf="!item.attributes"> {{item.itemName}} </h5>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane" id="Description" role="tabpanel" aria-labelledby="Description-tab">
 
 					<p *ngIf="targetProgramms?.prices" class="mt-3" #con>
 						<ng-container *ngIf="lang == 'en'"> {{targetProgramms?.attributes | filter: "116": con}}
@@ -153,14 +171,12 @@
 					</p>
 
 				</div>
-				<!-- <div class="tab-pane" id="Reviews" role="tabpanel" aria-labelledby="Reviews-tab">
-					......
-				</div> -->
+
 			</div>
 		</div>
 	</div>
 </div>
 
 
-<app-related-products [relatedProg]="relatedItems" [lang]="lang">
-</app-related-products>
+<!-- <app-related-products [relatedProg]="relatedItems" [lang]="lang">
+</app-related-products> -->

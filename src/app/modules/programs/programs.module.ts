@@ -1,3 +1,4 @@
+import { SubprogramsComponent } from './../../pages/subprograms/subprograms.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
@@ -10,6 +11,7 @@ import { RelatedProductsComponent } from 'src/app/components/related-products/re
 
 const appRoutes: Routes = [
   { path: '', component: ProgramsComponent },
+  { path: 'sub/:id', component: SubprogramsComponent },
   { path: ':id', component: ProgramDetailsComponent }
 ];
 
@@ -20,7 +22,7 @@ const appRoutes: Routes = [
     SharedModule,
     CarouselModule
   ],
-  declarations: [ProgramsComponent, ProgramDetailsComponent, RelatedProductsComponent],
+  declarations: [ProgramsComponent, ProgramDetailsComponent, RelatedProductsComponent, SubprogramsComponent],
   exports: [
     RouterModule,
   ],

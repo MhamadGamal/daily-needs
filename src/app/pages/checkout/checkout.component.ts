@@ -138,7 +138,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       const oneDay = 1000 * 60 * 60 * 24;
       const day = Math.floor(diff / oneDay);
       const invoice = '02' + this.authService.loginedUserData.loginAuthenticationResponse.clientInfo.clientNumber +
-        day + now.getHours() + now.getMinutes() + now.getSeconds() + '03'
+        day + now.getHours() + now.getMinutes() + now.getSeconds() + '03';
+      const processCode = value.paymentMethod === 'cash' ? 147000 : 151000;
       const reqbody = {
         'placeOrder': {
           'channelInfo': {
@@ -219,8 +220,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                 }
               ],
               'orderItemsDetails': cartItems,
-              'paymentMethodID': '1',
-              'paymentMethodName': value.paymentMethod,
+              'paymentMethodID': this.menuItemsService.menu.restaurantsItemsListResponse.restaurantInfo.payment.paymentMethodValue,
+              'paymentMethodName': this.menuItemsService.menu.restaurantsItemsListResponse.restaurantInfo.payment.paymentMethodName,
               'restaurantOrderInfo': {
                 'orderRequireClientInfo': {
                   'accountNumber': this.authService.loginedUserData.loginAuthenticationResponse.accountInfo.accountNumber,
@@ -239,7 +240,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
           'paymentInfo': {
 
           },
-          'processCode': '147000',
+          'processCode': processCode,
           'sourceID': '702000110001',
           'tranAmount': '15.000',
           'tranCurrency': '818'

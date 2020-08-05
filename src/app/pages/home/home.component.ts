@@ -33,7 +33,13 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.menu = this.menuItemsService.menu;
       this.filterdCatArr = this.menuItemsService.menu.restaurantsItemsListResponse.resturentItemsInfo;
       this.filterdCatArr.filter((item: IresturentItemsInfo) => {
-        const target = item.attributes.filter((att: Iattributes) => att.attributeID === '120')[0];
+        const target = item.attributes.find((att: Iattributes) => {
+          if (att.attributeID === '120') {
+            if (att.attributeValue === '001') {
+              return att;
+            }
+          }
+        });
         if (target) {
           this.slides.push(environment.imgUrl + '/Items/Small/' + item.itemID + '.png');
         }
@@ -51,7 +57,13 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.menuItemsService.menu = menu;
         this.filterdCatArr = menu.restaurantsItemsListResponse.resturentItemsInfo;
         this.filterdCatArr.filter((item: IresturentItemsInfo) => {
-          const target = item.attributes.filter((att: Iattributes) => att.attributeID === '120')[0];
+          const target = item.attributes.find((att: Iattributes) => {
+            if (att.attributeID === '120') {
+              if (att.attributeValue === '001') {
+                return att;
+              }
+            }
+          });
           if (target) {
             this.slides.push(environment.imgUrl + '/Items/Small/' + item.itemID + '.png');
           }
