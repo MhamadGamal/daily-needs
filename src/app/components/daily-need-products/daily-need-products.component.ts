@@ -68,7 +68,7 @@ export class DailyNeedProductsComponent implements OnInit, OnDestroy {
     });
   }
 
-  filterr(item: ICategoriesInfo) {
+  filterr(item: any) {
     this.max = 8;
     if (item.categoryID) {
 
