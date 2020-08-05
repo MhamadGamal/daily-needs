@@ -128,21 +128,26 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   updateImage(ev) {
     ev.target.src = 'assets/images/default_image.png';
   }
-  addToCart(id) {
+  addToCart(item: IresturentItemsInfo) {
     const related = [];
-    if (id) {
+    if (item) {
       this.menu.restaurantsItemsListResponse.resturentItemsInfo
         .filter((_item: IresturentItemsInfo) => {
           if (typeof _item.categoryIDs === 'string') {
-            if (_item.categoryIDs === id) { related.push(_item); }
+            if (_item.categoryIDs === item.itemID) { related.push(_item); }
           } else if (Array.isArray(typeof _item.categoryIDs)) {
-            if (_item.categoryIDs.includes(id)) { related.push(_item); }
+            if (_item.categoryIDs.includes(item.itemID)) { related.push(_item); }
           }
         });
     }
     console.log(related);
-    related.forEach((item: IresturentItemsInfo) => {
-      this.cartService.addToCart(item.itemID, 1);
+    related.forEach((_item: IresturentItemsInfo, i) => {
+      _item.prices.priceNumber = null;
+      if (i === (this.relatedItems.length - 1)) {
+        this.cartService.addToCart(_item, 1, item.prices.priceNumber);
+      } else {
+        this.cartService.addToCart(_item, 1);
+      }
     });
   }
   ngOnDestroy() {

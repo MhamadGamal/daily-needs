@@ -147,15 +147,20 @@ export class SubprogramsComponent implements OnInit {
             });
           }
         });
-        this.s_relatedItems.forEach((item: IresturentItemsInfo) => {
-          this.cartService.addToCart(item.itemID, num);
+        this.s_relatedItems.forEach((item: IresturentItemsInfo, i) => {
+          item.prices.priceNumber = null;
+          if (i === (this.s_relatedItems.length - 1)) {
+            this.cartService.addToCart(item, num, this.relatedItems[i].prices.priceNumber);
+          } else {
+            this.cartService.addToCart(item, num);
+          }
         });
         localStorage.setItem('s_relatedItems', JSON.stringify(this.s_relatedItems));
       }
     });
   }
-  addToCart(id, num) {
-    this.getComponents(id, num);
+  addToCart(item: IresturentItemsInfo, num) {
+    this.getComponents(item.itemID, num);
   }
   updateImage(ev) {
     ev.target.src = 'assets/images/default_image.png';

@@ -48,7 +48,7 @@
                   {{item.prices?.priceNumber | currency: " EGP "}}
                 </div>
                 <div class="col-lg-5 cardBtn">
-                  <button (click)="id = item.prices? item.itemID: item.categoryID;  addToCart(id)"
+                  <button (click)="id = item.prices? item.itemID: item.categoryID;  addToCart(item)"
                     class="btn btn-success btn-addCart"> {{'generalMsg.cart.addToCart' | translate}} </button>
                 </div>
               </ng-container>
@@ -59,7 +59,7 @@
                   </div>
                 </div>
                 <div *ngIf="item.prices" class="col-lg-5 cardBtn">
-                  <button (click)="id = item.prices? item.itemID: item.categoryID;  addToCart(id)"
+                  <button (click)="id = item.prices? item.itemID: item.categoryID;  addToCart(item)"
                     class="btn btn-success btn-addCart"> {{'generalMsg.cart.addToCart' | translate}} </button>
                 </div>
               </ng-template>

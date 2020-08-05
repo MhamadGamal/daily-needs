@@ -231,8 +231,13 @@ export class ProgramDetailsComponent implements OnInit, OnDestroy {
     }
   }
   addToCart(num) {
-    this.relatedItems.forEach((item: IresturentItemsInfo) => {
-      this.cartService.addToCart(item.itemID, num);
+    this.relatedItems.forEach((item: IresturentItemsInfo, i) => {
+      item.prices.priceNumber = null;
+      if (i === (this.relatedItems.length - 1)) {
+        this.cartService.addToCart(item, num, this.targetProgramms.prices.priceNumber);
+      } else {
+        this.cartService.addToCart(item, num);
+      }
     });
   }
   updateImage(ev) {

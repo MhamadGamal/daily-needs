@@ -45,7 +45,9 @@
                         {{item?.attributes | filter: "1"}} </h6>
                       <h6 class="unitTitle" *ngIf="lang ==='ar'">
                         {{item?.attributes | filter: "6"}} </h6>
-                      <span class="unitPrice">
+                      <h6 class="unitTitle" *ngIf="!item.attributes"> {{item.itemName}} </h6>
+
+                      <span class="unitPrice" *ngIf="item?.prices.priceNumber">
                         {{item.cartItemsNum}} * {{item?.prices.priceNumber | currency: " EGP "}}
                       </span>
                     </div>
