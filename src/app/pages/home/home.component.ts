@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.filterdCatArr.filter((item: IresturentItemsInfo) => {
           const target = item.attributes.filter((att: Iattributes) => att.attributeID === '120')[0];
           if (target) {
-            this.slides.push(environment.imgUrl + '/Items/Small/' + item.itemID + '.png');
+            this.slides.push(environment.imgUrl + '/Items/Large/' + item.itemID + '.png');
           }
         });
         this.isItemLoaded = true;
