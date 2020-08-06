@@ -72,6 +72,40 @@ export class FavouritItemsComponent implements OnInit, OnDestroy {
       }
     });
   }
+  removeFav(id, i) {
+    const reqBody = {
+      'serviceName': 'WSIOrderClientinfo',
+      'setClientFavoriteItems': {
+        'additionalData': [
+          {
+            'lang': this.lang
+          }
+        ],
+        'channelInfo': {
+          'AcquirerCountry': '818',
+          'merchantName': 'android|9|f8d1b93b-c788-48a2-8ee6-df829c07de5c|1.0.0'
+        },
+        'clientFavoriteItemTab': {
+          'CLIENT_FAVOURITE_ITEM_ID': id,
+          'CLIENT_NUMBER': this.authService.loginedUserData.loginAuthenticationResponse.clientInfo.clientNumber,
+          'ITEM_ARABIC_NAME': 'ITEM NAME',
+          'ITEM_ENGLISH_NAME': 'ITEM NAME',
+          'ITEM_ID': id,
+          'RESTAURANT_BRANCHE_ID': '4968',
+          'RESTAURANT_ID': '3648',
+          'STATUS_CODE': '001',
+          'terminalID': '111'
+        },
+        'clientNumber': this.authService.loginedUserData.loginAuthenticationResponse.clientInfo.clientNumber,
+        'institutionNumber': '00000002',
+        'processCode': '170100',
+        'sourceID': '702000110001'
+      }
+    };
+    this.api.call('POST', reqBody).subscribe(res => {
+      this.favouriteList.splice(i, 1)
+    });
+  }
   updateImage(ev) {
     ev.target.src = 'assets/images/default_image.png';
   }

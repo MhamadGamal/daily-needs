@@ -1,0 +1,66 @@
+<div class="slider-details text-center">
+    <img class="smallImgSlider"
+        [src]="targetProgramms?.prices?environment.imgUrl+'/Items/Large/'+targetProgramms?.itemID+'.png': environment.imgUrl+'/Program/Small/'+targetProgramms?.categoryID+'.png'"
+        (error)="updateImage($event)" />
+    <!-- <p class="sliderTxt"> {{'programs.title' | translate}} </p> -->
+</div>
+
+
+<div class="programsSummary">
+    <div class="container">
+        <div class="row">
+            <div *ngFor="let item of relatedItems" class="col-lg-6">
+                <div class="programCard">
+                    <div class="img-holder" [routerLink]="'/programs/'+item.itemID">
+                        <img class="programImg" [src]="environment.imgUrl+'/Items/Large/'+item.itemID+'.png'"
+                            (error)="updateImage($event)" />
+                    </div>
+                    <div class="info">
+                        <ng-container *ngIf="item.prices">
+                            <h4 class="programTitle" *ngIf="lang ==='en'">
+                                {{item.attributes | filter: "1"}} </h4>
+                            <h4 class="programTitle" *ngIf="lang ==='ar'">
+                                {{item.attributes | filter: "6"}} </h4>
+                        </ng-container>
+                        <ng-container *ngIf="!item.prices">
+                            <h4 class="programTitle" *ngIf="lang ==='en'">
+                                {{item.attributes | filter: "4"}} </h4>
+                            <h4 class="programTitle" *ngIf="lang ==='ar'">
+                                {{item.attributes | filter: "9"}} </h4>
+                        </ng-container>
+                        <div class="row">
+                            <ng-container
+                                *ngIf="item.prices?.discountValue && item.prices?.discountValue != 0;else noDiscount">
+                                <div class="col-lg-3 newPrice">
+                                    {{(item.prices?.priceNumber - item.prices?.discountValue) | currency: " EGP "}}
+                                </div>
+                                <div class="col-lg-4 oldPrice">
+                                    {{item.prices?.priceNumber | currency: " EGP "}}
+                                </div>
+                                <div class="col-lg-5 cardBtn">
+                                    <button (click)="addToCart(item, 1)" class="btn btn-success btn-addCart">
+                                        {{'generalMsg.cart.addToCart' | translate}}
+                                    </button>
+                                </div>
+                            </ng-container>
+                            <ng-template #noDiscount>
+                                <div class="col-lg-7 newPrice">
+                                    <div *ngIf="item.prices">
+                                        {{item.prices?.priceNumber | currency: " EGP "}}
+                                    </div>
+                                </div>
+                                <div *ngIf="item.prices" class="col-lg-5 cardBtn">
+                                    <button (click)="addToCart(item, 1)" class="btn btn-success btn-addCart">
+                                        {{'generalMsg.cart.addToCart' | translate}}
+                                    </button>
+                                </div>
+                            </ng-template>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

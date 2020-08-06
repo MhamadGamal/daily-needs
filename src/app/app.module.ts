@@ -12,6 +12,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NumberOnlyDirective } from './shared/directives/number-only.directive';
 import { AuthGuard } from './shared/guard/auth.guard';
+import { SubprogramsComponent } from './pages/subprograms/subprograms.component';
 
 const appRoutes = [
   {

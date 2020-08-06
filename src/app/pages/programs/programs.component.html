@@ -1,6 +1,6 @@
 <div class="slider-details text-center">
   <img class="smallImgSlider" src="assets/dynamicImg/category.png" />
-  <p class="sliderTxt"> {{'programs.title' | translate}} </p>
+  <!-- <p class="sliderTxt"> {{'programs.title' | translate}} </p> -->
 </div>
 <mc-breadcrumbs></mc-breadcrumbs>
 <div class="programsDesc">
@@ -20,9 +20,10 @@
     <div class="row">
       <div *ngFor="let item of programms" class="col-lg-6">
         <div class="programCard">
-          <div class="img-holder" [routerLink]="item.prices?'/programs/'+item.itemID : '/programs/'+item.categoryID">
+          <div class="img-holder"
+            [routerLink]="item.prices?'/programs/'+item.itemID : item.threeLevel? '/programs/sub/'+item.categoryID: '/programs/'+item.categoryID">
             <img class="programImg"
-              [src]="item.prices?environment.imgUrl+'/Items/Small/'+item.itemID+'.png': environment.imgUrl+'/Program/Small/'+item.categoryID+'.png'"
+              [src]="item.prices?environment.imgUrl+'/Items/Large/'+item.itemID+'.png': environment.imgUrl+'/Program/Small/'+item.categoryID+'.png'"
               (error)="updateImage($event)" />
           </div>
           <div class="info">
@@ -47,7 +48,7 @@
                   {{item.prices?.priceNumber | currency: " EGP "}}
                 </div>
                 <div class="col-lg-5 cardBtn">
-                  <button (click)="id = item.prices? item.itemID: item.categoryID;  addToCart(id)"
+                  <button (click)="id = item.prices? item.itemID: item.categoryID;  addToCart(item)"
                     class="btn btn-success btn-addCart"> {{'generalMsg.cart.addToCart' | translate}} </button>
                 </div>
               </ng-container>
@@ -57,8 +58,8 @@
                     {{item.prices?.priceNumber | currency: " EGP "}}
                   </div>
                 </div>
-                <div class="col-lg-5 cardBtn">
-                  <button (click)="id = item.prices? item.itemID: item.categoryID;  addToCart(id)"
+                <div *ngIf="item.prices" class="col-lg-5 cardBtn">
+                  <button (click)="id = item.prices? item.itemID: item.categoryID;  addToCart(item)"
                     class="btn btn-success btn-addCart"> {{'generalMsg.cart.addToCart' | translate}} </button>
                 </div>
               </ng-template>
@@ -77,5 +78,5 @@
   </div>
 </div>
 
-<app-related-products [relatedProg]="relatedItems" [lang]="lang">
-</app-related-products>
+<!-- <app-related-products [relatedProg]="relatedItems" [lang]="lang">
+</app-related-products> -->

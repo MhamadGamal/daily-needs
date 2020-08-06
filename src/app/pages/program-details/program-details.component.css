@@ -42,7 +42,9 @@
 	border:rgba(122,201,67,1);
 	/*padding: 7px 30px;*/
 }
-
+.smallImgSlider{
+	height: auto;
+}
 button:focus{
 	outline: 0px;
 }
@@ -58,6 +60,10 @@ button:focus{
 	padding-bottom: 20px;
 }
 
+.itemcomp{
+	padding: 5px;
+	border: 1px solid #ccc;
+}
 .itemDetailsDiv{
 	border-bottom: 1px solid #ccc;
 	padding-bottom: 20px;

@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   lang: 'ar',
+  imgUrl: 'http://foodpage.dnsalias.com/',
   firebaseConfig: {
     apiKey: 'AIzaSyB3xZIyV6_fz68vSNZ7Z4XJLO-CqscVlE4',
     authDomain: 'daily-j.firebaseapp.com',

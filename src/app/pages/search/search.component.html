@@ -16,7 +16,8 @@
       <p> {{searchResult?.length}} {{'search.result' | translate}} <strong><q>{{search}}</q></strong></p>
     </div>
     <div class="row ">
-      <div *ngFor="let item of searchResult" class="col-lg-3 col-sm-6 dailyNeed-div-img">
+      <div *ngFor="let item of searchResult" routerLink="/category/items/item-details/{{item.itemID}}"
+        class="col-lg-3 col-sm-6 dailyNeed-div-img">
         <img class="dailyNeed-img" src="{{environment.imgUrl}}/Items/Small/{{item.itemID}}.png"
           (error)="updateImage($event)" />
         <h4 *ngIf="language ==='en'" class="dailyNeed-title"> {{item.attributes | filter: "1"}} </h4>
@@ -26,7 +27,7 @@
     </div>
     <div class="row">
       <div class="col-lg-12 healthContainer">
-        <div class="row healthItem" *ngFor="let item of filteredhealthInfo">
+        <div class="row healthItem" *ngFor="let item of filteredhealthInfo" routerLink="/health/{{item?.id}}">
           <div class="col-lg-3 col-sm-6 healthImgDiv pr-0 pl-0" routerLink="/health/{{item.id}}">
             <img class="healthImg" [src]="item.img_url" (error)="updateImage($event)" />
           </div>

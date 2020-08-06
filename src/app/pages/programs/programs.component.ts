@@ -77,21 +77,37 @@ export class ProgramsComponent implements OnInit, OnDestroy {
           return item;
         }
       });
-    // this.menu.restaurantsItemsListResponse.resturentItemsInfo
-    //   .filter((item: IresturentItemsInfo) => {
-    //     let isP;
-    //     const p = item.attributes.filter((i: Iattributes) => {
-    //       if (i.attributeID === '121' && i.attributeValue === '001') {
-    //         isP = true;
-    //       }
-    //     });
-    //     if (isP) {
-    //       this.programms.push(item);
-    //     }
-    //   });
+    this.menu.restaurantsItemsListResponse.resturentItemsInfo
+      .filter((item: IresturentItemsInfo) => {
+        let isP;
+        if (this.programms) {
+          this.programms.forEach((c: ICategoriesInfo, i) => {
+            if (typeof item.categoryIDs === 'string') {
+              if (item.categoryIDs !== c.categoryID) {
+                const p = item.attributes.filter((i: Iattributes) => {
+                  if (i.attributeID === '121' && i.attributeValue === '001') {
+                    isP = true;
+                  }
+                });
+              } else { this.programms[i].threeLevel = true; }
+            } else if (Array.isArray(typeof item.categoryIDs)) {
+              if (item.categoryIDs.includes(c.categoryID)) { this.programms[i].threeLevel = true; } else {
+                const p = item.attributes.filter((i: Iattributes) => {
+                  if (i.attributeID === '121' && i.attributeValue === '001') {
+                    isP = true;
+                  }
+                });
+              }
+            }
+          });
+        }
+        if (isP) {
+          this.programms.push(item);
+        }
+      });
 
     // get realted items
-    this.programms.forEach((item: ICategoriesInfo) => {
+    this.programms.forEach((item: any) => {
       if (item.categoryID) {
         this.menu.restaurantsItemsListResponse.resturentItemsInfo
           .filter((_item: IresturentItemsInfo) => {
@@ -112,22 +128,26 @@ export class ProgramsComponent implements OnInit, OnDestroy {
   updateImage(ev) {
     ev.target.src = 'assets/images/default_image.png';
   }
-  addToCart(id) {
-    debugger;
-    let related = [];
-    if (id) {
+  addToCart(item: IresturentItemsInfo) {
+    const related = [];
+    if (item) {
       this.menu.restaurantsItemsListResponse.resturentItemsInfo
         .filter((_item: IresturentItemsInfo) => {
           if (typeof _item.categoryIDs === 'string') {
-            if (_item.categoryIDs === id) { related.push(_item); }
+            if (_item.categoryIDs === item.itemID) { related.push(_item); }
           } else if (Array.isArray(typeof _item.categoryIDs)) {
-            if (_item.categoryIDs.includes(id)) { related.push(_item); }
+            if (_item.categoryIDs.includes(item.itemID)) { related.push(_item); }
           }
         });
     }
     console.log(related);
-    related.forEach((item: IresturentItemsInfo) => {
-      this.cartService.addToCart(item.itemID, 1);
+    related.forEach((_item: IresturentItemsInfo, i) => {
+      _item.prices.priceNumber = null;
+      if (i === (this.relatedItems.length - 1)) {
+        this.cartService.addToCart(_item, 1, item.prices.priceNumber);
+      } else {
+        this.cartService.addToCart(_item, 1);
+      }
     });
   }
   ngOnDestroy() {

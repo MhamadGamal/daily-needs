@@ -22,6 +22,7 @@ export interface ICategoryType {
 export interface ICategoriesInfo {
     categoryID?: string;
     catergoryName?: string;
+    threeLevel?: boolean;
     attributes?: Iattributes[];
 }
 export interface Iattributes {
@@ -73,6 +74,7 @@ export interface IrestaurantAdditonalData {
 }
 export interface IresturentItemsInfo {
     itemID?: string;
+    threeLevel?: boolean;
     cartItemsNum?: number;
     selectedTime?: number;
     itemName?: string;

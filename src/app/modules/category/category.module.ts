@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { CategoryComponent } from '../../pages/category/category.component';
 import { SharedModule } from '../shared/shared.module';
 import { CategoryDetailsComponent } from '../../pages/category-details/category-details.component';
-import { CartComponent } from '../../pages/cart/cart.component';
 import { CheckoutComponent } from '../../pages/checkout/checkout.component';
 import { CategoryItemListComponent } from '../../pages/category-item-list/category-item-list.component';
 
@@ -21,7 +20,7 @@ const appRoutes: Routes = [
     RouterModule.forChild(appRoutes),
     SharedModule,
   ],
-  declarations: [CategoryComponent, CategoryDetailsComponent, CartComponent, CheckoutComponent, CategoryItemListComponent],
+  declarations: [CategoryComponent, CategoryDetailsComponent, CategoryItemListComponent],
   exports: [RouterModule],
 })
 export class CategoryModule { }

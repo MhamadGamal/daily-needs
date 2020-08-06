@@ -30,20 +30,20 @@ export class CartService {
       this.cartItems = JSON.parse(sessionStorage.getItem('cartItems'));
     }
   }
-  addToCart(id: string, itemNo: number) {
-    debugger;
-    if (id && Number(itemNo)) {
-      this.menuItemsService.menu.restaurantsItemsListResponse.resturentItemsInfo.forEach((item: IresturentItemsInfo) => {
-        if (item.itemID === id) {
-          const time = new Date().getTime();
-          this.totalPrice += (Number(itemNo) * Number(item.prices.priceNumber));
-          const copy = Object.assign({}, item);
-          copy.cartItemsNum = Number(itemNo);
-          copy.selectedTime = time;
-          this.cartItems.push(copy);
-          this.cartItemsNum += copy.cartItemsNum;
-        }
-      });
+  addToCart(item: IresturentItemsInfo, itemNo: number, progPrice?) {
+    if (item && Number(itemNo)) {
+      const time = new Date().getTime();
+      if (progPrice) {
+        this.totalPrice += (Number(itemNo) * Number(progPrice));
+      }
+      if (item.prices.priceNumber) {
+        this.totalPrice += (Number(itemNo) * Number(item.prices.priceNumber));
+      }
+      const copy = Object.assign({}, item);
+      copy.cartItemsNum = Number(itemNo);
+      copy.selectedTime = time;
+      this.cartItems.push(copy);
+      this.cartItemsNum += copy.cartItemsNum;
       this.setcartItems();
     }
   }
@@ -65,7 +65,9 @@ export class CartService {
     if (this.cartItemsNum > 0) {
       this.cartItems.forEach((_item: IresturentItemsInfo, i) => {
         if (_item.itemID === id && _item.selectedTime === time) {
-          this.totalPrice -= (_item.cartItemsNum * Number(_item.prices.priceNumber));
+          if (_item.prices.priceNumber) {
+            this.totalPrice -= (_item.cartItemsNum * Number(_item.prices.priceNumber));
+          }
           this.cartItemsNum -= _item.cartItemsNum;
           _item.cartItemsNum = 0;
           this.cartItems.splice(i, 1);

@@ -99,15 +99,24 @@ export class ProgramDetailsComponent implements OnInit, OnDestroy {
           this.programms.push(item);
         }
       });
-
+    // target prog dtails
     this.targetProgramms = this.programms
       .find((p: any) => p.categoryID === this.id || p.itemID === this.id);
-    this.relatedItems = this.getRelatedItems(this.targetProgramms.categoryID);
+    // related progs
+    if (this.targetProgramms.threeLevel) {
+      // this.relatedItems = this.getComponents(this.targetProgramms.itemID);
+      this.getComponents(this.targetProgramms.itemID);
+    } else {
+      this.relatedItems = this.getRelatedItems(this.targetProgramms.categoryID);
+
+    }
     console.log(this.targetProgramms);
     this.isItemLoaded = true;
+    this.isFavourite = this.targetProgramms.isFavorite === 'Y' ? true : false;
+
   }
   getRelatedItems(id) {
-    let related = [];
+    const related = [];
     if (id) {
       this.menu.restaurantsItemsListResponse.resturentItemsInfo
         .filter((_item: IresturentItemsInfo) => {
@@ -120,16 +129,69 @@ export class ProgramDetailsComponent implements OnInit, OnDestroy {
       return related;
     }
   }
+  getComponents(id) {
+    const reqBody = {
+      'restaurantsItemsList': {
+        'additionalData': [
+          {
+            'lang': 'EN'
+          }
+        ],
+        'areaID': '',
+        'branchId': id,
+        'channelInfo': {
+          'AcquirerCountry': '818',
+          'merchantName': 'android|10|31567f21-7ec3-43ca-ad3b-27528c4821ee|1.0.0'
+        },
+        'clientNumber': '03513168',
+        'institutionNumber': '00000002',
+        'processCode': '144100',
+        'resturantID': id,
+        'sourceID': '702000110001'
+      },
+      'serviceName': 'WSIOrderActivities'
+    };
+    this.api.call('POST', reqBody).subscribe((res: any) => {
+      if (res.restaurantsItemsListResponse.resturentItemsInfo.extraGroup.extraItems) {
+        const formattedItems = [];
+        res.restaurantsItemsListResponse.resturentItemsInfo.extraGroup.extraItems.forEach((item: any) => {
+          formattedItems.push(item.itemID);
+        });
+        formattedItems.forEach((id) => {
+          const target = this.menu.restaurantsItemsListResponse.resturentItemsInfo.find((item: IresturentItemsInfo) => item.itemID === id);
+          if (target) {
+            this.relatedItems.push(target);
+          } else {
+            res.restaurantsItemsListResponse.resturentItemsInfo.extraGroup.extraItems.forEach((item: any) => {
+              if (item.itemID === id) {
+                this.relatedItems.push({
+                  itemID: item.itemID,
+                  itemName: item.itemName,
+                  prices: {
+                    categoryID: item.extraItemInfo.extraItemCatID,
+                    maxExtraItemQuantity: item.extraItemInfo.maxItemQuantity,
+                    minExtraItemQuantity: item.extraItemInfo.minItemQuantity,
+                    priceItemCategoryID: item.extraItemInfo.priceItemCategoryIDs
+                  }
+                });
+              }
+            });
+          }
+        });
+        localStorage.setItem('s_relatedItems', JSON.stringify(this.relatedItems));
+      }
+    });
+  }
   addToFavourite() {
     if (this.authService.isLoggedIn) {
-      let id;
-      if (this.targetProgramms.prices) {
-        id = this.targetProgramms.itemID;
-      } else {
-        id = this.targetProgramms.categoryID;
-      }
-      this.isFavourite = true;
-      if (this.isFavourite) {
+      if (!this.isFavourite) {
+        let id;
+        if (this.targetProgramms.prices) {
+          id = this.targetProgramms.itemID;
+        } else {
+          id = this.targetProgramms.categoryID;
+        }
+        this.isFavourite = true;
         const reqBody = {
           'serviceName': 'WSIOrderClientinfo',
           'setClientFavoriteItems': {
@@ -169,9 +231,13 @@ export class ProgramDetailsComponent implements OnInit, OnDestroy {
     }
   }
   addToCart(num) {
-    this.relatedItems.forEach((item: IresturentItemsInfo) => {
-      debugger;
-      this.cartService.addToCart(item.itemID, num);
+    this.relatedItems.forEach((item: IresturentItemsInfo, i) => {
+      item.prices.priceNumber = null;
+      if (i === (this.relatedItems.length - 1)) {
+        this.cartService.addToCart(item, num, this.targetProgramms.prices.priceNumber);
+      } else {
+        this.cartService.addToCart(item, num);
+      }
     });
   }
   updateImage(ev) {
