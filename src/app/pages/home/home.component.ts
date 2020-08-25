@@ -73,7 +73,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             }
           });
           if (target) {
-            this.slides.push(environment.imgUrl + '/Items/Small/' + item.itemID + '.png');
+            this.slides.push(environment.imgUrl + '/Items/Large/' + item.itemID + '.png');
           }
         });
         this.isItemLoaded = true;
