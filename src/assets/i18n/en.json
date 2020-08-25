@@ -86,10 +86,11 @@
         },
         "dailyApp": {
             "title": "Why daily J App",
-            "benfits": "Benfits",
-            "desc": "Daily J App is a system that serves multiple healthy nutrition products.",
-            "be1": "Provide and deliver ready-made healthy nutrition juice, that can work as Detoxes for the body and give it the amount of Vegetables and Fruits needed.",
-            "be2": "very easy to use , order and deliver your orders in your suitable time - customer support 24/7",
+            "benfits": "About Daily Needs App",
+            "desc": "Daily needs app will help you explore the world of Daily Needs different  brands, products and long term programs.",
+            "be1": "Using the app you can easily purchase your most admired product/s after understanding all its components as well as its benefits.",
+            "be2": "You can have your products delivered to your doorstep at a specific point of time",
+            "be3": "The app is very user friendly, where you can easily navigate through 24/7",
             "new": "what's new in DailyJ App.",
             "newDesc": "UI Enhancements and Bug Fixes"
         },
@@ -157,8 +158,8 @@
         "uinfo": "Unit Info",
         "price": "Price"
     },
+    "mainTitle": "About Us",
     "about": {
-        "mainTitle": "About Us",
         "title": "Daily Needs",
         "title2": "Little Story",
         "title3": "Discover",
