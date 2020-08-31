@@ -11,7 +11,7 @@
       </ngx-skeleton-loader>
     </div>
     <div class="row" *ngIf="isItemLoaded">
-      <div class="col-lg-8 mt-4">
+      <div class="col-lg-10 mt-4">
         <div class="row pr-0 pl-0">
           <img class="itemImg" src="{{targetHealthInfo.img_url}}" (error)="updateImage($event)" />
         </div>
@@ -24,7 +24,7 @@
           </div>
           <div class="col-lg-6 share-like">
             <span><i class="far fa-calendar-alt"></i> {{targetHealthInfo.date}} </span>
-            <span><i class="far fa-comments"></i> {{targetHealthInfo.comments}} </span>
+            <!-- <span><i class="far fa-comments"></i> {{targetHealthInfo.comments}} </span> -->
           </div>
         </div>
         <div class="row">

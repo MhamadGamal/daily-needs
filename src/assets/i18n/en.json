@@ -12,8 +12,8 @@
             "about": "About us",
             "contactus": "Contact us",
             "privacy": "Payment privacy",
-            "health": "Health Information",
-            "health-details": "Health details",
+            "health": "Blog",
+            "health-details": "Blog details",
             "checkout": "Checkout",
             "cart": "Cart",
             "category-list": "Category list",
@@ -95,7 +95,7 @@
             "newDesc": "UI Enhancements and Bug Fixes"
         },
         "health": {
-            "title": "Health Information"
+            "title": "Blog"
         },
         "footer": {
             "address": "Address",
@@ -148,12 +148,12 @@
         "result": "search results found for"
     },
     "health": {
-        "title": "Health Information",
+        "title": "Blog",
         "more": "Read More..."
     },
     "favourite": {
         "items": "Items",
-        "hinfo": "Health Info",
+        "hinfo": "Blog Info",
         "product": "Product",
         "uinfo": "Unit Info",
         "price": "Price"

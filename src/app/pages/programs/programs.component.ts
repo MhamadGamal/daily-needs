@@ -77,34 +77,34 @@ export class ProgramsComponent implements OnInit, OnDestroy {
           return item;
         }
       });
-    this.menu.restaurantsItemsListResponse.resturentItemsInfo
-      .filter((item: IresturentItemsInfo) => {
-        let isP;
-        if (this.programms) {
-          this.programms.forEach((c: ICategoriesInfo, i) => {
-            if (typeof item.categoryIDs === 'string') {
-              if (item.categoryIDs !== c.categoryID) {
-                const p = item.attributes.filter((i: Iattributes) => {
-                  if (i.attributeID === '121' && i.attributeValue === '001') {
-                    isP = true;
-                  }
-                });
-              } else { this.programms[i].threeLevel = true; }
-            } else if (Array.isArray(typeof item.categoryIDs)) {
-              if (item.categoryIDs.includes(c.categoryID)) { this.programms[i].threeLevel = true; } else {
-                const p = item.attributes.filter((i: Iattributes) => {
-                  if (i.attributeID === '121' && i.attributeValue === '001') {
-                    isP = true;
-                  }
-                });
-              }
-            }
-          });
-        }
-        if (isP) {
-          this.programms.push(item);
-        }
-      });
+    // this.menu.restaurantsItemsListResponse.resturentItemsInfo
+    //   .filter((item: IresturentItemsInfo) => {
+    //     let isP;
+    //     if (this.programms) {
+    //       this.programms.forEach((c: ICategoriesInfo, i) => {
+    //         if (typeof item.categoryIDs === 'string') {
+    //           if (item.categoryIDs !== c.categoryID) {
+    //             const p = item.attributes.filter((i: Iattributes) => {
+    //               if (i.attributeID === '121' && i.attributeValue === '001') {
+    //                 isP = true;
+    //               }
+    //             });
+    //           } else { this.programms[i].threeLevel = true; }
+    //         } else if (Array.isArray(typeof item.categoryIDs)) {
+    //           if (item.categoryIDs.includes(c.categoryID)) { this.programms[i].threeLevel = true; } else {
+    //             const p = item.attributes.filter((i: Iattributes) => {
+    //               if (i.attributeID === '121' && i.attributeValue === '001') {
+    //                 isP = true;
+    //               }
+    //             });
+    //           }
+    //         }
+    //       });
+    //     }
+    //     if (isP) {
+    //       this.programms.push(item);
+    //     }
+    //   });
 
     // get realted items
     this.programms.forEach((item: any) => {
