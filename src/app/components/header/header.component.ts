@@ -1,3 +1,5 @@
+import { NotifierService } from 'angular-notifier';
+import { Router } from '@angular/router';
 import { CartService } from './../../shared/services/cart.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { LangService } from './../../shared/services/lang.service';
@@ -26,7 +28,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private langS: LangService,
     private modalService: NgbModal,
     public authService: AuthService,
-    public cartService: CartService
+    public cartService: CartService,
+    private router: Router,
+    private notifierService: NotifierService
   ) {
     this.subscription.add(
       this.langS.lang.subscribe(lang => {
@@ -58,6 +62,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
   updateImage(ev) {
     ev.target.src = 'assets/images/default_image.png';
+  }
+  gotoCheckout() {
+    if (this.authService.isLoggedIn) {
+      this.router.navigate(['/cart/checkout']);
+    } else {
+      const loginTxt = this.lang === 'en' ? 'kindlly login or signup' : 'من فضلك قم بالتسجيل او تسجيل الدخول';
+      this.notifierService.notify('success', loginTxt);
+      document.querySelectorAll('[aria-labelledby="navbarDropdown"]')[1].classList.add('show');
+
+    }
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();

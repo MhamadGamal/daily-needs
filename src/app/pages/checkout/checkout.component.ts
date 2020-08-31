@@ -262,7 +262,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         }
       });
     } else {
-      const loginTxt = this.lang === 'en' ? 'kindlly login or signup to add items to wish list' : 'من فضلك قم بالتسجيل اولا لالضافه العناصر الي المفضله';
+      const loginTxt = this.lang === 'en' ? 'kindlly login or signup' : 'من فضلك قم بالتسجيل او تسجيل الدخول';
       this.notifierService.notify('success', loginTxt);
       document.querySelectorAll('[aria-labelledby="navbarDropdown"]')[1].classList.add('show');
 

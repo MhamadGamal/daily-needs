@@ -75,7 +75,7 @@
                 <div class="dropdown-divider"></div>
                 <div class="text-center">
                   <a routerLink="/cart" class="btn btn-success proceed ml-2 mr-2">{{'home.header.cart' | translate}}</a>
-                  <a routerLink="/cart/checkout"
+                  <a (click)="gotoCheckout()"
                     class="btn btn-warning addAddressBtn ml-2 mr-2">{{'home.header.checkout' | translate}}</a>
                 </div>
               </div>
@@ -147,3 +147,4 @@
     </div>
   </nav>
 </div>
+<notifier-container></notifier-container>

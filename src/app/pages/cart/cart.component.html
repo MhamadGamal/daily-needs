@@ -45,14 +45,14 @@
             {{(cartService.totalPrice + cartService.shipping + cartService.vat) | currency: " EGP "}} </div>
         </div>
         <div class="row">
-          <button routerLink="/cart/checkout"
+          <button (click)="gotoCheckout()"
             class="btn btn-success btns proceed">{{'cart.pcheckout' | translate}}</button>
         </div>
         <!-- <div class="divSeparatorFooter mb-3 mt-3"></div> -->
         <div class=" mb-3 mt-3">{{'cart.or' | translate}}</div>
         <!-- <div class="divSeparatorFooter  mb-3 mt-3"></div> -->
         <div class="row">
-          <button routerLink="/cart/checkout" class="btn btn-light btns">{{'cart.sechOrder' | translate}}</button>
+          <button class="btn btn-light btns">{{'cart.sechOrder' | translate}}</button>
         </div>
 
         <p class="mt-5">
@@ -63,5 +63,5 @@
       </div>
     </div>
   </div>
-
+  <notifier-container></notifier-container>
 </div>
