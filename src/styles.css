@@ -800,7 +800,7 @@ button:focus{
 .carousel .carousel-list .carousel-slide 
 {
 	height: 500px !important;
-	background-size: contain !important;
+	/* background-size: contain !important; */
 }
 @media (max-width: 768px){
 	.carousel,

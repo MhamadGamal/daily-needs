@@ -12,8 +12,8 @@
       <ng-container *ngIf="language === 'ar'"> {{item.titleAr}} </ng-container>
     </h5>
     <div class="wrapTxt">
-      <ng-container *ngIf="language === 'en'"> {{item.description}} </ng-container>
-      <ng-container *ngIf="language === 'ar'"> {{item.descAr}} </ng-container>
+      <ng-container *ngIf="language === 'en'"> {{item.description | slice:0:200}} </ng-container>
+      <ng-container *ngIf="language === 'ar'"> {{item.descAr | slice:0:200}} </ng-container>
     </div>
     <div class="mt-3 mb-3">
       <div class="divSeparatorFooter"></div>
