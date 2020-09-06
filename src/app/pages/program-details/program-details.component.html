@@ -31,7 +31,8 @@
 					<h4 class="item-details-title" *ngIf="lang ==='ar'">
 						{{targetProgramms?.attributes | filter: "9"}} </h4>
 				</ng-container>
-				<div class="item-price">
+				<p class="item-price"><span class="dailyNeed-price">{{price | currency: "EGP "}}</span></p>
+				<div class="item-price" *ngIf="!targetProgramms?.prices?.length">
 					<ng-container
 						*ngIf="targetProgramms?.prices?.discountValue && targetProgramms?.prices?.discountValue != 0;else noDiscount">
 						<div class="">
@@ -53,6 +54,23 @@
 							</div>
 						</div>
 					</ng-template>
+				</div>
+				<div class="item-price" *ngIf="targetProgramms?.prices?.length > 0">
+					<h6> {{'programs.selectPlan' | translate}} </h6>
+					<ng-container *ngFor="let p of targetProgramms.prices">
+						<div class="">
+							<!-- <del>
+								{{(targetProgramms?.prices?.priceNumber - targetProgramms?.prices?.discountValue) | currency: " EGP "}}
+							</del> -->
+							<div class="custom-control custom-radio custom-control-inline">
+								<input type="radio" id="p{{p.priceNumber}}" [(ngModel)]="price" [value]="p.priceNumber"
+									name="itemprice" class="custom-control-input">
+								<label class="custom-control-label" for="p{{p.priceNumber}}">
+									{{p.categoryName}}
+								</label>
+							</div>
+						</div>
+					</ng-container>
 				</div>
 				<div>
 					<div class="desc">
@@ -103,10 +121,10 @@
 								{{'generalMsg.cart.addToCart' | translate}} </button>
 						</div>
 						<div class="col-lg-4 col-xs-12 wishlist">
-							<!-- <a (click)="addToFavourite()">
+							<a (click)="addToFavourite()">
 								<i class="fa-heart" [ngClass]="{'fas':isFavourite, 'far': !isFavourite}"></i>
 								<span>{{'generalMsg.favourite.wish' | translate}}</span>
-							</a> -->
+							</a>
 						</div>
 					</div>
 				</div>

@@ -84,6 +84,7 @@ export interface IresturentItemsInfo {
     categoryIDs?: string | string[];
     attributes?: Iattributes[];
     prices?: Iprices;
+    price?: string;
 }
 export interface Iprices {
     priceNumber?: number;

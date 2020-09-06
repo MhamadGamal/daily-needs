@@ -42,9 +42,14 @@
                 </div>
             </td>
             <td>
-                <p *ngIf="item?.prices.priceNumber">
-                    {{item.cartItemsNum}} * {{item?.prices.priceNumber | currency: " EGP "}}
+                <p *ngIf="item?.price; else p">
+                    {{item.cartItemsNum}} * {{item?.price | currency: " EGP "}}
                 </p>
+                <ng-template #p>
+                    <p *ngIf="item?.prices.priceNumber">
+                        {{item.cartItemsNum}} * {{item?.prices.priceNumber | currency: " EGP "}}
+                    </p>
+                </ng-template>
             </td>
             <td class="trashIcon">
                 <i (click)="cartService.removeFromCart(item.itemID, item.selectedTime)" class="fa fa-trash"></i></td>

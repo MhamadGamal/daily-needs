@@ -37,17 +37,46 @@
           <i class="fa fa-star rating-active"></i>
           <i class="fa fa-star rating-disable"></i>
           <span class="reviews">(2 customer reviews)</span> -->
-          <p *ngIf="targetItem?.prices.discountValue && targetItem.prices.discountValue != 0; else noDiscount"
-            class="item-price">
-            <span><del>{{targetItem?.prices.priceNumber | currency: " EGP "}}</del></span>
-            <span
-              class="dailyNeed-price">{{(targetItem?.prices.priceNumber - targetItem.prices.discountValue) | currency: " EGP "}}</span>
-          </p>
-          <ng-template #noDiscount>
-            <p class="item-price">
-              <span class="dailyNeed-price">{{targetItem?.prices.priceNumber | currency: " EGP "}}</span>
-            </p>
-          </ng-template>
+          <div class="item-price" *ngIf="!targetItem?.prices?.length">
+            <ng-container
+              *ngIf="targetItem?.prices?.discountValue && targetItem?.prices?.discountValue != 0;else noDiscount">
+              <div class="">
+                <del>
+                  {{(targetItem?.prices?.priceNumber - targetItem?.prices?.discountValue) | currency: " EGP "}}
+                </del>
+                <span class="dailyNeed-price">
+                  {{targetItem?.prices?.priceNumber | currency: " EGP "}}
+                </span>
+              </div>
+
+            </ng-container>
+            <ng-template #noDiscount>
+              <div class="newPrice">
+                <div *ngIf="targetItem?.prices">
+                  <span class="dailyNeed-price">
+                    {{targetItem?.prices?.priceNumber | currency: " EGP "}}
+                  </span>
+                </div>
+              </div>
+            </ng-template>
+          </div>
+          <div class="item-price" *ngIf="targetItem?.prices?.length > 0">
+            <h6> {{'programs.selectPlan' | translate}} </h6>
+            <ng-container *ngFor="let p of targetItem.prices">
+              <div class="">
+                <!-- <del>
+                  {{(targetItem?.prices?.priceNumber - targetItem?.prices?.discountValue) | currency: " EGP "}}
+                </del> -->
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" id="p{{p.priceNumber}}" [(ngModel)]="Price" [value]="p.priceNumber"
+                    name="itemprice" class="custom-control-input">
+                  <label class="custom-control-label" for="p{{p.priceNumber}}">
+                    {{p.categoryName}}
+                  </label>
+                </div>
+              </div>
+            </ng-container>
+          </div>
         </div>
         <div class="desc">
           <p>
@@ -59,7 +88,6 @@
             <input type="radio" id="customRadioInline1" checked name="customRadioInline1" class="custom-control-input">
             <label class="custom-control-label" for="customRadioInline1"> {{targetItem?.prices.categoryName}} </label>
           </div>
-
 
           <!-- <h6>Extras</h6>
           <div class="custom-control custom-radio custom-control-inline">
@@ -88,7 +116,7 @@
               </div>
             </div>
             <div class=" col-md-4 col-5 cart-items">
-              <button (click)="cartService.addToCart(targetItem, cartItems)" class="btn btn-success addCart">
+              <button (click)="cartService.addToCart(targetItem, cartItems, Price)" class="btn btn-success addCart">
                 {{'generalMsg.cart.addToCart' | translate}} </button>
             </div>
             <div class="col-lg-4 col-xs-12 wishlist">

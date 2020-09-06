@@ -31,17 +31,23 @@ export class CartService {
     }
   }
   addToCart(item: IresturentItemsInfo, itemNo: number, progPrice?) {
+    debugger;
     if (item && Number(itemNo)) {
       const time = new Date().getTime();
       if (progPrice) {
-        this.totalPrice += (Number(itemNo) * Number(progPrice));
-      }
-      if (item.prices.priceNumber) {
-        this.totalPrice += (Number(itemNo) * Number(item.prices.priceNumber));
+        const numP = Number(progPrice);
+        this.totalPrice += (Number(itemNo) * numP);
+      } else {
+        if (item.prices.priceNumber) {
+          this.totalPrice += (Number(itemNo) * Number(item.prices.priceNumber));
+        }
       }
       const copy = Object.assign({}, item);
       copy.cartItemsNum = Number(itemNo);
       copy.selectedTime = time;
+      if (progPrice) {
+        copy.price = progPrice;
+      }
       this.cartItems.push(copy);
       this.cartItemsNum += copy.cartItemsNum;
       this.setcartItems();
@@ -52,10 +58,18 @@ export class CartService {
       this.totalPrice = 0;
       this.cartItemsNum = 0;
       this.cartItems.forEach((item: IresturentItemsInfo) => {
+        debugger;
         if (item.itemID === id && item.selectedTime === time) {
           item.cartItemsNum = Number(itemNo);
         }
-        this.totalPrice += (item.cartItemsNum * Number(item.prices.priceNumber));
+        if (item.price) {
+          const numP = Number(item.price);
+          this.totalPrice += (Number(itemNo) * numP);
+        } else {
+          if (item.prices.priceNumber) {
+            this.totalPrice += (Number(itemNo) * Number(item.prices.priceNumber));
+          }
+        }
         this.cartItemsNum += Number(item.cartItemsNum);
       });
       this.setcartItems();
@@ -65,8 +79,13 @@ export class CartService {
     if (this.cartItemsNum > 0) {
       this.cartItems.forEach((_item: IresturentItemsInfo, i) => {
         if (_item.itemID === id && _item.selectedTime === time) {
-          if (_item.prices.priceNumber) {
-            this.totalPrice -= (_item.cartItemsNum * Number(_item.prices.priceNumber));
+          if (_item.price) {
+            const num = Number(_item.price);
+            this.totalPrice -= (_item.cartItemsNum * num);
+          } else {
+            if (_item.prices.priceNumber) {
+              this.totalPrice -= (_item.cartItemsNum * Number(_item.prices.priceNumber));
+            }
           }
           this.cartItemsNum -= _item.cartItemsNum;
           _item.cartItemsNum = 0;

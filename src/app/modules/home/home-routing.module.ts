@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from 'src/app/pages/home/home.component';
 
 
-const routes: Routes = [{ path: '', component: HomeComponent, data: { title: 'Home' } }];
+const routes: Routes = [{ path: '', component: HomeComponent, data: { breadcrumbs: 'Home' } }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

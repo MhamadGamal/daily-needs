@@ -30,6 +30,7 @@ export class ProgramDetailsComponent implements OnInit, OnDestroy {
   isItemLoaded: boolean;
   subscription: Subscription = new Subscription();
   environment = environment;
+  price;
   constructor(private translate: TranslateService, private langS: LangService,
     private menuItemsService: MenuItemsService,
     private params: ActivatedRoute,
@@ -100,14 +101,15 @@ export class ProgramDetailsComponent implements OnInit, OnDestroy {
         }
       });
     // target prog dtails
-    this.targetProgramms = this.programms
-      .find((p: any) => p.categoryID === this.id || p.itemID === this.id);
+    this.targetProgramms = this.filterdCatArr
+      .find((p: any) => p.itemID === this.id);
+    this.price = this.targetProgramms.prices[0].priceNumber;
     // related progs
     if (this.targetProgramms.threeLevel) {
       // this.relatedItems = this.getComponents(this.targetProgramms.itemID);
       this.getComponents(this.targetProgramms.itemID);
     } else {
-      this.relatedItems = this.getRelatedItems(this.targetProgramms.categoryID);
+      this.relatedItems = this.getRelatedItems(this.targetProgramms.itemID);
 
     }
     console.log(this.targetProgramms);
@@ -231,14 +233,14 @@ export class ProgramDetailsComponent implements OnInit, OnDestroy {
     }
   }
   addToCart(num) {
-    this.relatedItems.forEach((item: IresturentItemsInfo, i) => {
-      item.prices.priceNumber = null;
-      if (i === (this.relatedItems.length - 1)) {
-        this.cartService.addToCart(item, num, this.targetProgramms.prices.priceNumber);
-      } else {
-        this.cartService.addToCart(item, num);
-      }
-    });
+    // this.relatedItems.forEach((item: IresturentItemsInfo, i) => {
+    // item.prices.priceNumber = null;
+    // if (i === (this.relatedItems.length - 1)) {
+    this.cartService.addToCart(this.targetProgramms, num, this.price);
+    // } else {
+    //   this.cartService.addToCart(item, num);
+    // }
+    // });
   }
   updateImage(ev) {
     ev.target.src = 'assets/images/default_image.png';

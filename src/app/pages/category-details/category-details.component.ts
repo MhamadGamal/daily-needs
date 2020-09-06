@@ -20,9 +20,10 @@ export class CategoryDetailsComponent implements OnInit, OnDestroy {
   id: string;
   menu: IMenu;
   cartItems = 1;
-  targetItem: IresturentItemsInfo;
+  targetItem: any;
   filterdCatArr: IresturentItemsInfo[];
   lang: string;
+  Price;
   isFavourite: boolean;
   subscription: Subscription = new Subscription();
   isItemLoaded: boolean;
@@ -50,6 +51,12 @@ export class CategoryDetailsComponent implements OnInit, OnDestroy {
       this.targetItem = this.filterdCatArr.filter((item: IresturentItemsInfo) => item.itemID === this.id)[0];
       console.log(this.targetItem);
       this.isItemLoaded = true;
+      if (this.targetItem.prices.length) {
+        this.Price = this.targetItem.prices[0].priceNumber;
+      } else {
+        this.Price = this.targetItem.prices.priceNumber;
+
+      }
 
     }
     if (!this.menu) {

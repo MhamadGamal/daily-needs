@@ -1,3 +1,4 @@
+import { CartService } from './cart.service';
 import { Injectable } from '@angular/core';
 import { IloginedUserData, UpdateClientInfoResponse } from '../models/logined-user-data';
 import { Router } from '@angular/router';
@@ -19,7 +20,7 @@ export class AuthService {
         return this.userData;
     }
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private cart: CartService) {
         if (localStorage.getItem('isLoggedIn') === 'true') {
             this.isLoggedIn = true;
         }
@@ -34,6 +35,7 @@ export class AuthService {
     signout() {
         this.userData = null;
         this.isLoggedIn = false;
+        this.cart.resetCart();
         localStorage.removeItem('loginedUserData');
         localStorage.removeItem('isLoggedIn');
         this.router.navigate(['/home']);

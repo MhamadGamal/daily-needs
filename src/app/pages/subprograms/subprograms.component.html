@@ -8,10 +8,10 @@
 
 <div class="programsSummary">
     <div class="container">
-        <div class="row">
-            <div *ngFor="let item of relatedItems" class="col-lg-6">
+        <div class="row justify-content-center">
+            <!-- <div *ngFor="let item of relatedItems" class="col-lg-6">
                 <div class="programCard">
-                    <div class="img-holder" [routerLink]="'/programs/'+item.itemID">
+                    <div class="img-holder" >
                         <img class="programImg" [src]="environment.imgUrl+'/Items/Large/'+item.itemID+'.png'"
                             (error)="updateImage($event)" />
                     </div>
@@ -60,6 +60,17 @@
                         </div>
                     </div>
                 </div>
+            </div> -->
+            <div *ngFor="let item of relatedItems" class="col-lg-3   col-md-4 col-sm-6 dailyNeed-div-img"
+                [routerLink]="'/programs/'+item.itemID">
+                <img class="dailyNeed-img" [src]="environment.imgUrl+'/Items/Large/'+item.itemID+'.png'"
+                    (error)="updateImage($event)" />
+                <h4 *ngIf="lang ==='en'" class="dailyNeed-title"> {{item.attributes | filter: "1"}} </h4>
+                <h4 *ngIf="lang ==='ar'" class="dailyNeed-title"> {{item.attributes | filter: "6"}} </h4>
+                <p class="dailyNeed-price">
+                    {{'programs.selectPlan' | translate}}
+                </p>
+
             </div>
         </div>
     </div>

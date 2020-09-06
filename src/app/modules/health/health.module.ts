@@ -10,8 +10,8 @@ import { HealthDetailsComponent } from '../../pages/health-details/health-detail
 
 
 const appRoutes: Routes = [
-  { path: '', component: HealthComponent, data: { title: 'Blog' } },
-  { path: ':id', component: HealthDetailsComponent, data: { title: 'Blog Details' } }
+  { path: '', component: HealthComponent, data: { breadcrumbs: 'Blog' } },
+  { path: ':id', component: HealthDetailsComponent, data: { breadcrumbs: 'Blog Details' } }
 ];
 
 @NgModule({
