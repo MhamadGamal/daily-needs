@@ -1,0 +1,139 @@
+::ng-deep html {
+	direction: rtl !important;
+}
+
+::ng-deep body {
+	text-align: right !important;
+}
+
+::ng-deep .header .navbar h2 {
+	float: right;
+	text-transform: uppercase;
+}
+
+::ng-deep .header .navbar ul {
+	list-style: none;
+	float: right;
+	color: #000;
+}
+
+::ng-deep .header .navbar ul li {
+	float: right;
+	padding: 0px 10px;
+	font-size: 16px;
+}
+
+::ng-deep .user-twitter {
+	margin-right: -10px;
+}
+
+::ng-deep .tags {
+	color: #ccc;
+	font-size: 13px;
+	text-align: right;
+	font-family: HelveticaNeue;
+	margin-top: 2px;
+}
+
+::ng-deep .health-title, .healthReadMore {
+	text-align: right !important;
+}
+
+::ng-deep .healt-desc {
+	font-size: 14px;
+	text-align: right;
+}
+
+::ng-deep .cardBtn {
+	text-align: left !important;
+	padding-left: 0px !important;
+}
+
+::ng-deep .share-like {
+	text-align: left;
+}
+
+::ng-deep .trashIcon {
+	padding-left: 20px;
+}
+
+::ng-deep .itemCost, ::ng-deep .itemTitle {
+	text-align: left;
+}
+
+::ng-deep .itemTitle, ::ng-deep .yourCart {
+	text-align: right;
+}
+
+::ng-deep .checkout input[type="radio"]+label {
+	padding-right: 25px;
+}
+
+::ng-deep .input-group>.input-group-append>.btn {
+	border-top-right-radius: 0 !important;
+	border-bottom-right-radius: 0 !important;
+}
+
+::ng-deep .input-group>.form-control:not(:last-child) {
+	border-top-left-radius: 0 !important;
+	border-bottom-left-radius: 0 !important;
+}
+
+::ng-deep .controlBtn {
+	float: left
+}
+
+::ng-deep .link-div {
+	border-left: 1px solid rgba(223, 232, 238, 1);
+}
+
+::ng-deep #btnGroupAddon {
+	border-left: 1px solid white;
+	border-radius: unset;
+}
+
+::ng-deep .custom-control-inline {
+	display: inline-flex;
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+}
+
+::ng-deep .custom-control {
+	position: relative;
+	min-height: 1.5rem;
+	padding-right: 0px !important;
+}
+
+::ng-deep .custom-control-label {
+	padding-right: 25px !important;
+}
+
+::ng-deep .custom-control-label::before {
+	position: absolute;
+	top: 0.25rem;
+	right: 0 !important;
+	display: block;
+	width: 1rem;
+	height: 1rem;
+	pointer-events: none;
+	content: "";
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-color: white;
+}
+
+::ng-deep .custom-control-label::after {
+	position: absolute;
+	top: 0.25rem;
+	right: 0 !important;
+	display: block;
+	width: 1rem;
+	height: 1rem;
+	content: "";
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 50% 50%;
+}
+

@@ -1,0 +1,95 @@
+::ng-deep html{
+	direction: ltr !important;
+}
+
+::ng-deep body{
+	text-align: left !important;
+}
+
+::ng-deep .header .navbar h2 {
+	float: left;
+	text-transform: uppercase;
+}
+
+::ng-deep .header .navbar ul {
+	list-style: none;
+	float: left;
+	color: #000;
+}
+
+::ng-deep .header .navbar ul li{
+	float: left;
+	padding: 0px 10px;
+	font-size: 16px;
+}
+
+::ng-deep .dropdown-menu{
+    margin-left: -270px; 
+}
+
+::ng-deep .user-twitter{
+    margin-left: -10px;
+}
+
+::ng-deep .tags{
+	color:#ccc;
+	font-size: 13px;
+	text-align: left;
+	font-family: HelveticaNeue;
+	margin-top: 2px;
+}
+
+::ng-deep .health-title , .healthReadMore{
+	text-align: left !important;
+}
+
+::ng-deep .healt-desc{
+	font-size: 14px;
+	text-align: left;
+}
+
+::ng-deep .cardBtn {
+	text-align: right !important;
+    padding-right: 0px !important;
+}
+
+::ng-deep .share-like{
+	text-align: right;
+}
+
+::ng-deep .trashIcon{
+	padding-right: 20px;
+}
+
+::ng-deep .itemCost , ::ng-deep .itemTitle {
+	text-align: right;
+}
+
+::ng-deep .itemTitle , ::ng-deep .yourCart {
+	text-align: left;
+}
+
+::ng-deep .controlBtn{
+	float: right
+}
+
+::ng-deep .link-div {
+    border-right : 1px solid rgba(223,232,238,1);
+}
+
+::ng-deep #btnGroupAddon{
+	border-right: 1px solid white !important;
+	border-radius: unset;
+}
+
+/* ::ng-deep .custom-control {
+	position: relative;
+	min-height: 1.5rem;
+	padding-left: 0px !important;
+}
+
+::ng-deep .custom-control-inline {
+	display: inline-flex;
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+} */

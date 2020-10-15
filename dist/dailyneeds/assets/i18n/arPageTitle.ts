@@ -1,0 +1,17 @@
+export const arPageTitle = {
+    "programs": "البرامج",
+    "program-details": "تفاصيل البرنامج",
+    "category": "التصنيفات",
+    "category-details": "تفاصيل التصنيف",
+    "myaccount": "حسابي",
+    "my-orders": "طلباتي",
+    "favouirts": "المفضلة",
+    "about": "عن دايلي نيدز",
+    "contactus": "اتصل بنا",
+    "privacy": "سياسة الدفع",
+    "health": "معلومات عن الصحة",
+    "health-details": "تفاصيل معلومة عن الصحة",
+    "checkout": "الدقع",
+    "cart": "العربة",
+    "category-list": "قائمة التصنيفات",
+}
